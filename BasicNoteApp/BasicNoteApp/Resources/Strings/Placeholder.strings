@@ -1,0 +1,13 @@
+/* 
+  Placeholder.strings
+  BasicNoteApp
+
+  Created by Furkan on 11.07.2023.
+  
+*/
+
+"fullname" = "Full Name";
+"email" = "Email Address";
+"password" = "Password";
+"newPassword" = "New Password";
+"retypeNewPassword" = "Retype New Password";

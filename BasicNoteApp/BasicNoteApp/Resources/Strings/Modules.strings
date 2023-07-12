@@ -1,0 +1,36 @@
+/* 
+  Modules.strings
+  BasicNoteApp
+
+  Created by Furkan on 11.07.2023.
+  
+*/
+
+"descriptionText" = "Login or sign up to continue using our app.";
+"forgotPassword" = "Forgot Password?";
+
+
+// MARK: - Login
+"LoginViewController.title" = "Login";
+"LoginViewController.bottomText" = "New User?";
+"LoginViewController.toastMessage"= "The email and password you entered did notmatch our records. Please try again.";
+
+// MARK: - Register
+"RegisterViewController.title" = "Sign Up";
+"RegisterViewController.bottomText"= "Already have an account?";
+
+// MARK: - Profile
+"ProfileViewController.title" = "Profile";
+"ProfileViewController.changePassword"= "Change Password";
+"ProfileViewController.signOut"= "Sign Out";
+"ProfileViewController.toastMessage"= "The fullname or email you entered did notmatch our records. Please try again.";
+
+// MARK: - Change Password
+"ChangePasswordViewController.title" = "Change Password";
+"ChangePasswordViewController.changePassword"= "Change Password";
+"ChangePasswordViewController.signOut"= "Sign Out";
+"ChangePasswordViewController.toastMessage"= "An email has been sent to %@ with further instructions.";
+
+// MARK: - Add or Edit Note
+"noteTitle" = "%@ Note";
+

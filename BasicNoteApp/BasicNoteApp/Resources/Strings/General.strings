@@ -1,0 +1,16 @@
+/* 
+  General.strings
+  BasicNoteApp
+
+  Created by Furkan on 11.07.2023.
+  
+*/
+
+"login" = "Login";
+"register" = "Sign Up";
+"signInNow" = "sign In Now";
+"signUpNow" = "Sign Up Now";
+"save" = "Save";
+"addNote" = "Add Note";
+"saveNote" = "Save Note";
+"ok" = "Ok";
