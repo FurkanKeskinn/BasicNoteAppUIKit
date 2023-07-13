@@ -1,0 +1,28 @@
+strings:
+  inputs: BasicNoteApp/Resources/Strings
+  filter: .+\.strings$
+  outputs:
+    - templateName: structured-swift5
+      output: BasicNoteApp/Resources/Strings/StringConstants.swift
+      params:
+          publicAccess: public
+
+xcassets:
+  inputs:
+    - BasicNoteApp/Resources/Assets/Icons.xcassets
+    - BasicNoteApp/Resources/Assets/Images.xcassets
+    - BasicNoteApp/Resources/Assets/Colors.xcassets
+  outputs:
+    templateName: swift5
+    output: BasicNoteApp/Resources/Assets/Assets.swift
+    params:
+          publicAccess: public
+      
+fonts:
+  inputs: BasicNoteApp/Resources/Fonts
+  outputs:
+    templateName: swift5
+    output: BasicNoteApp/Resources/Fonts/Fonts.swift
+    params:
+        publicAccess: public
+  

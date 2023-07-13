@@ -1,0 +1,10 @@
+/* 
+  Error.strings
+  BasicNoteApp
+
+  Created by Furkan on 11.07.2023.
+  
+*/
+
+"passwordInvalid" = "Password Invalid";
+
