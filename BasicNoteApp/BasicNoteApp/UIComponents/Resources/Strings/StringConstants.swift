@@ -33,8 +33,8 @@ public enum L10n {
     public static let save = L10n.tr("General", "save", fallback: "Save")
     /// Save Note
     public static let saveNote = L10n.tr("General", "saveNote", fallback: "Save Note")
-    /// sign In Now
-    public static let signInNow = L10n.tr("General", "signInNow", fallback: "sign In Now")
+    /// Sign In Now
+    public static let signInNow = L10n.tr("General", "signInNow", fallback: "Sign In Now")
     /// Sign Up Now
     public static let signUpNow = L10n.tr("General", "signUpNow", fallback: "Sign Up Now")
   }

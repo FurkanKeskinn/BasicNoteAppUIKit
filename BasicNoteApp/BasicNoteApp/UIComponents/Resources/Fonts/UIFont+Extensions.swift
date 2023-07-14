@@ -20,13 +20,13 @@ extension UIFont {
 
   // swiftlint:disable identifier_name
   enum FontSize {
-      /// 13
+      /// 10
       case small
 
       /// 40
       case large
 
-      /// 27
+      /// 26
       case h1
 
       /// 21
@@ -34,18 +34,34 @@ extension UIFont {
 
       /// 17
       case h3
+      
+      /// 16
+      case h4
+      
+      /// 15
+      case h5
+      
+      /// 14
+      case h6
+      
+      /// 13
+      case h7
 
       /// custom
       case custom(size: CGFloat)
 
       public var rawValue: CGFloat {
           switch self {
-          case .small: return 13
+          case .small: return 10
           case .large:  return 40
-          case .h1: return 27
+          case .h1: return 26
           case .h2: return 21
           case .h3: return 17
-          case .custom(let size):return size
+          case .h4: return 16
+          case .h5: return 15
+          case .h6: return 14
+          case .h7: return 13
+          case .custom(let size): return size
           }
       }
   }
