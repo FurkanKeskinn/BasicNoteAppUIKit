@@ -48,29 +48,15 @@ class RegisterViewController: UIViewController {
         return stackView
     }()
     
-    private let passwordInvalidIcon: UIImageView = {
-       let image = UIImageView()
-        image.image = UIImage(asset: Asset.Icons.icError)
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
-    
     private let passwordInvalidLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = L10n.Error.passwordInvalid
         label.font = .font(.interMedium, size: .small)
+        label.addIcon(icon: UIImage(asset: Asset.Icons.icError)!, text: L10n.Error.passwordInvalid, iconSize: CGSize(width: 16, height: 16), xOffset: -8, yOffset: -4)
         label.textColor = .appRed
+        label.isHidden = false
         return label
-    }()
-    
-    private let passwordInvalidStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 4
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.isHidden = false
-        return stackView
     }()
     
     private let forgotPasswordLabel: UILabel = {
@@ -80,6 +66,14 @@ class RegisterViewController: UIViewController {
         label.font = .font(.interMedium, size: .h5)
         label.textColor = .appBlack
         return label
+    }()
+    
+    private let forgotPasswordStackView: UIStackView = {
+    let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .trailing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     private let buttonRegister: UIButton = {
@@ -108,7 +102,7 @@ class RegisterViewController: UIViewController {
         return label
     }()
     
-    private let bottomStackView : UIStackView = {
+    private let bottomStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 8
@@ -116,11 +110,27 @@ class RegisterViewController: UIViewController {
         return stackView
     }()
     
+    private let mainStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.spacing = 16
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    private let scrollView: UIScrollView = {
+            let scrollView = UIScrollView()
+            scrollView.translatesAutoresizingMaskIntoConstraints = false
+            return scrollView
+        }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         contentConfigure()
-        
+        setupViews()
+        applyConstraints()
     }
     
     private func contentConfigure(){
@@ -132,78 +142,84 @@ class RegisterViewController: UIViewController {
         passwordTextField.title = L10n.Placeholder.password
         passwordTextField.isSecureTextEntry = true
         passwordTextField.layer.borderColor = UIColor.appRed.cgColor
-
+        
     }
 }
 
 extension RegisterViewController {
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupViews()
-        applyConstraints()
-    }
-    
     private func setupViews(){
-         view.addSubview(titleStackView)
-         view.addSubview(textFieldstackView)
-         view.addSubview(forgotPasswordLabel)
-         view.addSubview(passwordInvalidStackView)
-         view.addSubview(buttonRegister)
-         view.addSubview(bottomStackView)
-         titleStackView.addArrangedSubview(titleLabel)
-         titleStackView.addArrangedSubview(descriptionLabel)
-         textFieldstackView.addArrangedSubview(fullnameTextField)
-         textFieldstackView.addArrangedSubview(emailTextField)
-         textFieldstackView.addArrangedSubview(passwordTextField)
-         passwordInvalidStackView.addArrangedSubview(passwordInvalidIcon)
-         passwordInvalidStackView.addArrangedSubview(passwordInvalidLabel)
-         bottomStackView.addArrangedSubview(haveAccountLabel)
-         bottomStackView.addArrangedSubview(signInLabel)
-        
+        view.addSubview(scrollView)
+        scrollView.addSubview(mainStackView)
+        scrollView.addSubview(bottomStackView)
+        mainStackView.addArrangedSubview(titleStackView)
+        mainStackView.addArrangedSubview(textFieldstackView)
+        mainStackView.addArrangedSubview(passwordInvalidLabel)
+        mainStackView.addArrangedSubview(forgotPasswordStackView)
+        mainStackView.addArrangedSubview(buttonRegister)
+        titleStackView.addArrangedSubview(titleLabel)
+        titleStackView.addArrangedSubview(descriptionLabel)
+        textFieldstackView.addArrangedSubview(fullnameTextField)
+        textFieldstackView.addArrangedSubview(emailTextField)
+        textFieldstackView.addArrangedSubview(passwordTextField)
+        forgotPasswordStackView.addArrangedSubview(forgotPasswordLabel)
+        bottomStackView.addArrangedSubview(haveAccountLabel)
+        bottomStackView.addArrangedSubview(signInLabel)
      }
     
     private func applyConstraints() {
         
         let titleStackViewConstraints = [
-            titleStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 96),
             titleStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         
         let textFieldstackViewConstraints = [
-            textFieldstackView.topAnchor.constraint(equalTo: titleStackView.bottomAnchor, constant: 40),
-            textFieldstackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            textFieldstackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24)
+            textFieldstackView.topAnchor.constraint(equalTo: titleStackView.bottomAnchor, constant: 40)
         ]
         
-        let passwordInvalidStackViewConstraints = [
-            passwordInvalidStackView.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 8),
-            passwordInvalidStackView.leadingAnchor.constraint(equalTo: textFieldstackView.leadingAnchor, constant: 8)
+        let passwordInvalidLabelConstraints = [
+            passwordInvalidLabel.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 8),
+            passwordInvalidLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 8)
         ]
         
-        let forgotPasswordLabelConstraints = [
-            forgotPasswordLabel.topAnchor.constraint(equalTo: passwordInvalidStackView.bottomAnchor, constant: 12),
-            forgotPasswordLabel.trailingAnchor.constraint(equalTo: textFieldstackView.trailingAnchor)
+        let forgotPasswordStackViewConstraints = [
+            forgotPasswordStackView.topAnchor.constraint(equalTo: passwordInvalidLabel.bottomAnchor, constant: 12)
         ]
         
         let buttonRegisterConstraints = [
             buttonRegister.topAnchor.constraint(equalTo: forgotPasswordLabel.bottomAnchor, constant: 24),
-            buttonRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            buttonRegister.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             buttonRegister.heightAnchor.constraint(equalToConstant: 63)
         ]
+        
         let bottomStackViewConstraints = [
             bottomStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -38),
             bottomStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
 
         ]
         
+        let scrollViewConstraints = [
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                ]
+        let mainStackViewConstraints = [
+            mainStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 96),
+            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -38)
+              
+        ]
+        
         NSLayoutConstraint.activate(titleStackViewConstraints)
         NSLayoutConstraint.activate(textFieldstackViewConstraints)
-        NSLayoutConstraint.activate(passwordInvalidStackViewConstraints)
-        NSLayoutConstraint.activate(forgotPasswordLabelConstraints)
+        NSLayoutConstraint.activate(passwordInvalidLabelConstraints)
+        NSLayoutConstraint.activate(forgotPasswordStackViewConstraints)
         NSLayoutConstraint.activate(buttonRegisterConstraints)
         NSLayoutConstraint.activate(bottomStackViewConstraints)
+        NSLayoutConstraint.activate(scrollViewConstraints)
+        NSLayoutConstraint.activate(mainStackViewConstraints)
+        
     }
 }
 
