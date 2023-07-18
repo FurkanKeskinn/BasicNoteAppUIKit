@@ -17,6 +17,7 @@ class ForgotPasswordViewController: UIViewController {
         label.textColor = .appBlack
         return label
     }()
+    
     private let descriptionLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +30,7 @@ class ForgotPasswordViewController: UIViewController {
     }()
     
     private let titleStackView: UIStackView = {
-        let stackView = UIStackView()
+       let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.spacing = 16
@@ -61,7 +62,7 @@ class ForgotPasswordViewController: UIViewController {
     }()
     
     private let mainStackView: UIStackView = {
-        let stackView = UIStackView()
+       let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
@@ -69,11 +70,13 @@ class ForgotPasswordViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    
     private let scrollView: UIScrollView = {
-            let scrollView = UIScrollView()
-            scrollView.translatesAutoresizingMaskIntoConstraints = false
-            return scrollView
+       let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
         }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         contentConfigure()
@@ -85,11 +88,9 @@ class ForgotPasswordViewController: UIViewController {
         emailTextField.autocapitalizationType = .none
         emailTextField.keyboardType = .emailAddress
         emailTextField.title = L10n.Placeholder.email
-        
     }
 
 }
-
 extension ForgotPasswordViewController {
     
     private func setupViews(){
@@ -104,45 +105,41 @@ extension ForgotPasswordViewController {
      }
     
     private func applyConstraints() {
-        
         let titleStackViewConstraints = [
             titleStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
-        
         let emailTextFieldConstraints = [
             emailTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40)
         ]
-        
         let emailInvalidLabelConstraints = [
             emailInvalidLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 8),
             emailInvalidLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 8)
         ]
-        
         let buttonResetPasswordConstraints = [
             buttonResetPassword.topAnchor.constraint(equalTo: emailInvalidLabel.bottomAnchor, constant: 24),
             buttonResetPassword.heightAnchor.constraint(equalToConstant: 63)
         ]
-        
         let scrollViewConstraints = [
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                ]
+        ]
         let mainStackViewConstraints = [
             mainStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 96),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -38)
-              
         ]
-        
-        NSLayoutConstraint.activate(titleStackViewConstraints)
-        NSLayoutConstraint.activate(emailTextFieldConstraints)
-        NSLayoutConstraint.activate(emailInvalidLabelConstraints)
-        NSLayoutConstraint.activate(buttonResetPasswordConstraints)
-        NSLayoutConstraint.activate(scrollViewConstraints)
-        NSLayoutConstraint.activate(mainStackViewConstraints)
+        let allConstraints = [
+            titleStackViewConstraints,
+            emailTextFieldConstraints,
+            emailInvalidLabelConstraints,
+            buttonResetPasswordConstraints,
+            scrollViewConstraints,
+            mainStackViewConstraints
+        ]
+        NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
 import SwiftUI
@@ -151,7 +148,6 @@ import SwiftUI
 @available(iOS 13, *)
 struct ForgotPasswordViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        
         ForgotPasswordViewController().showPreview()
     }
 }
