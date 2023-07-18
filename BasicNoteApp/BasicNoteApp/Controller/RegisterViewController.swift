@@ -51,7 +51,6 @@ class RegisterViewController: UIViewController {
     private let passwordInvalidLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = L10n.Error.passwordInvalid
         label.font = .font(.interMedium, size: .small)
         label.addIcon(icon: UIImage(asset: Asset.Icons.icError)!, text: L10n.Error.passwordInvalid, iconSize: CGSize(width: 16, height: 16), xOffset: -8, yOffset: -4)
         label.textColor = .appRed
@@ -141,7 +140,6 @@ class RegisterViewController: UIViewController {
         passwordTextField.keyboardType = .emailAddress
         passwordTextField.title = L10n.Placeholder.password
         passwordTextField.isSecureTextEntry = true
-        passwordTextField.layer.borderColor = UIColor.appRed.cgColor
         
     }
 }
@@ -174,7 +172,7 @@ extension RegisterViewController {
         ]
         
         let textFieldstackViewConstraints = [
-            textFieldstackView.topAnchor.constraint(equalTo: titleStackView.bottomAnchor, constant: 40)
+            textFieldstackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40)
         ]
         
         let passwordInvalidLabelConstraints = [

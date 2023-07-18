@@ -25,6 +25,9 @@
 "ProfileViewController.signOut"= "Sign Out";
 "ProfileViewController.toastMessage"= "The fullname or email you entered did notmatch our records. Please try again.";
 
+// MARK: - Forgot Password
+"ForgotPasswordViewController.descriptionText"= "Confirm your email and we’ll send the instructions.";
+
 // MARK: - Change Password
 "ChangePasswordViewController.title" = "Change Password";
 "ChangePasswordViewController.changePassword"= "Change Password";
