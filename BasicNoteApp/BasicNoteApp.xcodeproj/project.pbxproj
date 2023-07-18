@@ -15,6 +15,8 @@
 		DC0DC8FF2A600AD20033C534 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCAD18052A5E7A9A00ABF13B /* Inter-Regular.ttf */; };
 		DC1D04102A6133AE00467F5E /* UIViewControllerExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1D040F2A6133AE00467F5E /* UIViewControllerExtenstion.swift */; };
 		DC1D04142A61393800467F5E /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1D04132A61393800467F5E /* FloatLabelTextField.swift */; };
+		DC3B24A92A667C8F0013E83D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B24A82A667C8F0013E83D /* LoginViewController.swift */; };
+		DC3B24AB2A6685740013E83D /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B24AA2A6685740013E83D /* ForgotPasswordViewController.swift */; };
 		DC4CAD932A5E85790011F28E /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = DC4CAD922A5E85790011F28E /* swiftlint.yml */; };
 		DC5D15862A5C4D1C00A4037C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D15852A5C4D1C00A4037C /* AppDelegate.swift */; };
 		DC5D15882A5C4D1C00A4037C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D15872A5C4D1C00A4037C /* SceneDelegate.swift */; };
@@ -41,6 +43,8 @@
 		8ED64190D5517324A9B63D14 /* Pods-BasicNoteApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicNoteApp.debug.xcconfig"; path = "Target Support Files/Pods-BasicNoteApp/Pods-BasicNoteApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DC1D040F2A6133AE00467F5E /* UIViewControllerExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtenstion.swift; sourceTree = "<group>"; };
 		DC1D04132A61393800467F5E /* FloatLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
+		DC3B24A82A667C8F0013E83D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DC3B24AA2A6685740013E83D /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		DC4CAD922A5E85790011F28E /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
 		DC5D15822A5C4D1C00A4037C /* BasicNoteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicNoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5D15852A5C4D1C00A4037C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +137,16 @@
 			path = UIViewController;
 			sourceTree = "<group>";
 		};
+		DC3B24A72A667C6A0013E83D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DC5D15892A5C4D1C00A4037C /* RegisterViewController.swift */,
+				DC3B24A82A667C8F0013E83D /* LoginViewController.swift */,
+				DC3B24AA2A6685740013E83D /* ForgotPasswordViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		DC5D15792A5C4D1C00A4037C = {
 			isa = PBXGroup;
 			children = (
@@ -156,9 +170,9 @@
 		DC5D15842A5C4D1C00A4037C /* BasicNoteApp */ = {
 			isa = PBXGroup;
 			children = (
-				DC1D04112A6138EE00467F5E /* UIComponents */,
 				DC0DC8F82A5FF26D0033C534 /* AppDelegate */,
-				DC5D15892A5C4D1C00A4037C /* RegisterViewController.swift */,
+				DC1D04112A6138EE00467F5E /* UIComponents */,
+				DC3B24A72A667C6A0013E83D /* Controller */,
 				DC5D15902A5C4D1E00A4037C /* LaunchScreen.storyboard */,
 				DC5D15932A5C4D1E00A4037C /* Info.plist */,
 			);
@@ -375,8 +389,10 @@
 				DC5D15862A5C4D1C00A4037C /* AppDelegate.swift in Sources */,
 				DCFADAE92A5DBCC000E3A47F /* Assets.swift in Sources */,
 				DC1D04142A61393800467F5E /* FloatLabelTextField.swift in Sources */,
+				DC3B24AB2A6685740013E83D /* ForgotPasswordViewController.swift in Sources */,
 				DC5D15882A5C4D1C00A4037C /* SceneDelegate.swift in Sources */,
 				DCAD18092A5E7BA900ABF13B /* UIFont+Extensions.swift in Sources */,
+				DC3B24A92A667C8F0013E83D /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

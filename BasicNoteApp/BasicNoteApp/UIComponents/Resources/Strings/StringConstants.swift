@@ -11,6 +11,8 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum L10n {
   public enum Error {
+    /// Your email address should contain @.
+    public static let emailInvalid = L10n.tr("Error", "emailInvalid", fallback: "Your email address should contain @.")
     /// Error.strings
     ///   BasicNoteApp
     /// 
@@ -29,6 +31,8 @@ public enum L10n {
     public static let ok = L10n.tr("General", "ok", fallback: "Ok")
     /// Sign Up
     public static let register = L10n.tr("General", "register", fallback: "Sign Up")
+    /// Reset Password
+    public static let resetPassword = L10n.tr("General", "resetPassword", fallback: "Reset Password")
     /// Save
     public static let save = L10n.tr("General", "save", fallback: "Save")
     /// Save Note
@@ -61,6 +65,10 @@ public enum L10n {
       public static func toastMessage(_ p1: Any) -> String {
         return L10n.tr("Modules", "ChangePasswordViewController.toastMessage", String(describing: p1), fallback: "An email has been sent to %@ with further instructions.")
       }
+    }
+    public enum ForgotPasswordViewController {
+      /// Confirm your email and we’ll send the instructions.
+      public static let descriptionText = L10n.tr("Modules", "ForgotPasswordViewController.descriptionText", fallback: "Confirm your email and we’ll send the instructions.")
     }
     public enum LoginViewController {
       /// New User?

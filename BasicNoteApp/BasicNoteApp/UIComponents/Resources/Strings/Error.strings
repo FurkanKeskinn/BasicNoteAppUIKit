@@ -7,4 +7,6 @@
 */
 
 "passwordInvalid" = "Password Invalid";
+"emailInvalid" = "Your email address should contain @.";
+
 

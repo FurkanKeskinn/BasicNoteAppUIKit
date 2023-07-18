@@ -10,6 +10,7 @@
 "register" = "Sign Up";
 "signInNow" = "Sign In Now";
 "signUpNow" = "Sign Up Now";
+"resetPassword" = "Reset Password";
 "save" = "Save";
 "addNote" = "Add Note";
 "saveNote" = "Save Note";
