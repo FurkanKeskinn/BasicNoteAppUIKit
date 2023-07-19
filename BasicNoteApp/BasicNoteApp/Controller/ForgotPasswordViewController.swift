@@ -75,7 +75,7 @@ class ForgotPasswordViewController: UIViewController {
        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
-        }()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
