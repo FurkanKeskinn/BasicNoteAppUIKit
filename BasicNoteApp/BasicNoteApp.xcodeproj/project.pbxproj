@@ -25,6 +25,8 @@
 		DC9C8AC62A65743D0033FA4B /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9C8AC52A65743D0033FA4B /* UILabelExtension.swift */; };
 		DCAD18072A5E7B1700ABF13B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAD18062A5E7B1700ABF13B /* Fonts.swift */; };
 		DCAD18092A5E7BA900ABF13B /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAD18082A5E7BA900ABF13B /* UIFont+Extensions.swift */; };
+		DCC45A112A67B7AB003130FD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC45A102A67B7AB003130FD /* ProfileViewController.swift */; };
+		DCC45A132A67C040003130FD /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC45A122A67C040003130FD /* ChangePasswordViewController.swift */; };
 		DCFADAD42A5D977300E3A47F /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = DCFADAD32A5D977300E3A47F /* swiftgen.yml */; };
 		DCFADADC2A5DAD4600E3A47F /* General.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCFADADB2A5DAD4600E3A47F /* General.strings */; };
 		DCFADAE02A5DB97600E3A47F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCFADADF2A5DB97600E3A47F /* Images.xcassets */; };
@@ -58,6 +60,8 @@
 		DCAD18052A5E7A9A00ABF13B /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		DCAD18062A5E7B1700ABF13B /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		DCAD18082A5E7BA900ABF13B /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		DCC45A102A67B7AB003130FD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		DCC45A122A67C040003130FD /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		DCFADAD32A5D977300E3A47F /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		DCFADADB2A5DAD4600E3A47F /* General.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = General.strings; sourceTree = "<group>"; };
 		DCFADADD2A5DB16100E3A47F /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 				DC5D15892A5C4D1C00A4037C /* RegisterViewController.swift */,
 				DC3B24A82A667C8F0013E83D /* LoginViewController.swift */,
 				DC3B24AA2A6685740013E83D /* ForgotPasswordViewController.swift */,
+				DCC45A102A67B7AB003130FD /* ProfileViewController.swift */,
+				DCC45A122A67C040003130FD /* ChangePasswordViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -391,8 +397,10 @@
 				DC1D04142A61393800467F5E /* FloatLabelTextField.swift in Sources */,
 				DC3B24AB2A6685740013E83D /* ForgotPasswordViewController.swift in Sources */,
 				DC5D15882A5C4D1C00A4037C /* SceneDelegate.swift in Sources */,
+				DCC45A112A67B7AB003130FD /* ProfileViewController.swift in Sources */,
 				DCAD18092A5E7BA900ABF13B /* UIFont+Extensions.swift in Sources */,
 				DC3B24A92A667C8F0013E83D /* LoginViewController.swift in Sources */,
+				DCC45A132A67C040003130FD /* ChangePasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

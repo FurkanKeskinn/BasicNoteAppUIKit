@@ -137,7 +137,6 @@ class RegisterViewController: UIViewController {
         emailTextField.autocapitalizationType = .none
         emailTextField.keyboardType = .emailAddress
         emailTextField.title = L10n.Placeholder.email
-        passwordTextField.keyboardType = .emailAddress
         passwordTextField.title = L10n.Placeholder.password
         passwordTextField.isSecureTextEntry = true
     }

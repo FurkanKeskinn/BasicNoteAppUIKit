@@ -101,7 +101,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let bottomStackView: UIStackView = {
-       let stackView = UIStackView()
+       let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -130,7 +130,7 @@ class LoginViewController: UIViewController {
         applyConstraints()
     }
     
-    private func contentConfigure(){
+    private func contentConfigure() {
         emailTextField.autocapitalizationType = .none
         emailTextField.keyboardType = .emailAddress
         emailTextField.title = L10n.Placeholder.email
@@ -142,7 +142,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     
-    private func setupViews(){
+    private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(mainStackView)
         scrollView.addSubview(bottomStackView)
