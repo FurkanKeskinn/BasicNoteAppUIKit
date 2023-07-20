@@ -53,6 +53,7 @@ class ChangePasswordViewController: UIViewController {
         contentConfigure()
         setupViews()
         applyConstraints()
+        backButton()
     }
     
     private func contentConfigure() {
@@ -64,9 +65,8 @@ class ChangePasswordViewController: UIViewController {
         retypeNewPasswordTextField.isSecureTextEntry = true
     }
 }
-
+//MARK: - Layout
 extension ChangePasswordViewController {
-    
     private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(mainStackView)
@@ -75,6 +75,8 @@ extension ChangePasswordViewController {
         textFieldstackView.addArrangedSubview(passwordTextField)
         textFieldstackView.addArrangedSubview(newPasswordTextField)
         textFieldstackView.addArrangedSubview(retypeNewPasswordTextField)
+        title = L10n.Modules.ChangePasswordViewController.title
+        view.backgroundColor = .systemBackground
      }
     
     private func applyConstraints() {
@@ -104,6 +106,20 @@ extension ChangePasswordViewController {
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
+
+//MARK: - Action
+extension ChangePasswordViewController {
+    private func backButton() {
+        let backbutton = UIBarButtonItem(image: UIImage(asset: Asset.Icons.back), style: .done, target: self, action: #selector(backbuttonTapped))
+        navigationItem.leftBarButtonItem = backbutton
+        navigationController?.navigationBar.tintColor = .appBlack
+    }
+    
+    @objc private func backbuttonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+}
+
 import SwiftUI
 #if DEBUG
 

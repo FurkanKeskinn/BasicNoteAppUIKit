@@ -82,6 +82,7 @@ class ForgotPasswordViewController: UIViewController {
         contentConfigure()
         setupViews()
         applyConstraints()
+        backButton()
     }
     
     private func contentConfigure(){
@@ -91,6 +92,7 @@ class ForgotPasswordViewController: UIViewController {
     }
 
 }
+//MARK: - Layout
 extension ForgotPasswordViewController {
     
     private func setupViews(){
@@ -102,6 +104,7 @@ extension ForgotPasswordViewController {
         mainStackView.addArrangedSubview(buttonResetPassword)
         titleStackView.addArrangedSubview(titleLabel)
         titleStackView.addArrangedSubview(descriptionLabel)
+        view.backgroundColor = .systemBackground
      }
     
     private func applyConstraints() {
@@ -140,6 +143,23 @@ extension ForgotPasswordViewController {
             mainStackViewConstraints
         ]
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
+    }
+}
+
+//MARK: - Action
+extension ForgotPasswordViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    private func backButton() {
+        let backbutton = UIBarButtonItem(image: UIImage(asset: Asset.Icons.back), style: .done, target: self, action: #selector(backbuttonTapped))
+        navigationItem.leftBarButtonItem = backbutton
+        navigationController?.navigationBar.tintColor = .appBlack
+    }
+    
+    @objc private func backbuttonTapped() {
+        navigationController?.popViewController(animated: true)
     }
 }
 import SwiftUI

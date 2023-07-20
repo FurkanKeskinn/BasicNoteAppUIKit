@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
         label.text = L10n.Modules.descriptionText
         label.font = .font(.interMedium, size: .h5)
         label.textColor = .appDarkGray
+        label.numberOfLines = 0
         return label
     }()
     
@@ -82,6 +83,7 @@ class LoginViewController: UIViewController {
         button.titleLabel?.font = .font(.interSemiBold, size: .h4)
         button.setTitleColor(.appPurple100, for: .normal)
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(buttonLoginTapped), for: .touchUpInside)
         return button
     }()
     
@@ -128,6 +130,8 @@ class LoginViewController: UIViewController {
         contentConfigure()
         setupViews()
         applyConstraints()
+        addTapGestureToSignInLabel()
+        addTapGestureToForgotPassword()
     }
     
     private func contentConfigure() {
@@ -139,7 +143,7 @@ class LoginViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
     }
 }
-
+// MARK: - Layout
 extension LoginViewController {
     
     private func setupViews() {
@@ -158,6 +162,7 @@ extension LoginViewController {
         forgotPasswordStackView.addArrangedSubview(forgotPasswordLabel)
         bottomStackView.addArrangedSubview(haventAccountLabel)
         bottomStackView.addArrangedSubview(signUpLabel)
+        view.backgroundColor = .systemBackground
      }
     
     private func applyConstraints() {
@@ -207,7 +212,38 @@ extension LoginViewController {
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
-
+// MARK: - Action
+extension LoginViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    private func addTapGestureToForgotPassword() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(forgotPasswordTapped))
+        forgotPasswordLabel.isUserInteractionEnabled = true
+        forgotPasswordLabel.addGestureRecognizer(tapGesture)
+    }
+    @objc private func forgotPasswordTapped() {
+        let forgotPasswordViewController = ForgotPasswordViewController()
+        navigationController?.pushViewController(forgotPasswordViewController, animated: true)
+    }
+    
+    private func addTapGestureToSignInLabel() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signUpLabelTapped))
+        signUpLabel.isUserInteractionEnabled = true
+        signUpLabel.addGestureRecognizer(tapGesture)
+    }
+    @objc private func signUpLabelTapped() {
+        let registerViewController = RegisterViewController() //
+        navigationController?.pushViewController(registerViewController, animated: true)
+    }
+    
+    @objc private func buttonLoginTapped() {
+        let notesViewController = NotesViewController() //
+        navigationController?.pushViewController(notesViewController, animated: true)
+    }
+}
 import SwiftUI
 #if DEBUG
 

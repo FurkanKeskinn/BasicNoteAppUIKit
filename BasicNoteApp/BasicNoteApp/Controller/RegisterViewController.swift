@@ -23,6 +23,7 @@ class RegisterViewController: UIViewController {
         label.text = L10n.Modules.descriptionText
         label.font = .font(.interMedium, size: .h5)
         label.textColor = .appDarkGray
+        label.numberOfLines = 0
         return label
     }()
     
@@ -83,6 +84,7 @@ class RegisterViewController: UIViewController {
         button.titleLabel?.font = .font(.interSemiBold, size: .h4)
         button.setTitleColor(.appPurple100, for: .normal)
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(buttonRegisterTapped), for: .touchUpInside)
         return button
     }()
     
@@ -126,10 +128,11 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         contentConfigure()
         setupViews()
         applyConstraints()
+        addTapGestureToSignInLabel()
+        addTapGestureToForgotPassword()
     }
     
     private func contentConfigure(){
@@ -141,6 +144,7 @@ class RegisterViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
     }
 }
+// MARK: - Layout
 extension RegisterViewController {
     
     private func setupViews(){
@@ -160,6 +164,7 @@ extension RegisterViewController {
         forgotPasswordStackView.addArrangedSubview(forgotPasswordLabel)
         bottomStackView.addArrangedSubview(haveAccountLabel)
         bottomStackView.addArrangedSubview(signInLabel)
+        view.backgroundColor = .systemBackground
      }
     
     private func applyConstraints() {
@@ -209,7 +214,38 @@ extension RegisterViewController {
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
-
+// MARK: - Action
+extension RegisterViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    private func addTapGestureToForgotPassword() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(forgotPasswordTapped))
+        forgotPasswordLabel.isUserInteractionEnabled = true
+        forgotPasswordLabel.addGestureRecognizer(tapGesture)
+    }
+    @objc private func forgotPasswordTapped() {
+        let forgotPasswordViewController = ForgotPasswordViewController()
+        navigationController?.pushViewController(forgotPasswordViewController, animated: true)
+    }
+    
+    private func addTapGestureToSignInLabel() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signInLabelTapped))
+        signInLabel.isUserInteractionEnabled = true
+        signInLabel.addGestureRecognizer(tapGesture)
+    }
+    @objc private func signInLabelTapped() {
+        let loginViewController = LoginViewController()
+        navigationController?.pushViewController(loginViewController, animated: true)
+    }
+    
+    @objc private func buttonRegisterTapped() {
+        let notesViewController = NotesViewController() //
+        navigationController?.pushViewController(notesViewController, animated: true)
+    }
+}
 import SwiftUI
 #if DEBUG
 

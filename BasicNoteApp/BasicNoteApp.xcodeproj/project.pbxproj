@@ -22,11 +22,16 @@
 		DC5D15882A5C4D1C00A4037C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D15872A5C4D1C00A4037C /* SceneDelegate.swift */; };
 		DC5D158A2A5C4D1C00A4037C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D15892A5C4D1C00A4037C /* RegisterViewController.swift */; };
 		DC5D15922A5C4D1E00A4037C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5D15902A5C4D1E00A4037C /* LaunchScreen.storyboard */; };
+		DC666B082A69531B00A99CD7 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC666B072A69531B00A99CD7 /* AddNoteViewController.swift */; };
+		DC666B0A2A69532600A99CD7 /* EditNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC666B092A69532600A99CD7 /* EditNoteViewController.swift */; };
+		DC666B0D2A695E5600A99CD7 /* UITextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC666B0C2A695E5500A99CD7 /* UITextViewExtension.swift */; };
 		DC9C8AC62A65743D0033FA4B /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9C8AC52A65743D0033FA4B /* UILabelExtension.swift */; };
 		DCAD18072A5E7B1700ABF13B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAD18062A5E7B1700ABF13B /* Fonts.swift */; };
 		DCAD18092A5E7BA900ABF13B /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAD18082A5E7BA900ABF13B /* UIFont+Extensions.swift */; };
 		DCC45A112A67B7AB003130FD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC45A102A67B7AB003130FD /* ProfileViewController.swift */; };
 		DCC45A132A67C040003130FD /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC45A122A67C040003130FD /* ChangePasswordViewController.swift */; };
+		DCC45A152A67CB00003130FD /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC45A142A67CB00003130FD /* NotesViewController.swift */; };
+		DCC45A182A67E2C0003130FD /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC45A172A67E2C0003130FD /* NotesTableViewCell.swift */; };
 		DCFADAD42A5D977300E3A47F /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = DCFADAD32A5D977300E3A47F /* swiftgen.yml */; };
 		DCFADADC2A5DAD4600E3A47F /* General.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCFADADB2A5DAD4600E3A47F /* General.strings */; };
 		DCFADAE02A5DB97600E3A47F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCFADADF2A5DB97600E3A47F /* Images.xcassets */; };
@@ -54,6 +59,9 @@
 		DC5D15892A5C4D1C00A4037C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		DC5D15912A5C4D1E00A4037C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC5D15932A5C4D1E00A4037C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC666B072A69531B00A99CD7 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
+		DC666B092A69532600A99CD7 /* EditNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteViewController.swift; sourceTree = "<group>"; };
+		DC666B0C2A695E5500A99CD7 /* UITextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtension.swift; sourceTree = "<group>"; };
 		DC9C8AC52A65743D0033FA4B /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		DCAD18032A5E7A7800ABF13B /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
 		DCAD18042A5E7A8E00ABF13B /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
@@ -62,6 +70,8 @@
 		DCAD18082A5E7BA900ABF13B /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		DCC45A102A67B7AB003130FD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		DCC45A122A67C040003130FD /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		DCC45A142A67CB00003130FD /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		DCC45A172A67E2C0003130FD /* NotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
 		DCFADAD32A5D977300E3A47F /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		DCFADADB2A5DAD4600E3A47F /* General.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = General.strings; sourceTree = "<group>"; };
 		DCFADADD2A5DB16100E3A47F /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -117,6 +127,7 @@
 		DC1D04112A6138EE00467F5E /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				DC666B0B2A695E3500A99CD7 /* UITextView */,
 				DC9C8AC42A65741D0033FA4B /* UILabel */,
 				DC1D04152A613A0200467F5E /* UIViewController */,
 				DCFADAD82A5DAB0700E3A47F /* Resources */,
@@ -149,6 +160,9 @@
 				DC3B24AA2A6685740013E83D /* ForgotPasswordViewController.swift */,
 				DCC45A102A67B7AB003130FD /* ProfileViewController.swift */,
 				DCC45A122A67C040003130FD /* ChangePasswordViewController.swift */,
+				DCC45A142A67CB00003130FD /* NotesViewController.swift */,
+				DC666B072A69531B00A99CD7 /* AddNoteViewController.swift */,
+				DC666B092A69532600A99CD7 /* EditNoteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -178,11 +192,20 @@
 			children = (
 				DC0DC8F82A5FF26D0033C534 /* AppDelegate */,
 				DC1D04112A6138EE00467F5E /* UIComponents */,
+				DCC45A162A67E223003130FD /* Views */,
 				DC3B24A72A667C6A0013E83D /* Controller */,
 				DC5D15902A5C4D1E00A4037C /* LaunchScreen.storyboard */,
 				DC5D15932A5C4D1E00A4037C /* Info.plist */,
 			);
 			path = BasicNoteApp;
+			sourceTree = "<group>";
+		};
+		DC666B0B2A695E3500A99CD7 /* UITextView */ = {
+			isa = PBXGroup;
+			children = (
+				DC666B0C2A695E5500A99CD7 /* UITextViewExtension.swift */,
+			);
+			path = UITextView;
 			sourceTree = "<group>";
 		};
 		DC9C8AC42A65741D0033FA4B /* UILabel */ = {
@@ -191,6 +214,14 @@
 				DC9C8AC52A65743D0033FA4B /* UILabelExtension.swift */,
 			);
 			path = UILabel;
+			sourceTree = "<group>";
+		};
+		DCC45A162A67E223003130FD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DCC45A172A67E2C0003130FD /* NotesTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DCFADAD52A5D99B300E3A47F /* Strings */ = {
@@ -391,6 +422,7 @@
 				DC5D158A2A5C4D1C00A4037C /* RegisterViewController.swift in Sources */,
 				DC9C8AC62A65743D0033FA4B /* UILabelExtension.swift in Sources */,
 				DC1D04102A6133AE00467F5E /* UIViewControllerExtenstion.swift in Sources */,
+				DC666B0A2A69532600A99CD7 /* EditNoteViewController.swift in Sources */,
 				DCFADAF12A5DD38600E3A47F /* StringConstants.swift in Sources */,
 				DC5D15862A5C4D1C00A4037C /* AppDelegate.swift in Sources */,
 				DCFADAE92A5DBCC000E3A47F /* Assets.swift in Sources */,
@@ -398,9 +430,13 @@
 				DC3B24AB2A6685740013E83D /* ForgotPasswordViewController.swift in Sources */,
 				DC5D15882A5C4D1C00A4037C /* SceneDelegate.swift in Sources */,
 				DCC45A112A67B7AB003130FD /* ProfileViewController.swift in Sources */,
+				DCC45A152A67CB00003130FD /* NotesViewController.swift in Sources */,
+				DC666B0D2A695E5600A99CD7 /* UITextViewExtension.swift in Sources */,
+				DC666B082A69531B00A99CD7 /* AddNoteViewController.swift in Sources */,
 				DCAD18092A5E7BA900ABF13B /* UIFont+Extensions.swift in Sources */,
 				DC3B24A92A667C8F0013E83D /* LoginViewController.swift in Sources */,
 				DCC45A132A67C040003130FD /* ChangePasswordViewController.swift in Sources */,
+				DCC45A182A67E2C0003130FD /* NotesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

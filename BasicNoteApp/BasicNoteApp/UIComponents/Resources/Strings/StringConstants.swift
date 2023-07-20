@@ -96,6 +96,8 @@ public enum L10n {
     }
   }
   public enum Placeholder {
+    /// Description
+    public static let description = L10n.tr("Placeholder", "description", fallback: "Description")
     /// Email Address
     public static let email = L10n.tr("Placeholder", "email", fallback: "Email Address")
     /// Placeholder.strings
@@ -109,6 +111,10 @@ public enum L10n {
     public static let password = L10n.tr("Placeholder", "password", fallback: "Password")
     /// Retype New Password
     public static let retypeNewPassword = L10n.tr("Placeholder", "retypeNewPassword", fallback: "Retype New Password")
+    /// Search...
+    public static let search = L10n.tr("Placeholder", "search", fallback: "Search...")
+    /// Title
+    public static let title = L10n.tr("Placeholder", "title", fallback: "Title")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
