@@ -9,14 +9,14 @@ import UIKit
 
 class EditNoteViewController: UIViewController {
 
-    let titleTextField: UITextField = {
+    private let titleTextField: UITextField = {
        let textField = UITextField()
         textField.placeholder = L10n.Placeholder.title
         textField.font = .font(.interMedium, size: .h2)
         textField.textColor = .appBlack
         return textField
     }()
-    let descriptionTextView: UITextView = {
+    private let descriptionTextView: UITextView = {
        let textView = UITextView()
         textView.font = .font(.interMedium, size: .h4)
         textView.textColor = .appDarkGray
@@ -24,7 +24,7 @@ class EditNoteViewController: UIViewController {
         return textView
     }()
     
-    let editNoteButton: UIButton = {
+    private let editNoteButton: UIButton = {
        let button = UIButton()
         button.setTitle(L10n.General.saveNote, for: .normal)
         button.titleLabel?.font = .font(.interSemiBold, size: .h4)
@@ -34,7 +34,7 @@ class EditNoteViewController: UIViewController {
         return button
     }()
     
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 8
@@ -43,7 +43,7 @@ class EditNoteViewController: UIViewController {
         return stack
     }()
     
-    let scrollView: UIScrollView = {
+    private let scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.translatesAutoresizingMaskIntoConstraints = false
         return scroll
@@ -67,7 +67,7 @@ extension EditNoteViewController {
         title = L10n.Modules.noteTitle("Edit")
         view.backgroundColor = .systemBackground
     }
-    func applyConstraints() {
+   private func applyConstraints() {
         
         let editNoteButtonConstraints = [
             editNoteButton.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 41),

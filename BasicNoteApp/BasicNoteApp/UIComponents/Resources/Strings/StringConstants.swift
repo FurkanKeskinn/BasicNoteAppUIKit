@@ -69,6 +69,12 @@ public enum L10n {
     public enum ForgotPasswordViewController {
       /// Confirm your email and we’ll send the instructions.
       public static let descriptionText = L10n.tr("Modules", "ForgotPasswordViewController.descriptionText", fallback: "Confirm your email and we’ll send the instructions.")
+      /// Password Reset Confirmation
+      public static let titletoastMessage = L10n.tr("Modules", "ForgotPasswordViewController.titletoastMessage", fallback: "Password Reset Confirmation")
+      /// An email has been sent to %@ with further instructions.
+      public static func toastMessage(_ p1: Any) -> String {
+        return L10n.tr("Modules", "ForgotPasswordViewController.toastMessage", String(describing: p1), fallback: "An email has been sent to %@ with further instructions.")
+      }
     }
     public enum LoginViewController {
       /// New User?

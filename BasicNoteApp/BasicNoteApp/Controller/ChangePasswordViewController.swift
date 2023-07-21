@@ -22,7 +22,7 @@ class ChangePasswordViewController: UIViewController {
         return stackView
     }()
     
-    private let buttonSave: UIButton = {
+    private let saveButton: UIButton = {
        let button = UIButton()
         button.backgroundColor = .appPurple50
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +71,7 @@ extension ChangePasswordViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(mainStackView)
         mainStackView.addArrangedSubview(textFieldstackView)
-        mainStackView.addArrangedSubview(buttonSave)
+        mainStackView.addArrangedSubview(saveButton)
         textFieldstackView.addArrangedSubview(passwordTextField)
         textFieldstackView.addArrangedSubview(newPasswordTextField)
         textFieldstackView.addArrangedSubview(retypeNewPasswordTextField)
@@ -81,9 +81,9 @@ extension ChangePasswordViewController {
     
     private func applyConstraints() {
         
-        let buttonSaveConstraints = [
-            buttonSave.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 24),
-            buttonSave.heightAnchor.constraint(equalToConstant: 63),
+        let saveButtonConstraints = [
+            saveButton.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 24),
+            saveButton.heightAnchor.constraint(equalToConstant: 63),
         ]
         
         let scrollViewConstraints = [
@@ -99,7 +99,7 @@ extension ChangePasswordViewController {
             mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ]
         let allConstraints = [
-            buttonSaveConstraints,
+            saveButtonConstraints,
             scrollViewConstraints,
             mainStackViewConstraints
         ]

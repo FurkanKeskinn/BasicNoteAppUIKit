@@ -31,20 +31,20 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
         return button
     }()
     
-    let menuButton: UIButton = {
+    private let menuButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(asset: Asset.Icons.icMenu), for: .normal)
         return button
     }()
     
-    let imageButton: UIButton = {
+    private let imageButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(asset: Asset.Images.imgUser), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    let searchBarItem: UISearchBar = {
+    private let searchBarItem: UISearchBar = {
        let search = UISearchBar()
         search.placeholder = L10n.Placeholder.search
         search.translatesAutoresizingMaskIntoConstraints = false

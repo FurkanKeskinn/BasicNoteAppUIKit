@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA7E4ECB25A0946E3EC9EC42 /* Pods_BasicNoteApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4029CB383438AE57A958ECCA /* Pods_BasicNoteApp.framework */; };
+		DC0214A92A6A7E5600125957 /* CustomBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0214A82A6A7E5600125957 /* CustomBottomSheetView.swift */; };
 		DC0DC8FB2A600AD20033C534 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCFADADD2A5DB16100E3A47F /* Inter-SemiBold.ttf */; };
 		DC0DC8FC2A600AD20033C534 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCFADADE2A5DB16900E3A47F /* Inter-Medium.ttf */; };
 		DC0DC8FD2A600AD20033C534 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCAD18032A5E7A7800ABF13B /* Inter-Light.ttf */; };
@@ -48,6 +49,7 @@
 		4029CB383438AE57A958ECCA /* Pods_BasicNoteApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasicNoteApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D1B8C0681C5313615C0173E /* Pods-BasicNoteApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicNoteApp.release.xcconfig"; path = "Target Support Files/Pods-BasicNoteApp/Pods-BasicNoteApp.release.xcconfig"; sourceTree = "<group>"; };
 		8ED64190D5517324A9B63D14 /* Pods-BasicNoteApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicNoteApp.debug.xcconfig"; path = "Target Support Files/Pods-BasicNoteApp/Pods-BasicNoteApp.debug.xcconfig"; sourceTree = "<group>"; };
+		DC0214A82A6A7E5600125957 /* CustomBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomSheetView.swift; sourceTree = "<group>"; };
 		DC1D040F2A6133AE00467F5E /* UIViewControllerExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtenstion.swift; sourceTree = "<group>"; };
 		DC1D04132A61393800467F5E /* FloatLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
 		DC3B24A82A667C8F0013E83D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		DC1D04152A613A0200467F5E /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DC0214A82A6A7E5600125957 /* CustomBottomSheetView.swift */,
 				DC1D040F2A6133AE00467F5E /* UIViewControllerExtenstion.swift */,
 			);
 			path = UIViewController;
@@ -432,6 +435,7 @@
 				DCC45A112A67B7AB003130FD /* ProfileViewController.swift in Sources */,
 				DCC45A152A67CB00003130FD /* NotesViewController.swift in Sources */,
 				DC666B0D2A695E5600A99CD7 /* UITextViewExtension.swift in Sources */,
+				DC0214A92A6A7E5600125957 /* CustomBottomSheetView.swift in Sources */,
 				DC666B082A69531B00A99CD7 /* AddNoteViewController.swift in Sources */,
 				DCAD18092A5E7BA900ABF13B /* UIFont+Extensions.swift in Sources */,
 				DC3B24A92A667C8F0013E83D /* LoginViewController.swift in Sources */,

@@ -58,6 +58,7 @@ class ForgotPasswordViewController: UIViewController {
         button.titleLabel?.font = .font(.interSemiBold, size: .h4)
         button.setTitleColor(.appPurple100, for: .normal)
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(resetPasswordTapped), for: .touchUpInside)
         return button
     }()
     
@@ -77,6 +78,13 @@ class ForgotPasswordViewController: UIViewController {
         return scrollView
     }()
     
+    /*private let dimmingView: UIView = {
+            let view = UIView()
+            view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         contentConfigure()
@@ -94,7 +102,6 @@ class ForgotPasswordViewController: UIViewController {
 }
 //MARK: - Layout
 extension ForgotPasswordViewController {
-    
     private func setupViews(){
         view.addSubview(scrollView)
         scrollView.addSubview(mainStackView)
@@ -161,7 +168,30 @@ extension ForgotPasswordViewController {
     @objc private func backbuttonTapped() {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc private func resetPasswordTapped() {
+        presentModalController()
+    }
 }
+//MARK: - Bottom Sheet
+extension ForgotPasswordViewController {
+    
+    private func presentModalController() {
+        let customBottomSheetVC = CustomBottomSheetView()
+        customBottomSheetVC.modalPresentationStyle = .overCurrentContext
+        customBottomSheetVC.imageView.image = UIImage(asset: Asset.Icons.icSuccess)
+        customBottomSheetVC.titleLabel.text = L10n.Modules.ForgotPasswordViewController.titletoastMessage
+        customBottomSheetVC.descriptionLabel.text = L10n.Modules.ForgotPasswordViewController.toastMessage("test@gmail.com")
+        customBottomSheetVC.actionButton.setTitle(L10n.General.login, for: .normal)
+        customBottomSheetVC.actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        self.present(customBottomSheetVC, animated: true, completion: nil)
+        }
+   @objc private func actionButtonTapped(){
+        let loginViewController = LoginViewController()
+        navigationController?.pushViewController(loginViewController, animated: true)
+    }
+}
+
 import SwiftUI
 #if DEBUG
 
