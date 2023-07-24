@@ -8,16 +8,17 @@
 import UIKit
 
 class EditNoteViewController: UIViewController {
-
+    
     private let titleTextField: UITextField = {
-       let textField = UITextField()
+        let textField = UITextField()
         textField.placeholder = L10n.Placeholder.title
         textField.font = .font(.interMedium, size: .h2)
         textField.textColor = .appBlack
         return textField
     }()
+    
     private let descriptionTextView: UITextView = {
-       let textView = UITextView()
+        let textView = UITextView()
         textView.font = .font(.interMedium, size: .h4)
         textView.textColor = .appDarkGray
         textView.addPlaceholder(L10n.Placeholder.description)
@@ -25,7 +26,7 @@ class EditNoteViewController: UIViewController {
     }()
     
     private let editNoteButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setTitle(L10n.General.saveNote, for: .normal)
         button.titleLabel?.font = .font(.interSemiBold, size: .h4)
         button.backgroundColor = .appPurple100
@@ -56,8 +57,9 @@ class EditNoteViewController: UIViewController {
         backButton()
     }
 }
-//MARK: - Layout
+// MARK: - Layout
 extension EditNoteViewController {
+    
     func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
@@ -67,7 +69,8 @@ extension EditNoteViewController {
         title = L10n.Modules.noteTitle("Edit")
         view.backgroundColor = .systemBackground
     }
-   private func applyConstraints() {
+    
+    private func applyConstraints() {
         
         let editNoteButtonConstraints = [
             editNoteButton.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 41),
@@ -102,7 +105,8 @@ extension EditNoteViewController {
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
-//MARK: - Action
+
+// MARK: - Action
 extension EditNoteViewController {
     private func backButton() {
         let backbutton = UIBarButtonItem(image: UIImage(asset: Asset.Icons.back), style: .done, target: self, action: #selector(backbuttonTapped))
@@ -113,6 +117,7 @@ extension EditNoteViewController {
         navigationController?.popViewController(animated: true)
     }
 }
+
 import SwiftUI
 #if DEBUG
 

@@ -8,16 +8,17 @@
 import UIKit
 
 class AddNoteViewController: UIViewController {
-
-   private let titleTextField: UITextField = {
-       let textField = UITextField()
+    
+    private let titleTextField: UITextField = {
+        let textField = UITextField()
         textField.placeholder = L10n.Placeholder.title
         textField.font = .font(.interMedium, size: .h2)
         textField.textColor = .appBlack
         return textField
     }()
-   private let descriptionTextView: UITextView = {
-       let textView = UITextView()
+    
+    private let descriptionTextView: UITextView = {
+        let textView = UITextView()
         textView.font = .font(.interMedium, size: .h4)
         textView.textColor = .appDarkGray
         textView.addPlaceholder(L10n.Placeholder.description)
@@ -25,7 +26,7 @@ class AddNoteViewController: UIViewController {
     }()
     
     private let saveNoteButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setTitle(L10n.General.saveNote, for: .normal)
         button.titleLabel?.font = .font(.interSemiBold, size: .h4)
         button.backgroundColor = .appPurple100
@@ -56,8 +57,10 @@ class AddNoteViewController: UIViewController {
         backButton()
     }
 }
-//MARK: - Layout
+
+// MARK: - Layout
 extension AddNoteViewController {
+    
     func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
@@ -67,7 +70,8 @@ extension AddNoteViewController {
         title = L10n.Modules.noteTitle("Add")
         view.backgroundColor = .systemBackground
     }
-   private func applyConstraints() {
+    
+    private func applyConstraints() {
         
         let saveNoteButtonConstraints = [
             saveNoteButton.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 41),
@@ -75,18 +79,15 @@ extension AddNoteViewController {
             saveNoteButton.heightAnchor.constraint(equalToConstant: 41),
             saveNoteButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ]
-        
         let descriptionTextViewConstraints = [
             descriptionTextView.heightAnchor.constraint(equalToConstant: 327)
         ]
-        
         let stackViewConstraints = [
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 23),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ]
-        
         let scrollViewConstraints = [
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -102,7 +103,8 @@ extension AddNoteViewController {
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
-//MARK: - Action
+
+// MARK: - Action
 extension AddNoteViewController {
     private func backButton() {
         let backbutton = UIBarButtonItem(image: UIImage(asset: Asset.Icons.back), style: .done, target: self, action: #selector(backbuttonTapped))
@@ -114,6 +116,7 @@ extension AddNoteViewController {
         navigationController?.popViewController(animated: true)
     }
 }
+
 import SwiftUI
 #if DEBUG
 

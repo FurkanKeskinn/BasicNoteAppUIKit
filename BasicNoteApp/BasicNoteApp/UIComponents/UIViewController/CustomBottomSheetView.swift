@@ -9,23 +9,23 @@ import Foundation
 import UIKit
 
 class CustomBottomSheetView: UIViewController {
-     let imageView: UIImageView = {
+    let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-     let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .font(.interSemiBold, size: .h4)
         label.textAlignment = .center
         label.numberOfLines = 0
-         label.textColor = .appBlack
+        label.textColor = .appBlack
         return label
     }()
     
     let descriptionLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .font(.interMedium, size: .h4)
         label.numberOfLines = 0
@@ -34,7 +34,7 @@ class CustomBottomSheetView: UIViewController {
         return label
     }()
     
-     let actionButton: UIButton = {
+    let actionButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .appPurple100
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -71,22 +71,22 @@ class CustomBottomSheetView: UIViewController {
     }()
     
     lazy var containerView: UIView = {
-            let view = UIView()
-            view.backgroundColor = .appWhite
-            view.layer.cornerRadius = 16
-            view.clipsToBounds = true
-            return view
-        }()
+        let view = UIView()
+        view.backgroundColor = .appWhite
+        view.layer.cornerRadius = 16
+        view.clipsToBounds = true
+        return view
+    }()
     
     let maxDimmedAlpha: CGFloat = 0.4
-        
+    
     lazy var dimmedView: UIView = {
-      let view = UIView()
+        let view = UIView()
         view.backgroundColor = .black
         view.alpha = maxDimmedAlpha
-            
+        
         return view
-        }()
+    }()
     
     let dismissibleHeight: CGFloat = 200
     var currentContainerHeight: CGFloat = 375
@@ -94,27 +94,27 @@ class CustomBottomSheetView: UIViewController {
     var containerViewBottomConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
-            super.viewDidLoad()
-            configureConstraints()
-            setupPanGesture()
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleCloseAction))
-            dimmedView.addGestureRecognizer(tapGesture)
-            
-        }
+        super.viewDidLoad()
+        configureConstraints()
+        setupPanGesture()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleCloseAction))
+        dimmedView.addGestureRecognizer(tapGesture)
+        
+    }
     
     @objc func handleCloseAction() {
-            animateDismissView()
-        }
+        animateDismissView()
+    }
     @objc private func actionButtonTapped() {
-            animateDismissView()
-        }
-        
+        animateDismissView()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-            
-            super.viewDidAppear(animated)
-            
-            animateShowDimmedView()
-        }
+        
+        super.viewDidAppear(animated)
+        
+        animateShowDimmedView()
+    }
     
     func configureConstraints() {
         view.addSubview(dimmedView)
@@ -149,81 +149,81 @@ class CustomBottomSheetView: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -54)
         ])
-            
+        
         containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: currentContainerHeight)
         containerViewBottomConstraint = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         containerViewHeightConstraint?.isActive = true
         containerViewBottomConstraint?.isActive = true
-        }
+    }
     
     func setupPanGesture() {
-          
-          let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture(gesture:)))
-          panGesture.delaysTouchesBegan = false
-          panGesture.delaysTouchesEnded = false
-          
-          view.addGestureRecognizer(panGesture)
-          
-      }
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture(gesture:)))
+        panGesture.delaysTouchesBegan = false
+        panGesture.delaysTouchesEnded = false
+        
+        view.addGestureRecognizer(panGesture)
+        
+    }
     
     @objc func handlePanGesture(gesture: UIPanGestureRecognizer) {
-           
-           let translation = gesture.translation(in: view)
-           let isDraggingDown = translation.y > 0
-           let newHeight = currentContainerHeight - translation.y
         
-           switch gesture.state {
-           case .changed:
-               if newHeight < currentContainerHeight {
-                   containerViewHeightConstraint?.constant = newHeight
-                   view.layoutIfNeeded()
-               }
-           case .ended:
-               if newHeight < dismissibleHeight {
-                   self.animateDismissView()
-               }
-               else if newHeight < currentContainerHeight {
-                   animateContainerHeight(currentContainerHeight)
-               }
-               else if newHeight < currentContainerHeight && isDraggingDown {
-                   animateContainerHeight(currentContainerHeight)
-               }
-               else if newHeight > currentContainerHeight && !isDraggingDown {
-                   animateContainerHeight(currentContainerHeight)
-               }
-           default:
-               break
-           }
-       }
-       
-       func animateContainerHeight(_ height: CGFloat) {
-           
-           UIView.animate(withDuration: 0.2) {
-               self.containerViewHeightConstraint?.constant = height
-               self.view.layoutIfNeeded()
-           }
-           
-           currentContainerHeight = height
-           
-       }
-       
-       func animateShowDimmedView() {
-           UIView.animate(withDuration: 0.2) {
-               self.dimmedView.alpha = self.maxDimmedAlpha
-           }
-       }
-       
-       func animateDismissView() {
-           
-           dimmedView.alpha = maxDimmedAlpha
-           UIView.animate(withDuration: 0.2) {
-               self.dimmedView.alpha = 0
-           } completion: { _ in
-               self.dismiss(animated: false)
-           }
-           UIView.animate(withDuration: 0.1) {
-               self.containerViewBottomConstraint?.constant = self.currentContainerHeight
-               self.view.layoutIfNeeded()
-           }
-       }
+        let translation = gesture.translation(in: view)
+        let isDraggingDown = translation.y > 0
+        let newHeight = currentContainerHeight - translation.y
+        
+        switch gesture.state {
+        case .changed:
+            if newHeight < currentContainerHeight {
+                containerViewHeightConstraint?.constant = newHeight
+                view.layoutIfNeeded()
+            }
+        case .ended:
+            if newHeight < dismissibleHeight {
+                self.animateDismissView()
+            }
+            else if newHeight < currentContainerHeight {
+                animateContainerHeight(currentContainerHeight)
+            }
+            else if newHeight < currentContainerHeight && isDraggingDown {
+                animateContainerHeight(currentContainerHeight)
+            }
+            else if newHeight > currentContainerHeight && !isDraggingDown {
+                animateContainerHeight(currentContainerHeight)
+            }
+        default:
+            break
+        }
+    }
+    
+    func animateContainerHeight(_ height: CGFloat) {
+        
+        UIView.animate(withDuration: 0.2) {
+            self.containerViewHeightConstraint?.constant = height
+            self.view.layoutIfNeeded()
+        }
+        
+        currentContainerHeight = height
+        
+    }
+    
+    func animateShowDimmedView() {
+        UIView.animate(withDuration: 0.2) {
+            self.dimmedView.alpha = self.maxDimmedAlpha
+        }
+    }
+    
+    func animateDismissView() {
+        
+        dimmedView.alpha = maxDimmedAlpha
+        UIView.animate(withDuration: 0.2) {
+            self.dimmedView.alpha = 0
+        } completion: { _ in
+            self.dismiss(animated: false)
+        }
+        UIView.animate(withDuration: 0.1) {
+            self.containerViewBottomConstraint?.constant = self.currentContainerHeight
+            self.view.layoutIfNeeded()
+        }
+    }
 }

@@ -8,13 +8,13 @@
 import UIKit
 
 class ChangePasswordViewController: UIViewController {
-
+    
     private let passwordTextField = FloatLabelTextField()
     private let newPasswordTextField = FloatLabelTextField()
     private let retypeNewPasswordTextField = FloatLabelTextField()
     
     private let textFieldstackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
@@ -23,7 +23,7 @@ class ChangePasswordViewController: UIViewController {
     }()
     
     private let saveButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.backgroundColor = .appPurple50
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(L10n.General.save, for: .normal)
@@ -34,7 +34,7 @@ class ChangePasswordViewController: UIViewController {
     }()
     
     private let mainStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 24
@@ -43,7 +43,7 @@ class ChangePasswordViewController: UIViewController {
     }()
     
     private let scrollView: UIScrollView = {
-       let scrollView = UIScrollView()
+        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
@@ -55,7 +55,10 @@ class ChangePasswordViewController: UIViewController {
         applyConstraints()
         backButton()
     }
-    
+}
+
+// MARK: - Configure
+extension ChangePasswordViewController {
     private func contentConfigure() {
         passwordTextField.title = L10n.Placeholder.password
         passwordTextField.isSecureTextEntry = true
@@ -65,7 +68,8 @@ class ChangePasswordViewController: UIViewController {
         retypeNewPasswordTextField.isSecureTextEntry = true
     }
 }
-//MARK: - Layout
+
+// MARK: - Layout
 extension ChangePasswordViewController {
     private func setupViews() {
         view.addSubview(scrollView)
@@ -77,15 +81,14 @@ extension ChangePasswordViewController {
         textFieldstackView.addArrangedSubview(retypeNewPasswordTextField)
         title = L10n.Modules.ChangePasswordViewController.title
         view.backgroundColor = .systemBackground
-     }
+    }
     
     private func applyConstraints() {
         
         let saveButtonConstraints = [
             saveButton.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 24),
-            saveButton.heightAnchor.constraint(equalToConstant: 63),
+            saveButton.heightAnchor.constraint(equalToConstant: 63)
         ]
-        
         let scrollViewConstraints = [
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -107,7 +110,7 @@ extension ChangePasswordViewController {
     }
 }
 
-//MARK: - Action
+// MARK: - Action
 extension ChangePasswordViewController {
     private func backButton() {
         let backbutton = UIBarButtonItem(image: UIImage(asset: Asset.Icons.back), style: .done, target: self, action: #selector(backbuttonTapped))

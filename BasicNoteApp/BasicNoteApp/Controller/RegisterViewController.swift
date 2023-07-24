@@ -17,6 +17,7 @@ class RegisterViewController: UIViewController {
         label.textColor = .appBlack
         return label
     }()
+    
     private let descriptionLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +47,25 @@ class RegisterViewController: UIViewController {
         stackView.alignment = .fill
         stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let emailInvalidLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .font(.interMedium, size: .small)
+        label.addIcon(icon: UIImage(asset: Asset.Icons.icError)!, text: L10n.Error.emailInvalid, iconSize: CGSize(width: 16, height: 16), xOffset: -8, yOffset: -4)
+        label.textColor = .appRed
+        return label
+    }()
+    
+    private let emailInvalidLabelStackView: UIStackView = {
+       let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.alignment = .leading
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.isHidden = false
         return stackView
     }()
     
@@ -95,6 +115,7 @@ class RegisterViewController: UIViewController {
         label.textColor = .appDarkGray
         return label
     }()
+    
     private let signInLabel: UILabel = {
        let label = UILabel()
         label.text = L10n.General.signInNow
@@ -116,10 +137,10 @@ class RegisterViewController: UIViewController {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
-        stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    
     private let scrollView: UIScrollView = {
        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -134,8 +155,11 @@ class RegisterViewController: UIViewController {
         addTapGestureToSignInLabel()
         addTapGestureToForgotPassword()
     }
+}
+// MARK: - Configure
+extension RegisterViewController {
     
-    private func contentConfigure(){
+    private func contentConfigure() {
         fullnameTextField.title = L10n.Placeholder.fullname
         emailTextField.autocapitalizationType = .none
         emailTextField.keyboardType = .emailAddress
@@ -144,10 +168,11 @@ class RegisterViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
     }
 }
+
 // MARK: - Layout
 extension RegisterViewController {
     
-    private func setupViews(){
+    private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(mainStackView)
         scrollView.addSubview(bottomStackView)
@@ -160,7 +185,9 @@ extension RegisterViewController {
         titleStackView.addArrangedSubview(descriptionLabel)
         textFieldstackView.addArrangedSubview(fullnameTextField)
         textFieldstackView.addArrangedSubview(emailTextField)
+        textFieldstackView.addArrangedSubview(emailInvalidLabelStackView)
         textFieldstackView.addArrangedSubview(passwordTextField)
+        emailInvalidLabelStackView.addArrangedSubview(emailInvalidLabel)
         forgotPasswordStackView.addArrangedSubview(forgotPasswordLabel)
         bottomStackView.addArrangedSubview(haveAccountLabel)
         bottomStackView.addArrangedSubview(signInLabel)
@@ -173,6 +200,10 @@ extension RegisterViewController {
         ]
         let textFieldstackViewConstraints = [
             textFieldstackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40)
+        ]
+        let emailInvalidLabelConstraints = [
+            emailInvalidLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 8),
+            emailInvalidLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 8)
         ]
         let passwordInvalidLabelConstraints = [
             passwordInvalidLabel.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 8),
@@ -204,6 +235,7 @@ extension RegisterViewController {
         let allConstraints = [
             titleStackViewConstraints,
             textFieldstackViewConstraints,
+            emailInvalidLabelConstraints,
             passwordInvalidLabelConstraints,
             forgotPasswordStackViewConstraints,
             buttonRegisterConstraints,
@@ -214,8 +246,10 @@ extension RegisterViewController {
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
+
 // MARK: - Action
 extension RegisterViewController {
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -246,6 +280,7 @@ extension RegisterViewController {
         navigationController?.pushViewController(notesViewController, animated: true)
     }
 }
+
 import SwiftUI
 #if DEBUG
 
@@ -256,6 +291,3 @@ struct RegisterViewControllerPreview: PreviewProvider {
     }
 }
 #endif
-
-
-

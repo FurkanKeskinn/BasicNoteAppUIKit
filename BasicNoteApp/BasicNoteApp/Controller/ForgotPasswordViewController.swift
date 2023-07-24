@@ -10,7 +10,7 @@ import UIKit
 class ForgotPasswordViewController: UIViewController {
     
     private let titleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = L10n.Modules.forgotPassword
         label.font = .font(.interSemiBold, size: .h1)
@@ -19,7 +19,7 @@ class ForgotPasswordViewController: UIViewController {
     }()
     
     private let descriptionLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = L10n.Modules.ForgotPasswordViewController.descriptionText
         label.font = .font(.interMedium, size: .h5)
@@ -30,7 +30,7 @@ class ForgotPasswordViewController: UIViewController {
     }()
     
     private let titleStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.spacing = 16
@@ -41,7 +41,7 @@ class ForgotPasswordViewController: UIViewController {
     private let emailTextField = FloatLabelTextField()
     
     private let emailInvalidLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .font(.interMedium, size: .small)
         label.addIcon(icon: UIImage(asset: Asset.Icons.icError)!, text: L10n.Error.emailInvalid, iconSize: CGSize(width: 16, height: 16), xOffset: -8, yOffset: -4)
@@ -51,7 +51,7 @@ class ForgotPasswordViewController: UIViewController {
     }()
     
     private let buttonResetPassword: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.backgroundColor = .appPurple50
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(L10n.General.resetPassword, for: .normal)
@@ -63,7 +63,7 @@ class ForgotPasswordViewController: UIViewController {
     }()
     
     private let mainStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
@@ -73,17 +73,10 @@ class ForgotPasswordViewController: UIViewController {
     }()
     
     private let scrollView: UIScrollView = {
-       let scrollView = UIScrollView()
+        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
-    /*private let dimmingView: UIView = {
-            let view = UIView()
-            view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-            view.translatesAutoresizingMaskIntoConstraints = false
-            return view
-        }()*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,17 +85,21 @@ class ForgotPasswordViewController: UIViewController {
         applyConstraints()
         backButton()
     }
-    
-    private func contentConfigure(){
+}
+
+// MARK: - Configure
+extension ForgotPasswordViewController {
+    private func contentConfigure() {
         emailTextField.autocapitalizationType = .none
         emailTextField.keyboardType = .emailAddress
         emailTextField.title = L10n.Placeholder.email
     }
-
 }
-//MARK: - Layout
+
+// MARK: - Layout
 extension ForgotPasswordViewController {
-    private func setupViews(){
+    
+    private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(mainStackView)
         mainStackView.addArrangedSubview(titleStackView)
@@ -112,7 +109,7 @@ extension ForgotPasswordViewController {
         titleStackView.addArrangedSubview(titleLabel)
         titleStackView.addArrangedSubview(descriptionLabel)
         view.backgroundColor = .systemBackground
-     }
+    }
     
     private func applyConstraints() {
         let titleStackViewConstraints = [
@@ -153,12 +150,14 @@ extension ForgotPasswordViewController {
     }
 }
 
-//MARK: - Action
+// MARK: - Action
 extension ForgotPasswordViewController {
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    
     private func backButton() {
         let backbutton = UIBarButtonItem(image: UIImage(asset: Asset.Icons.back), style: .done, target: self, action: #selector(backbuttonTapped))
         navigationItem.leftBarButtonItem = backbutton
@@ -173,7 +172,8 @@ extension ForgotPasswordViewController {
         presentModalController()
     }
 }
-//MARK: - Bottom Sheet
+
+// MARK: - Bottom Sheet
 extension ForgotPasswordViewController {
     
     private func presentModalController() {
@@ -185,8 +185,9 @@ extension ForgotPasswordViewController {
         customBottomSheetVC.actionButton.setTitle(L10n.General.login, for: .normal)
         customBottomSheetVC.actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
         self.present(customBottomSheetVC, animated: true, completion: nil)
-        }
-   @objc private func actionButtonTapped(){
+    }
+    
+    @objc private func actionButtonTapped() {
         let loginViewController = LoginViewController()
         navigationController?.pushViewController(loginViewController, animated: true)
     }

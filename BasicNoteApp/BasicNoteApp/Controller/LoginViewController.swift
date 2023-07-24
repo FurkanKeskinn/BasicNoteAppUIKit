@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
         label.textColor = .appBlack
         return label
     }()
+    
     private let descriptionLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,16 +47,6 @@ class LoginViewController: UIViewController {
         stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
-    }()
-    
-    private let passwordInvalidLabel: UILabel = {
-       let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .font(.interMedium, size: .small)
-        label.addIcon(icon: UIImage(asset: Asset.Icons.icError)!, text: L10n.Error.passwordInvalid, iconSize: CGSize(width: 16, height: 16), xOffset: -8, yOffset: -4)
-        label.textColor = .appRed
-        label.isHidden = false
-        return label
     }()
     
     private let forgotPasswordLabel: UILabel = {
@@ -94,6 +85,7 @@ class LoginViewController: UIViewController {
         label.textColor = .appDarkGray
         return label
     }()
+    
     private let signUpLabel: UILabel = {
        let label = UILabel()
         label.text = L10n.General.signUpNow
@@ -119,6 +111,7 @@ class LoginViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    
     private let scrollView: UIScrollView = {
        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -133,6 +126,10 @@ class LoginViewController: UIViewController {
         addTapGestureToSignInLabel()
         addTapGestureToForgotPassword()
     }
+}
+
+// MARK: - Configure
+extension LoginViewController {
     
     private func contentConfigure() {
         emailTextField.autocapitalizationType = .none
@@ -143,6 +140,7 @@ class LoginViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
     }
 }
+
 // MARK: - Layout
 extension LoginViewController {
     
@@ -152,7 +150,6 @@ extension LoginViewController {
         scrollView.addSubview(bottomStackView)
         mainStackView.addArrangedSubview(titleStackView)
         mainStackView.addArrangedSubview(textFieldstackView)
-        mainStackView.addArrangedSubview(passwordInvalidLabel)
         mainStackView.addArrangedSubview(forgotPasswordStackView)
         mainStackView.addArrangedSubview(buttonLogin)
         titleStackView.addArrangedSubview(titleLabel)
@@ -172,12 +169,8 @@ extension LoginViewController {
         let textFieldstackViewConstraints = [
             textFieldstackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40)
         ]
-        let passwordInvalidLabelConstraints = [
-            passwordInvalidLabel.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 8),
-            passwordInvalidLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 8)
-        ]
         let forgotPasswordStackViewConstraints = [
-            forgotPasswordStackView.topAnchor.constraint(equalTo: passwordInvalidLabel.bottomAnchor, constant: 12)
+            forgotPasswordStackView.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 12)
         ]
         let buttonLoginConstraints = [
             buttonLogin.topAnchor.constraint(equalTo: forgotPasswordLabel.bottomAnchor, constant: 24),
@@ -202,7 +195,6 @@ extension LoginViewController {
        let allConstraints = [
             titleStackViewConstraints,
             textFieldstackViewConstraints,
-            passwordInvalidLabelConstraints,
             forgotPasswordStackViewConstraints,
             buttonLoginConstraints,
             bottomStackViewConstraints,
@@ -212,8 +204,10 @@ extension LoginViewController {
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
+
 // MARK: - Action
 extension LoginViewController {
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -244,6 +238,7 @@ extension LoginViewController {
         navigationController?.pushViewController(notesViewController, animated: true)
     }
 }
+
 import SwiftUI
 #if DEBUG
 

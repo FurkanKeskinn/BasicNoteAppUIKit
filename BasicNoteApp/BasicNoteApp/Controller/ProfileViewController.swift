@@ -49,6 +49,7 @@ class ProfileViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
+    
     private let mainStackView: UIStackView = {
        let stackView = UIStackView()
         stackView.axis = .vertical
@@ -75,6 +76,10 @@ class ProfileViewController: UIViewController {
         addTapGestureToChangePassword()
         addTapGestureTosignOut()
     }
+}
+
+// MARK: - Configure
+extension ProfileViewController {
     
     private func contentConfigure() {
         fullnameTextField.title = L10n.Placeholder.fullname
@@ -83,7 +88,8 @@ class ProfileViewController: UIViewController {
         emailTextField.title = L10n.Placeholder.email
     }
 }
-//MARK: - Layout
+
+// MARK: - Layout
 extension ProfileViewController {
     
     private func setupViews() {
@@ -102,10 +108,10 @@ extension ProfileViewController {
         
         let buttonSaveConstraints = [
             buttonSave.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 24),
-            buttonSave.heightAnchor.constraint(equalToConstant: 63),
+            buttonSave.heightAnchor.constraint(equalToConstant: 63)
         ]
         let signOutLabelConstraints = [
-            signOutLabel.topAnchor.constraint(equalTo: changePasswordLabel.bottomAnchor, constant: 8),
+            signOutLabel.topAnchor.constraint(equalTo: changePasswordLabel.bottomAnchor, constant: 8)
         ]
         let scrollViewConstraints = [
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -128,8 +134,10 @@ extension ProfileViewController {
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
-//MARK: - Action
+
+// MARK: - Action
 extension ProfileViewController {
+    
     private func backButton() {
         let backbutton = UIBarButtonItem(image: UIImage(asset: Asset.Icons.back), style: .done, target: self, action: #selector(backbuttonTapped))
         navigationItem.leftBarButtonItem = backbutton

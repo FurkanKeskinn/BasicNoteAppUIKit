@@ -8,16 +8,16 @@
 import UIKit
 
 class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
-
+    
     private let tableView: UITableView = {
-       let table = UITableView()
+        let table = UITableView()
         table.register(NotesTableViewCell.self, forCellReuseIdentifier: NotesTableViewCell.identifier)
-                table.translatesAutoresizingMaskIntoConstraints = false
+        table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
     
     private let addButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setTitle(L10n.General.addNote, for: .normal)
         button.titleLabel?.text = L10n.General.addNote
         button.setImage(UIImage(asset: Asset.Icons.icAddnote), for: .normal)
@@ -27,7 +27,7 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
         button.backgroundColor = .appPurple100
         button.layer.cornerRadius = 5
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(addNoteTapped) , for: .touchUpInside)
+        button.addTarget(self, action: #selector(addNoteTapped), for: .touchUpInside)
         return button
     }()
     
@@ -45,7 +45,7 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
     }()
     
     private let searchBarItem: UISearchBar = {
-       let search = UISearchBar()
+        let search = UISearchBar()
         search.placeholder = L10n.Placeholder.search
         search.translatesAutoresizingMaskIntoConstraints = false
         search.searchTextField.layer.borderColor = UIColor.appLightGray.cgColor
@@ -74,7 +74,8 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 }
-//MARK: - TabelView
+
+// MARK: - TabelView
 extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
@@ -88,8 +89,45 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.noteLabel.text = "Sunshine-sweet lemon blueberry layer cake dotted with juicy berries and topped with lush cream cheese…"
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editAction = UIContextualAction(style: .normal, title: "") { (action, view, completion) in
+            
+            self.editItem(at: indexPath)
+            completion(true)
+        }
+        editAction.backgroundColor = .appYellow
+        editAction.image = UIImage(asset: Asset.Icons.icEdit)
+        
+        let deleteAction = UIContextualAction(style: .normal, title: "") { (action, view, completion) in
+            
+            let alertController = UIAlertController(title: "Delete Note", message: "Are you sure you want to deletethis note.", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let deleteConfirmAction = UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                self.deleteItem(at: indexPath)
+            })
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(deleteConfirmAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
+        deleteAction.backgroundColor = .appRed
+        deleteAction.image = UIImage(asset: Asset.Icons.icTrash)
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        return configuration
+    }
+    
+    func editItem(at indexPath: IndexPath) {
+        print("Edit item at row: \(indexPath.row)")
+    }
+    func deleteItem(at indexPath: IndexPath) {
+        print("Delete item at row: \(indexPath.row)")
+    }
 }
-//MARK: - Layout
+
+// MARK: - Layout
 extension NotesViewController {
     
     private func applyConstraints() {
@@ -109,7 +147,8 @@ extension NotesViewController {
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
-//MARK: - Action
+
+// MARK: - Action
 extension NotesViewController {
     
     private func setupNavigationBar() {
@@ -129,14 +168,15 @@ extension NotesViewController {
         self.navigationController?.isNavigationBarHidden = false
         let profileViewController = ProfileViewController()
         navigationController?.pushViewController(profileViewController, animated: true)
-
+        
     }
     @objc private func addNoteTapped() {
         let addNoteViewController = AddNoteViewController()
         navigationController?.pushViewController(addNoteViewController, animated: true)
     }
 }
-//MARK: - SearchBar
+
+// MARK: - SearchBar
 extension NotesViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -151,7 +191,7 @@ extension NotesViewController: UISearchBarDelegate {
         navigationItem.rightBarButtonItem = nil
         searchBar.setShowsCancelButton(true, animated: true)
     }
-
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(false, animated: true)
@@ -159,6 +199,7 @@ extension NotesViewController: UISearchBarDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: imageButton)
     }
 }
+
 import SwiftUI
 #if DEBUG
 
