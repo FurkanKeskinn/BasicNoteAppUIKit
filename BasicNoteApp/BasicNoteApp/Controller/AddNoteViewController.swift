@@ -61,7 +61,7 @@ class AddNoteViewController: UIViewController {
 // MARK: - Layout
 extension AddNoteViewController {
     
-    func setupViews() {
+    private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
         scrollView.addSubview(saveNoteButton)

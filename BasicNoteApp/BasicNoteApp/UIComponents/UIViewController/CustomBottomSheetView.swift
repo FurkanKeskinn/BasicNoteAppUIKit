@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 class CustomBottomSheetView: UIViewController {
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .font(.interSemiBold, size: .h4)
         label.textAlignment = .center
@@ -24,7 +24,7 @@ class CustomBottomSheetView: UIViewController {
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .font(.interMedium, size: .h4)
@@ -78,9 +78,9 @@ class CustomBottomSheetView: UIViewController {
         return view
     }()
     
-    let maxDimmedAlpha: CGFloat = 0.4
+    private let maxDimmedAlpha: CGFloat = 0.4
     
-    lazy var dimmedView: UIView = {
+    private lazy var dimmedView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
         view.alpha = maxDimmedAlpha
@@ -88,10 +88,10 @@ class CustomBottomSheetView: UIViewController {
         return view
     }()
     
-    let dismissibleHeight: CGFloat = 200
-    var currentContainerHeight: CGFloat = 375
-    var containerViewHeightConstraint: NSLayoutConstraint?
-    var containerViewBottomConstraint: NSLayoutConstraint?
+    private let dismissibleHeight: CGFloat = 200
+    private var currentContainerHeight: CGFloat = 375
+    private var containerViewHeightConstraint: NSLayoutConstraint?
+    private var containerViewBottomConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +116,7 @@ class CustomBottomSheetView: UIViewController {
         animateShowDimmedView()
     }
     
-    func configureConstraints() {
+    private func configureConstraints() {
         view.addSubview(dimmedView)
         view.addSubview(containerView)
         containerView.addSubview(scrollView)
@@ -156,7 +156,7 @@ class CustomBottomSheetView: UIViewController {
         containerViewBottomConstraint?.isActive = true
     }
     
-    func setupPanGesture() {
+    private func setupPanGesture() {
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture(gesture:)))
         panGesture.delaysTouchesBegan = false
@@ -196,7 +196,7 @@ class CustomBottomSheetView: UIViewController {
         }
     }
     
-    func animateContainerHeight(_ height: CGFloat) {
+    private func animateContainerHeight(_ height: CGFloat) {
         
         UIView.animate(withDuration: 0.2) {
             self.containerViewHeightConstraint?.constant = height
@@ -207,13 +207,13 @@ class CustomBottomSheetView: UIViewController {
         
     }
     
-    func animateShowDimmedView() {
+    private func animateShowDimmedView() {
         UIView.animate(withDuration: 0.2) {
             self.dimmedView.alpha = self.maxDimmedAlpha
         }
     }
     
-    func animateDismissView() {
+    private func animateDismissView() {
         
         dimmedView.alpha = maxDimmedAlpha
         UIView.animate(withDuration: 0.2) {
@@ -226,4 +226,25 @@ class CustomBottomSheetView: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
+}
+
+// MARK: - Setup Content
+extension CustomBottomSheetView {
+    func setupContent(withImage image: UIImage?, title: String?, description: String?, actionButtonTitle: String?) {
+           if let image = image {
+               imageView.image = image
+           }
+           
+           if let title = title {
+               titleLabel.text = title
+           }
+           
+           if let description = description {
+               descriptionLabel.text = description
+           }
+           
+           if let actionButtonTitle = actionButtonTitle {
+               actionButton.setTitle(actionButtonTitle, for: .normal)
+           }
+       }
 }

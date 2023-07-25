@@ -60,7 +60,7 @@ class EditNoteViewController: UIViewController {
 // MARK: - Layout
 extension EditNoteViewController {
     
-    func setupViews() {
+    private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
         scrollView.addSubview(editNoteButton)

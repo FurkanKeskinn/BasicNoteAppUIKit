@@ -179,11 +179,15 @@ extension ForgotPasswordViewController {
     private func presentModalController() {
         let customBottomSheetVC = CustomBottomSheetView()
         customBottomSheetVC.modalPresentationStyle = .overCurrentContext
-        customBottomSheetVC.imageView.image = UIImage(asset: Asset.Icons.icSuccess)
-        customBottomSheetVC.titleLabel.text = L10n.Modules.ForgotPasswordViewController.titletoastMessage
-        customBottomSheetVC.descriptionLabel.text = L10n.Modules.ForgotPasswordViewController.toastMessage("test@gmail.com")
-        customBottomSheetVC.actionButton.setTitle(L10n.General.login, for: .normal)
+        
+        let image = UIImage(asset: Asset.Icons.icSuccess)
+        let title = L10n.Modules.ForgotPasswordViewController.titletoastMessage
+        let description = L10n.Modules.ForgotPasswordViewController.toastMessage("test@gmail.com")
+        let actionButtonTitle = L10n.General.login
+        
+        customBottomSheetVC.setupContent(withImage: image, title: title, description: description, actionButtonTitle: actionButtonTitle)
         customBottomSheetVC.actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        
         self.present(customBottomSheetVC, animated: true, completion: nil)
     }
     
