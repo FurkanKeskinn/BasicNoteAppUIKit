@@ -11,3 +11,6 @@
 "password" = "Password";
 "newPassword" = "New Password";
 "retypeNewPassword" = "Retype New Password";
+"search" = "Search...";
+"title" = "Title";
+"description" = "Description";

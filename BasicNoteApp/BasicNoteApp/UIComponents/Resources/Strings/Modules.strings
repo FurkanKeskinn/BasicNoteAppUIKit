@@ -27,6 +27,8 @@
 
 // MARK: - Forgot Password
 "ForgotPasswordViewController.descriptionText"= "Confirm your email and we’ll send the instructions.";
+"ForgotPasswordViewController.titletoastMessage"= "Password Reset Confirmation";
+"ForgotPasswordViewController.toastMessage"= "An email has been sent to %@ with further instructions.";
 
 // MARK: - Change Password
 "ChangePasswordViewController.title" = "Change Password";

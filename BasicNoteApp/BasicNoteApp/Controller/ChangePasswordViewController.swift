@@ -8,13 +8,13 @@
 import UIKit
 
 class ChangePasswordViewController: UIViewController {
-
+    
     private let passwordTextField = FloatLabelTextField()
     private let newPasswordTextField = FloatLabelTextField()
     private let retypeNewPasswordTextField = FloatLabelTextField()
     
     private let textFieldstackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
@@ -22,8 +22,8 @@ class ChangePasswordViewController: UIViewController {
         return stackView
     }()
     
-    private let buttonSave: UIButton = {
-       let button = UIButton()
+    private let saveButton: UIButton = {
+        let button = UIButton()
         button.backgroundColor = .appPurple50
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(L10n.General.save, for: .normal)
@@ -34,7 +34,7 @@ class ChangePasswordViewController: UIViewController {
     }()
     
     private let mainStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 24
@@ -43,7 +43,7 @@ class ChangePasswordViewController: UIViewController {
     }()
     
     private let scrollView: UIScrollView = {
-       let scrollView = UIScrollView()
+        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
@@ -53,8 +53,12 @@ class ChangePasswordViewController: UIViewController {
         contentConfigure()
         setupViews()
         applyConstraints()
+        backButton()
     }
-    
+}
+
+// MARK: - Configure
+extension ChangePasswordViewController {
     private func contentConfigure() {
         passwordTextField.title = L10n.Placeholder.password
         passwordTextField.isSecureTextEntry = true
@@ -65,25 +69,26 @@ class ChangePasswordViewController: UIViewController {
     }
 }
 
+// MARK: - Layout
 extension ChangePasswordViewController {
-    
     private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(mainStackView)
         mainStackView.addArrangedSubview(textFieldstackView)
-        mainStackView.addArrangedSubview(buttonSave)
+        mainStackView.addArrangedSubview(saveButton)
         textFieldstackView.addArrangedSubview(passwordTextField)
         textFieldstackView.addArrangedSubview(newPasswordTextField)
         textFieldstackView.addArrangedSubview(retypeNewPasswordTextField)
-     }
+        title = L10n.Modules.ChangePasswordViewController.title
+        view.backgroundColor = .systemBackground
+    }
     
     private func applyConstraints() {
         
-        let buttonSaveConstraints = [
-            buttonSave.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 24),
-            buttonSave.heightAnchor.constraint(equalToConstant: 63),
+        let saveButtonConstraints = [
+            saveButton.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 24),
+            saveButton.heightAnchor.constraint(equalToConstant: 63)
         ]
-        
         let scrollViewConstraints = [
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -97,13 +102,27 @@ extension ChangePasswordViewController {
             mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ]
         let allConstraints = [
-            buttonSaveConstraints,
+            saveButtonConstraints,
             scrollViewConstraints,
             mainStackViewConstraints
         ]
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
+
+// MARK: - Action
+extension ChangePasswordViewController {
+    private func backButton() {
+        let backbutton = UIBarButtonItem(image: UIImage(asset: Asset.Icons.back), style: .done, target: self, action: #selector(backbuttonTapped))
+        navigationItem.leftBarButtonItem = backbutton
+        navigationController?.navigationBar.tintColor = .appBlack
+    }
+    
+    @objc private func backbuttonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+}
+
 import SwiftUI
 #if DEBUG
 

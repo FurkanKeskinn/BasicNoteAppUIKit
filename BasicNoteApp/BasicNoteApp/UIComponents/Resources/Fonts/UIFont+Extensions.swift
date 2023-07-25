@@ -29,7 +29,7 @@ extension UIFont {
       /// 26
       case h1
 
-      /// 21
+      /// 22
       case h2
 
       /// 17
@@ -55,7 +55,7 @@ extension UIFont {
           case .small: return 10
           case .large:  return 40
           case .h1: return 26
-          case .h2: return 21
+          case .h2: return 22
           case .h3: return 17
           case .h4: return 16
           case .h5: return 15

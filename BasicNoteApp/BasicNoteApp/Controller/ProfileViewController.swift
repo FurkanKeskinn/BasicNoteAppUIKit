@@ -49,6 +49,7 @@ class ProfileViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
+    
     private let mainStackView: UIStackView = {
        let stackView = UIStackView()
         stackView.axis = .vertical
@@ -67,10 +68,18 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Profile"
         contentConfigure()
         setupViews()
         applyConstraints()
+        backButton()
+        addTapGestureToChangePassword()
+        addTapGestureTosignOut()
     }
+}
+
+// MARK: - Configure
+extension ProfileViewController {
     
     private func contentConfigure() {
         fullnameTextField.title = L10n.Placeholder.fullname
@@ -80,6 +89,7 @@ class ProfileViewController: UIViewController {
     }
 }
 
+// MARK: - Layout
 extension ProfileViewController {
     
     private func setupViews() {
@@ -89,19 +99,19 @@ extension ProfileViewController {
         mainStackView.addArrangedSubview(buttonSave)
         mainStackView.addArrangedSubview(changePasswordLabel)
         mainStackView.addArrangedSubview(signOutLabel)
-        
         textFieldstackView.addArrangedSubview(fullnameTextField)
         textFieldstackView.addArrangedSubview(emailTextField)
+        view.backgroundColor = .systemBackground
      }
     
     private func applyConstraints() {
         
         let buttonSaveConstraints = [
             buttonSave.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 24),
-            buttonSave.heightAnchor.constraint(equalToConstant: 63),
+            buttonSave.heightAnchor.constraint(equalToConstant: 63)
         ]
         let signOutLabelConstraints = [
-            signOutLabel.topAnchor.constraint(equalTo: changePasswordLabel.bottomAnchor, constant: 8),
+            signOutLabel.topAnchor.constraint(equalTo: changePasswordLabel.bottomAnchor, constant: 8)
         ]
         let scrollViewConstraints = [
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -124,6 +134,41 @@ extension ProfileViewController {
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
     }
 }
+
+// MARK: - Action
+extension ProfileViewController {
+    
+    private func backButton() {
+        let backbutton = UIBarButtonItem(image: UIImage(asset: Asset.Icons.back), style: .done, target: self, action: #selector(backbuttonTapped))
+        navigationItem.leftBarButtonItem = backbutton
+        navigationController?.navigationBar.tintColor = .appBlack
+    }
+    
+    @objc private func backbuttonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    private func addTapGestureToChangePassword() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changePasswordTapped))
+        changePasswordLabel.isUserInteractionEnabled = true
+        changePasswordLabel.addGestureRecognizer(tapGesture)
+    }
+    @objc private func changePasswordTapped() {
+        let changePasswordViewController = ChangePasswordViewController()
+        navigationController?.pushViewController(changePasswordViewController, animated: true)
+    }
+    
+    private func addTapGestureTosignOut() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signOutTapped))
+        signOutLabel.isUserInteractionEnabled = true
+        signOutLabel.addGestureRecognizer(tapGesture)
+    }
+    @objc private func signOutTapped() {
+        let registerViewController = RegisterViewController()
+        navigationController?.pushViewController(registerViewController, animated: true)
+    }
+}
+
 import SwiftUI
 #if DEBUG
 

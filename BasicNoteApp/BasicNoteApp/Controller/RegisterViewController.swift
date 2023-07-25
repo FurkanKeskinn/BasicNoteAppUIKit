@@ -17,12 +17,14 @@ class RegisterViewController: UIViewController {
         label.textColor = .appBlack
         return label
     }()
+    
     private let descriptionLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = L10n.Modules.descriptionText
         label.font = .font(.interMedium, size: .h5)
         label.textColor = .appDarkGray
+        label.numberOfLines = 0
         return label
     }()
     
@@ -45,6 +47,25 @@ class RegisterViewController: UIViewController {
         stackView.alignment = .fill
         stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let emailInvalidLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .font(.interMedium, size: .small)
+        label.addIcon(icon: UIImage(asset: Asset.Icons.icError)!, text: L10n.Error.emailInvalid, iconSize: CGSize(width: 16, height: 16), xOffset: -8, yOffset: -4)
+        label.textColor = .appRed
+        return label
+    }()
+    
+    private let emailInvalidLabelStackView: UIStackView = {
+       let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.alignment = .leading
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.isHidden = false
         return stackView
     }()
     
@@ -83,6 +104,7 @@ class RegisterViewController: UIViewController {
         button.titleLabel?.font = .font(.interSemiBold, size: .h4)
         button.setTitleColor(.appPurple100, for: .normal)
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(buttonRegisterTapped), for: .touchUpInside)
         return button
     }()
     
@@ -93,6 +115,7 @@ class RegisterViewController: UIViewController {
         label.textColor = .appDarkGray
         return label
     }()
+    
     private let signInLabel: UILabel = {
        let label = UILabel()
         label.text = L10n.General.signInNow
@@ -114,10 +137,10 @@ class RegisterViewController: UIViewController {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
-        stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    
     private let scrollView: UIScrollView = {
        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -126,13 +149,17 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         contentConfigure()
         setupViews()
         applyConstraints()
+        addTapGestureToSignInLabel()
+        addTapGestureToForgotPassword()
     }
+}
+// MARK: - Configure
+extension RegisterViewController {
     
-    private func contentConfigure(){
+    private func contentConfigure() {
         fullnameTextField.title = L10n.Placeholder.fullname
         emailTextField.autocapitalizationType = .none
         emailTextField.keyboardType = .emailAddress
@@ -141,9 +168,11 @@ class RegisterViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
     }
 }
+
+// MARK: - Layout
 extension RegisterViewController {
     
-    private func setupViews(){
+    private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(mainStackView)
         scrollView.addSubview(bottomStackView)
@@ -156,10 +185,13 @@ extension RegisterViewController {
         titleStackView.addArrangedSubview(descriptionLabel)
         textFieldstackView.addArrangedSubview(fullnameTextField)
         textFieldstackView.addArrangedSubview(emailTextField)
+        textFieldstackView.addArrangedSubview(emailInvalidLabelStackView)
         textFieldstackView.addArrangedSubview(passwordTextField)
+        emailInvalidLabelStackView.addArrangedSubview(emailInvalidLabel)
         forgotPasswordStackView.addArrangedSubview(forgotPasswordLabel)
         bottomStackView.addArrangedSubview(haveAccountLabel)
         bottomStackView.addArrangedSubview(signInLabel)
+        view.backgroundColor = .systemBackground
      }
     
     private func applyConstraints() {
@@ -168,6 +200,10 @@ extension RegisterViewController {
         ]
         let textFieldstackViewConstraints = [
             textFieldstackView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40)
+        ]
+        let emailInvalidLabelConstraints = [
+            emailInvalidLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 8),
+            emailInvalidLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 8)
         ]
         let passwordInvalidLabelConstraints = [
             passwordInvalidLabel.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 8),
@@ -199,6 +235,7 @@ extension RegisterViewController {
         let allConstraints = [
             titleStackViewConstraints,
             textFieldstackViewConstraints,
+            emailInvalidLabelConstraints,
             passwordInvalidLabelConstraints,
             forgotPasswordStackViewConstraints,
             buttonRegisterConstraints,
@@ -207,6 +244,40 @@ extension RegisterViewController {
             mainStackViewConstraints
         ]
         NSLayoutConstraint.activate(allConstraints.flatMap { $0 })
+    }
+}
+
+// MARK: - Action
+extension RegisterViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    private func addTapGestureToForgotPassword() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(forgotPasswordTapped))
+        forgotPasswordLabel.isUserInteractionEnabled = true
+        forgotPasswordLabel.addGestureRecognizer(tapGesture)
+    }
+    @objc private func forgotPasswordTapped() {
+        let forgotPasswordViewController = ForgotPasswordViewController()
+        navigationController?.pushViewController(forgotPasswordViewController, animated: true)
+    }
+    
+    private func addTapGestureToSignInLabel() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signInLabelTapped))
+        signInLabel.isUserInteractionEnabled = true
+        signInLabel.addGestureRecognizer(tapGesture)
+    }
+    @objc private func signInLabelTapped() {
+        let loginViewController = LoginViewController()
+        navigationController?.pushViewController(loginViewController, animated: true)
+    }
+    
+    @objc private func buttonRegisterTapped() {
+        let notesViewController = NotesViewController() //
+        navigationController?.pushViewController(notesViewController, animated: true)
     }
 }
 
@@ -220,6 +291,3 @@ struct RegisterViewControllerPreview: PreviewProvider {
     }
 }
 #endif
-
-
-
