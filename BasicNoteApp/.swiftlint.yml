@@ -1,8 +1,5 @@
 included:
-  - SampleProject
-  - Utilities
-  - DataProvider
-  - UIComponents
+  - BasicNoteApp
 excluded:
   - .git
   - Pods

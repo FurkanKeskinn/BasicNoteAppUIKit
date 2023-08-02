@@ -58,6 +58,9 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
         return search
     }()
     
+    private var viewModel: AllNotesViewModelProtocol = AllNotesViewModel()
+    private var allNote: [NoteDataModel] = [NoteDataModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -67,6 +70,8 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
         applyConstraints()
         setupNavigationBar()
         navigationController?.navigationBar.barTintColor = .appWhite
+        viewModel.getallNotesData()
+        viewModel.delegateAllNotes(delegate: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,16 +83,22 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
 // MARK: - TabelView
 extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return allNote.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NotesTableViewCell.identifier, for: indexPath) as? NotesTableViewCell else {
             return UITableViewCell()
         }
-        cell.titleLabel.text = "Lemon Cake & Blueberry"
-        cell.noteLabel.text = "Sunshine-sweet lemon blueberry layer cake dotted with juicy berries and topped with lush cream cheese…"
+        cell.configure(with: allNote[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        PreviewViewController.id = allNote[indexPath.row].id
+        let previewVC = PreviewViewController()
+        navigationController?.pushViewController(previewVC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -197,6 +208,16 @@ extension NotesViewController: UISearchBarDelegate {
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.text = ""
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: imageButton)
+    }
+}
+
+// MARK: - Response Data
+extension NotesViewController: AllNotesResponseData {
+    internal func allNotesData(allNotesResponse: [NoteDataModel]) {
+        self.allNote = allNotesResponse
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 

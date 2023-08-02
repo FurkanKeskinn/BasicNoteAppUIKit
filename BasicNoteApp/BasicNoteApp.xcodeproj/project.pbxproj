@@ -8,17 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		AA7E4ECB25A0946E3EC9EC42 /* Pods_BasicNoteApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4029CB383438AE57A958ECCA /* Pods_BasicNoteApp.framework */; };
+		DC0069682A728A1E005DD79D /* NoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0069672A728A1E005DD79D /* NoteService.swift */; };
+		DC00696A2A728A73005DD79D /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0069692A728A73005DD79D /* Note.swift */; };
+		DC00696C2A729DE4005DD79D /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00696B2A729DE4005DD79D /* NoteViewModel.swift */; };
+		DC00696E2A729DFA005DD79D /* NoteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00696D2A729DFA005DD79D /* NoteProtocol.swift */; };
 		DC0214A92A6A7E5600125957 /* CustomBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0214A82A6A7E5600125957 /* CustomBottomSheetView.swift */; };
 		DC0DC8FB2A600AD20033C534 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCFADADD2A5DB16100E3A47F /* Inter-SemiBold.ttf */; };
 		DC0DC8FC2A600AD20033C534 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCFADADE2A5DB16900E3A47F /* Inter-Medium.ttf */; };
 		DC0DC8FD2A600AD20033C534 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCAD18032A5E7A7800ABF13B /* Inter-Light.ttf */; };
 		DC0DC8FE2A600AD20033C534 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCAD18042A5E7A8E00ABF13B /* Inter-Bold.ttf */; };
 		DC0DC8FF2A600AD20033C534 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCAD18052A5E7A9A00ABF13B /* Inter-Regular.ttf */; };
+		DC1B00FB2A711D1000F74842 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = DC1B00FA2A711D1000F74842 /* .swiftlint.yml */; };
+		DC1B00FF2A711D3700F74842 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B00FE2A711D3700F74842 /* AuthService.swift */; };
+		DC1B01022A711E5B00F74842 /* AuthProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B01012A711E5B00F74842 /* AuthProtocol.swift */; };
+		DC1B010C2A711F3A00F74842 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B010B2A711F3A00F74842 /* Constant.swift */; };
+		DC1B01132A71218700F74842 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B01122A71218700F74842 /* AuthViewModel.swift */; };
+		DC1B01162A713F6F00F74842 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B01152A713F6F00F74842 /* LocalService.swift */; };
+		DC1B01182A713F8900F74842 /* LocalProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B01172A713F8900F74842 /* LocalProtocol.swift */; };
+		DC1B011E2A714BBB00F74842 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B011D2A714BBB00F74842 /* Error.swift */; };
+		DC1B01202A714C7700F74842 /* UserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B011F2A714C7700F74842 /* UserProtocol.swift */; };
+		DC1B01222A714CA200F74842 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B01212A714CA200F74842 /* UserViewModel.swift */; };
+		DC1C55862A7A3F87008DD5EE /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C55852A7A3F87008DD5EE /* PreviewViewController.swift */; };
+		DC1C55882A7A4538008DD5EE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C55872A7A4538008DD5EE /* UserService.swift */; };
+		DC1C558A2A7A457F008DD5EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C55892A7A457F008DD5EE /* User.swift */; };
+		DC1C558C2A7A4619008DD5EE /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C558B2A7A4619008DD5EE /* Auth.swift */; };
 		DC1D04102A6133AE00467F5E /* UIViewControllerExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1D040F2A6133AE00467F5E /* UIViewControllerExtenstion.swift */; };
 		DC1D04142A61393800467F5E /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1D04132A61393800467F5E /* FloatLabelTextField.swift */; };
 		DC3B24A92A667C8F0013E83D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B24A82A667C8F0013E83D /* LoginViewController.swift */; };
 		DC3B24AB2A6685740013E83D /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3B24AA2A6685740013E83D /* ForgotPasswordViewController.swift */; };
-		DC4CAD932A5E85790011F28E /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = DC4CAD922A5E85790011F28E /* swiftlint.yml */; };
 		DC5D15862A5C4D1C00A4037C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D15852A5C4D1C00A4037C /* AppDelegate.swift */; };
 		DC5D15882A5C4D1C00A4037C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D15872A5C4D1C00A4037C /* SceneDelegate.swift */; };
 		DC5D158A2A5C4D1C00A4037C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D15892A5C4D1C00A4037C /* RegisterViewController.swift */; };
@@ -49,12 +66,29 @@
 		4029CB383438AE57A958ECCA /* Pods_BasicNoteApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasicNoteApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D1B8C0681C5313615C0173E /* Pods-BasicNoteApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicNoteApp.release.xcconfig"; path = "Target Support Files/Pods-BasicNoteApp/Pods-BasicNoteApp.release.xcconfig"; sourceTree = "<group>"; };
 		8ED64190D5517324A9B63D14 /* Pods-BasicNoteApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicNoteApp.debug.xcconfig"; path = "Target Support Files/Pods-BasicNoteApp/Pods-BasicNoteApp.debug.xcconfig"; sourceTree = "<group>"; };
+		DC0069672A728A1E005DD79D /* NoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
+		DC0069692A728A73005DD79D /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		DC00696B2A729DE4005DD79D /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
+		DC00696D2A729DFA005DD79D /* NoteProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteProtocol.swift; sourceTree = "<group>"; };
 		DC0214A82A6A7E5600125957 /* CustomBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomSheetView.swift; sourceTree = "<group>"; };
+		DC1B00FA2A711D1000F74842 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		DC1B00FE2A711D3700F74842 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		DC1B01012A711E5B00F74842 /* AuthProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProtocol.swift; sourceTree = "<group>"; };
+		DC1B010B2A711F3A00F74842 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		DC1B01122A71218700F74842 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		DC1B01152A713F6F00F74842 /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
+		DC1B01172A713F8900F74842 /* LocalProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalProtocol.swift; sourceTree = "<group>"; };
+		DC1B011D2A714BBB00F74842 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		DC1B011F2A714C7700F74842 /* UserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
+		DC1B01212A714CA200F74842 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		DC1C55852A7A3F87008DD5EE /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		DC1C55872A7A4538008DD5EE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		DC1C55892A7A457F008DD5EE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DC1C558B2A7A4619008DD5EE /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		DC1D040F2A6133AE00467F5E /* UIViewControllerExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtenstion.swift; sourceTree = "<group>"; };
 		DC1D04132A61393800467F5E /* FloatLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
 		DC3B24A82A667C8F0013E83D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DC3B24AA2A6685740013E83D /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
-		DC4CAD922A5E85790011F28E /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
 		DC5D15822A5C4D1C00A4037C /* BasicNoteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicNoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC5D15852A5C4D1C00A4037C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC5D15872A5C4D1C00A4037C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +160,73 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
+		DC1B00FC2A711D1F00F74842 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				DC1B01142A713F5C00F74842 /* LocalService */,
+				DC1B00FD2A711D2600F74842 /* ApiService */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		DC1B00FD2A711D2600F74842 /* ApiService */ = {
+			isa = PBXGroup;
+			children = (
+				DC1B00FE2A711D3700F74842 /* AuthService.swift */,
+				DC0069672A728A1E005DD79D /* NoteService.swift */,
+				DC1C55872A7A4538008DD5EE /* UserService.swift */,
+			);
+			path = ApiService;
+			sourceTree = "<group>";
+		};
+		DC1B01002A711E4E00F74842 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DC1B01012A711E5B00F74842 /* AuthProtocol.swift */,
+				DC1B01172A713F8900F74842 /* LocalProtocol.swift */,
+				DC1B011F2A714C7700F74842 /* UserProtocol.swift */,
+				DC00696D2A729DFA005DD79D /* NoteProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DC1B01032A711E8000F74842 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DC1C558B2A7A4619008DD5EE /* Auth.swift */,
+				DC0069692A728A73005DD79D /* Note.swift */,
+				DC1C55892A7A457F008DD5EE /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DC1B010A2A711F2700F74842 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				DC1B010B2A711F3A00F74842 /* Constant.swift */,
+				DC1B011D2A714BBB00F74842 /* Error.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		DC1B01112A71217100F74842 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DC1B01122A71218700F74842 /* AuthViewModel.swift */,
+				DC1B01212A714CA200F74842 /* UserViewModel.swift */,
+				DC00696B2A729DE4005DD79D /* NoteViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DC1B01142A713F5C00F74842 /* LocalService */ = {
+			isa = PBXGroup;
+			children = (
+				DC1B01152A713F6F00F74842 /* LocalService.swift */,
+			);
+			path = LocalService;
+			sourceTree = "<group>";
+		};
 		DC1D04112A6138EE00467F5E /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +267,7 @@
 				DCC45A142A67CB00003130FD /* NotesViewController.swift */,
 				DC666B072A69531B00A99CD7 /* AddNoteViewController.swift */,
 				DC666B092A69532600A99CD7 /* EditNoteViewController.swift */,
+				DC1C55852A7A3F87008DD5EE /* PreviewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -174,7 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				DCFADAD32A5D977300E3A47F /* swiftgen.yml */,
-				DC4CAD922A5E85790011F28E /* swiftlint.yml */,
+				DC1B00FA2A711D1000F74842 /* .swiftlint.yml */,
 				DC5D15842A5C4D1C00A4037C /* BasicNoteApp */,
 				DC5D15832A5C4D1C00A4037C /* Products */,
 				B9F392BBB9474C6E802BE356 /* Pods */,
@@ -193,6 +295,11 @@
 		DC5D15842A5C4D1C00A4037C /* BasicNoteApp */ = {
 			isa = PBXGroup;
 			children = (
+				DC1B01112A71217100F74842 /* ViewModels */,
+				DC1B010A2A711F2700F74842 /* Constants */,
+				DC1B01032A711E8000F74842 /* Model */,
+				DC1B01002A711E4E00F74842 /* Protocols */,
+				DC1B00FC2A711D1F00F74842 /* Managers */,
 				DC0DC8F82A5FF26D0033C534 /* AppDelegate */,
 				DC1D04112A6138EE00467F5E /* UIComponents */,
 				DCC45A162A67E223003130FD /* Views */,
@@ -287,6 +394,7 @@
 				DC5D15802A5C4D1C00A4037C /* Resources */,
 				DCAD180A2A5EDFE600ABF13B /* SwiftLint */,
 				DCAD180B2A5EF90400ABF13B /* SwiftGen */,
+				09E0D02B0FFB4B71AD65CEE6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -335,13 +443,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1B00FB2A711D1000F74842 /* .swiftlint.yml in Resources */,
 				DC0DC8FB2A600AD20033C534 /* Inter-SemiBold.ttf in Resources */,
 				DC0DC8FC2A600AD20033C534 /* Inter-Medium.ttf in Resources */,
 				DC0DC8FD2A600AD20033C534 /* Inter-Light.ttf in Resources */,
 				DC0DC8FE2A600AD20033C534 /* Inter-Bold.ttf in Resources */,
 				DC0DC8FF2A600AD20033C534 /* Inter-Regular.ttf in Resources */,
 				DC5D15922A5C4D1E00A4037C /* LaunchScreen.storyboard in Resources */,
-				DC4CAD932A5E85790011F28E /* swiftlint.yml in Resources */,
 				DCFADAE52A5DBA3500E3A47F /* Icons.xcassets in Resources */,
 				DCFADAD42A5D977300E3A47F /* swiftgen.yml in Resources */,
 				DCFADAE22A5DB99100E3A47F /* Colors.xcassets in Resources */,
@@ -356,6 +464,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		09E0D02B0FFB4B71AD65CEE6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BasicNoteApp/Pods-BasicNoteApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BasicNoteApp/Pods-BasicNoteApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BasicNoteApp/Pods-BasicNoteApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A26952DAE30092C986CE869A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -421,26 +546,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC00696C2A729DE4005DD79D /* NoteViewModel.swift in Sources */,
 				DCAD18072A5E7B1700ABF13B /* Fonts.swift in Sources */,
 				DC5D158A2A5C4D1C00A4037C /* RegisterViewController.swift in Sources */,
+				DC1B01182A713F8900F74842 /* LocalProtocol.swift in Sources */,
 				DC9C8AC62A65743D0033FA4B /* UILabelExtension.swift in Sources */,
+				DC1B01202A714C7700F74842 /* UserProtocol.swift in Sources */,
 				DC1D04102A6133AE00467F5E /* UIViewControllerExtenstion.swift in Sources */,
 				DC666B0A2A69532600A99CD7 /* EditNoteViewController.swift in Sources */,
 				DCFADAF12A5DD38600E3A47F /* StringConstants.swift in Sources */,
+				DC1B00FF2A711D3700F74842 /* AuthService.swift in Sources */,
+				DC1C558C2A7A4619008DD5EE /* Auth.swift in Sources */,
 				DC5D15862A5C4D1C00A4037C /* AppDelegate.swift in Sources */,
 				DCFADAE92A5DBCC000E3A47F /* Assets.swift in Sources */,
+				DC1B01022A711E5B00F74842 /* AuthProtocol.swift in Sources */,
+				DC1C55882A7A4538008DD5EE /* UserService.swift in Sources */,
 				DC1D04142A61393800467F5E /* FloatLabelTextField.swift in Sources */,
+				DC1B010C2A711F3A00F74842 /* Constant.swift in Sources */,
 				DC3B24AB2A6685740013E83D /* ForgotPasswordViewController.swift in Sources */,
+				DC1B01162A713F6F00F74842 /* LocalService.swift in Sources */,
 				DC5D15882A5C4D1C00A4037C /* SceneDelegate.swift in Sources */,
 				DCC45A112A67B7AB003130FD /* ProfileViewController.swift in Sources */,
 				DCC45A152A67CB00003130FD /* NotesViewController.swift in Sources */,
+				DC00696A2A728A73005DD79D /* Note.swift in Sources */,
 				DC666B0D2A695E5600A99CD7 /* UITextViewExtension.swift in Sources */,
+				DC1C558A2A7A457F008DD5EE /* User.swift in Sources */,
 				DC0214A92A6A7E5600125957 /* CustomBottomSheetView.swift in Sources */,
+				DC1C55862A7A3F87008DD5EE /* PreviewViewController.swift in Sources */,
+				DC0069682A728A1E005DD79D /* NoteService.swift in Sources */,
 				DC666B082A69531B00A99CD7 /* AddNoteViewController.swift in Sources */,
 				DCAD18092A5E7BA900ABF13B /* UIFont+Extensions.swift in Sources */,
+				DC1B01222A714CA200F74842 /* UserViewModel.swift in Sources */,
+				DC00696E2A729DFA005DD79D /* NoteProtocol.swift in Sources */,
+				DC1B01132A71218700F74842 /* AuthViewModel.swift in Sources */,
 				DC3B24A92A667C8F0013E83D /* LoginViewController.swift in Sources */,
 				DCC45A132A67C040003130FD /* ChangePasswordViewController.swift in Sources */,
 				DCC45A182A67E2C0003130FD /* NotesTableViewCell.swift in Sources */,
+				DC1B011E2A714BBB00F74842 /* Error.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

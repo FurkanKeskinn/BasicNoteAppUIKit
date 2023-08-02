@@ -11,18 +11,16 @@ class NotesTableViewCell: UITableViewCell {
     
     static let identifier = "NotesTableViewCell"
     
-    let titleLabel : UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
-        //label.text = "Lemon Cake & Blueberry"
         label.font = .font(.interSemiBold, size: .h6)
         label.textColor = .appBlack
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
     }()
-    let noteLabel : UILabel = {
+    let noteLabel: UILabel = {
         let label = UILabel()
-        //label.text =  "Sunshine-sweet lemon blueberry layer cake dotted with juicy berries and topped with lush cream cheese…"
         label.font = .font(.interMedium, size: .h6)
         label.textColor = .appDarkGray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,10 +45,11 @@ class NotesTableViewCell: UITableViewCell {
         stackView.addArrangedSubview(noteLabel)
         applyConstraints()
     }
-    
+    // swiftlint:disable fatal_error
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    // swiftlint:enable fatal_error
     
     private func applyConstraints() {
         
@@ -61,5 +60,23 @@ class NotesTableViewCell: UITableViewCell {
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
         ]
         NSLayoutConstraint.activate(stackViewConstraint)
+    }
+    
+    func configure(with noteData: NoteDataModel) {
+        titleLabel.text = noteData.title
+        noteLabel.text = noteData.note
+    }
+    
+    func getNoteData(id: Int) {
+        NoteService().getNotesDetail(id: id) { note in
+            switch note {
+            case.success(let noteDetail):
+                self.titleLabel.text = noteDetail.data.title
+                self.noteLabel.text = noteDetail.data.note
+            case.failure(let error):
+                print(error)
+                
+            }
+        }
     }
 }
