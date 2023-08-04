@@ -8,9 +8,9 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     private let titleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = L10n.Modules.LoginViewController.title
         label.font = .font(.interSemiBold, size: .h1)
@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let descriptionLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = L10n.Modules.descriptionText
         label.font = .font(.interMedium, size: .h5)
@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let titleStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.spacing = 16
@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
     private let passwordTextField = FloatLabelTextField()
     
     private let textFieldstackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let forgotPasswordLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = L10n.Modules.forgotPassword
         label.font = .font(.interMedium, size: .h5)
@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let forgotPasswordStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .trailing
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let buttonLogin: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.backgroundColor = .appPurple50
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(L10n.General.login, for: .normal)
@@ -79,7 +79,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let haventAccountLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = L10n.Modules.LoginViewController.bottomText
         label.font = .font(.interMedium, size: .h5)
         label.textColor = .appDarkGray
@@ -87,7 +87,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let signUpLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = L10n.General.signUpNow
         label.font = .font(.interMedium, size: .h5)
         label.textColor = .appPurple100
@@ -95,7 +95,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let bottomStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -103,7 +103,7 @@ class LoginViewController: UIViewController {
     }()
     
     private let mainStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
@@ -113,10 +113,12 @@ class LoginViewController: UIViewController {
     }()
     
     private let scrollView: UIScrollView = {
-       let scrollView = UIScrollView()
+        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
+    
+    private var viewModel: LoginViewModelProtocol = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,6 +127,7 @@ class LoginViewController: UIViewController {
         applyConstraints()
         addTapGestureToSignInLabel()
         addTapGestureToForgotPassword()
+        viewModel.delegateLogin(delegate: self)
     }
 }
 
@@ -160,7 +163,7 @@ extension LoginViewController {
         bottomStackView.addArrangedSubview(haventAccountLabel)
         bottomStackView.addArrangedSubview(signUpLabel)
         view.backgroundColor = .systemBackground
-     }
+    }
     
     private func applyConstraints() {
         let titleStackViewConstraints = [
@@ -192,7 +195,7 @@ extension LoginViewController {
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -38)
         ]
-       let allConstraints = [
+        let allConstraints = [
             titleStackViewConstraints,
             textFieldstackViewConstraints,
             forgotPasswordStackViewConstraints,
@@ -234,8 +237,20 @@ extension LoginViewController {
     }
     
     @objc private func buttonLoginTapped() {
+        
+        guard let emailAddress = self.emailTextField.text else {return}
+        guard let password = self.passwordTextField.text else {return}
+        viewModel.getLoginUserData(email: emailAddress, password: password)
+        
         let notesViewController = NotesViewController() //
         navigationController?.pushViewController(notesViewController, animated: true)
+    }
+}
+
+// MARK: - Response Data
+extension LoginViewController: AuthResponseData {
+    func authData(authResponse: AuthResponseModel) {
+        //
     }
 }
 

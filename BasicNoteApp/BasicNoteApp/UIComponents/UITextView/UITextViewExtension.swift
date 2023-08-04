@@ -34,3 +34,11 @@ extension UITextView: UITextViewDelegate {
         }
     }
 }
+
+extension UITextView {
+    func removePlaceholder() {
+        if let placeholderLabel = self.viewWithTag(999) as? UILabel {
+            placeholderLabel.removeFromSuperview()
+        }
+    }
+}
