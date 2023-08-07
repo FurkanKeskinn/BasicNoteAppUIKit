@@ -8,9 +8,9 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
-
+    
     private let titleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = L10n.Modules.RegisterViewController.title
         label.font = .font(.interSemiBold, size: .h1)
@@ -19,7 +19,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let descriptionLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = L10n.Modules.descriptionText
         label.font = .font(.interMedium, size: .h5)
@@ -29,7 +29,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let titleStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.spacing = 16
@@ -42,7 +42,7 @@ class RegisterViewController: UIViewController {
     private let passwordTextField = FloatLabelTextField()
     
     private let textFieldstackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
@@ -51,7 +51,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let emailInvalidLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .font(.interMedium, size: .small)
         label.addIcon(icon: UIImage(asset: Asset.Icons.icError)!, text: L10n.Error.emailInvalid, iconSize: CGSize(width: 16, height: 16), xOffset: -8, yOffset: -4)
@@ -60,7 +60,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let emailInvalidLabelStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.alignment = .leading
@@ -70,7 +70,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let passwordInvalidLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .font(.interMedium, size: .small)
         label.addIcon(icon: UIImage(asset: Asset.Icons.icError)!, text: L10n.Error.passwordInvalid, iconSize: CGSize(width: 16, height: 16), xOffset: -8, yOffset: -4)
@@ -80,7 +80,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let forgotPasswordLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = L10n.Modules.forgotPassword
         label.font = .font(.interMedium, size: .h5)
@@ -89,7 +89,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let forgotPasswordStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .trailing
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -97,7 +97,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let buttonRegister: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.backgroundColor = .appPurple50
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(L10n.General.register, for: .normal)
@@ -109,7 +109,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let haveAccountLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = L10n.Modules.RegisterViewController.bottomText
         label.font = .font(.interMedium, size: .h5)
         label.textColor = .appDarkGray
@@ -117,7 +117,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let signInLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = L10n.General.signInNow
         label.font = .font(.interMedium, size: .h5)
         label.textColor = .appPurple100
@@ -125,7 +125,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let bottomStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -133,7 +133,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let mainStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
@@ -142,10 +142,12 @@ class RegisterViewController: UIViewController {
     }()
     
     private let scrollView: UIScrollView = {
-       let scrollView = UIScrollView()
+        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
-        }()
+    }()
+    
+    private var viewModel: RegisterViewModelProtocol = RegisterViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,8 +156,10 @@ class RegisterViewController: UIViewController {
         applyConstraints()
         addTapGestureToSignInLabel()
         addTapGestureToForgotPassword()
+        viewModel.delegateRegister(delegate: self)
     }
 }
+
 // MARK: - Configure
 extension RegisterViewController {
     
@@ -192,7 +196,7 @@ extension RegisterViewController {
         bottomStackView.addArrangedSubview(haveAccountLabel)
         bottomStackView.addArrangedSubview(signInLabel)
         view.backgroundColor = .systemBackground
-     }
+    }
     
     private func applyConstraints() {
         let titleStackViewConstraints = [
@@ -276,8 +280,21 @@ extension RegisterViewController {
     }
     
     @objc private func buttonRegisterTapped() {
-        let notesViewController = NotesViewController() //
+        
+        guard let fullName = self.fullnameTextField.text else {return}
+        guard let emailAddress = self.emailTextField.text else {return}
+        guard let password = self.passwordTextField.text else {return}
+        viewModel.getRegisterUserData(fullName: fullName, email: emailAddress, password: password)
+        
+        let notesViewController = NotesViewController()
         navigationController?.pushViewController(notesViewController, animated: true)
+    }
+}
+
+// MARK: - Response Data
+extension RegisterViewController: AuthResponseData {
+    func authData(authResponse: AuthResponseModel) {
+        //
     }
 }
 
