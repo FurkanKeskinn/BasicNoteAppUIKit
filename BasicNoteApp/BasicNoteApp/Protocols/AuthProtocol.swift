@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Login
 protocol LoginViewModelProtocol {
     func getLoginUserData(email: String, password: String)
     var loginResponseData: AuthResponseData? {get}
@@ -15,4 +16,18 @@ protocol LoginViewModelProtocol {
 
 protocol AuthResponseData {
     func authData(authResponse: AuthResponseModel)
+}
+
+// MARK: - Register
+protocol RegisterViewModelProtocol {
+    func getRegisterUserData(fullName: String, email: String, password: String)
+    var registerResponseData: AuthResponseData? {get}
+    func delegateRegister(delegate: AuthResponseData)
+}
+
+// MARK: - Reset Password
+protocol ResetPasswordViewModelProtocol {
+    func getResetPasswordUserData(email: String)
+    var resetPasswordResponseData: AuthResponseData? {get}
+    func delegateResetPassword(delegate: AuthResponseData)
 }

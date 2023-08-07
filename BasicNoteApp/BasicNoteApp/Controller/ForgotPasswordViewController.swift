@@ -78,12 +78,15 @@ class ForgotPasswordViewController: UIViewController {
         return scrollView
     }()
     
+    private var viewModel: ResetPasswordViewModelProtocol = ResetPasswordViewModel()
+    var message: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         contentConfigure()
         setupViews()
         applyConstraints()
         backButton()
+        viewModel.delegateResetPassword(delegate: self)
     }
 }
 
@@ -169,6 +172,8 @@ extension ForgotPasswordViewController {
     }
     
     @objc private func resetPasswordTapped() {
+        guard let emailAddress = self.emailTextField.text, !emailAddress.isEmpty else {return}
+        viewModel.getResetPasswordUserData(email: emailAddress)
         presentModalController()
     }
 }
@@ -182,7 +187,7 @@ extension ForgotPasswordViewController {
         
         let image = UIImage(asset: Asset.Icons.icSuccess)
         let title = L10n.Modules.ForgotPasswordViewController.titletoastMessage
-        let description = L10n.Modules.ForgotPasswordViewController.toastMessage("test@gmail.com")
+        let description = L10n.Modules.ForgotPasswordViewController.toastMessage(self.emailTextField.text ?? "test@gmail.com")
         let actionButtonTitle = L10n.General.login
         
         customBottomSheetVC.setupContent(withImage: image, title: title, description: description, actionButtonTitle: actionButtonTitle)
@@ -196,6 +201,13 @@ extension ForgotPasswordViewController {
         navigationController?.pushViewController(loginViewController, animated: true)
     }
 }
+
+// MARK: - Response Data
+ extension ForgotPasswordViewController: AuthResponseData {
+ func authData(authResponse: AuthResponseModel) {
+ //
+ }
+ }
 
 import SwiftUI
 #if DEBUG

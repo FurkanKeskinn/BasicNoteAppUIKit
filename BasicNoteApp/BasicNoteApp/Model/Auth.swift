@@ -30,7 +30,7 @@ struct ForgotPassword: Codable {
 // MARK: - Auth Response Model
 struct AuthResponseModel: Codable {
     let code: String
-    let data: DataClass
+    let data: DataClass?
     let message: String
 }
 
@@ -42,11 +42,4 @@ struct DataClass: Codable {
         case accessToken = "access_token"
         case tokenType = "token_type"
     }
-}
-
-// MARK: - Forgot Password Response Model
-struct ForgotPasswordResponseModel: Codable {
-    let code: String
-    let data: String?
-    let message: String
 }

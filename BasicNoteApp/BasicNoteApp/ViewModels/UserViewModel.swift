@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AllNotesViewModel : AllNotesViewModelProtocol {
+class AllNotesViewModel: AllNotesViewModelProtocol {
     
     private var serviceAllNotes = UserService()
     internal var allNotesResponseData: AllNotesResponseData?
