@@ -9,6 +9,7 @@ import UIKit
 
 class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
     
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(NotesTableViewCell.self, forCellReuseIdentifier: NotesTableViewCell.identifier)
@@ -58,7 +59,8 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
         return search
     }()
     
-    private var viewModel: AllNotesViewModelProtocol = AllNotesViewModel()
+    private var viewModelAllNote: AllNotesViewModelProtocol = AllNotesViewModel()
+    private var viewModelDelete: NoteDeleteViewModelProtocol = NoteDeleteViewModel()
     private var allNote: [NoteDataModel] = [NoteDataModel]()
     
     override func viewDidLoad() {
@@ -70,8 +72,9 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
         applyConstraints()
         setupNavigationBar()
         navigationController?.navigationBar.barTintColor = .appWhite
-        viewModel.getallNotesData()
-        viewModel.delegateAllNotes(delegate: self)
+        viewModelAllNote.getallNotesData()
+        viewModelAllNote.delegateAllNotes(delegate: self)
+        viewModelDelete.delegateNoteDelete(delegate: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,10 +134,24 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func editItem(at indexPath: IndexPath) {
-        print("Edit item at row: \(indexPath.row)")
+        let selectedNote = allNote[indexPath.row]
+        EditNoteViewController.id = selectedNote.id
+        EditNoteViewController.titleText = selectedNote.title
+        EditNoteViewController.noteText = selectedNote.note
+        
+        let editNoteViewController = EditNoteViewController()
+        navigationController?.pushViewController(editNoteViewController, animated: true)
+        
     }
     func deleteItem(at indexPath: IndexPath) {
-        print("Delete item at row: \(indexPath.row)")
+        let noteToDelete = allNote[indexPath.row]
+        
+        viewModelDelete.deleteNote(id: noteToDelete.id, completion: { _ in
+            DispatchQueue.main.async { [weak self] in
+                self?.allNote.remove(at: indexPath.row)
+                self?.tableView.reloadData()
+            }
+        })
     }
 }
 
@@ -212,11 +229,17 @@ extension NotesViewController: UISearchBarDelegate {
 }
 
 // MARK: - Response Data
-extension NotesViewController: AllNotesResponseData {
+extension NotesViewController: AllNotesResponseData, NoteResponseData {
+    internal func noteData(noteResponse: NoteResponseModel) {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
     internal func allNotesData(allNotesResponse: [NoteDataModel]) {
         self.allNote = allNotesResponse
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
         }
     }
 }

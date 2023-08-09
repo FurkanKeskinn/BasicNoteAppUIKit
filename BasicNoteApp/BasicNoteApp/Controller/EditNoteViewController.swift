@@ -32,6 +32,7 @@ class EditNoteViewController: UIViewController {
         button.backgroundColor = .appPurple100
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -50,11 +51,19 @@ class EditNoteViewController: UIViewController {
         return scroll
     }()
     
+    private var viewModel: NoteUpdateViewModelProtocol = NoteUpdateViewModel()
+    
+    static var id: Int?
+    static var titleText: String?
+    static var noteText: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         applyConstraints()
         backButton()
+        viewModel.delegateNoteUpdate(delegate: self)
+        viewModel.updateNote(id: EditNoteViewController.id!, title: EditNoteViewController.titleText!, note: EditNoteViewController.noteText!)
     }
 }
 
@@ -116,6 +125,27 @@ extension EditNoteViewController {
     
     @objc private func backbuttonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func saveButtonTapped() {
+        guard let id = EditNoteViewController.id, let newTitle = titleTextField.text, let newNote = descriptionTextView.text else {
+            return
+        }
+        viewModel.updateNote(id: id, title: newTitle, note: newNote)
+        
+        let notesViewController = NotesViewController()
+        navigationController?.pushViewController(notesViewController, animated: true)
+    }
+}
+
+// MARK: - Response Data
+extension EditNoteViewController: NoteResponseData {
+    internal func noteData(noteResponse: NoteResponseModel) {
+        DispatchQueue.main.async {
+            self.titleTextField.text = noteResponse.data?.title
+            self.descriptionTextView.removePlaceholder()
+            self.descriptionTextView.text = noteResponse.data?.note
+        }
     }
 }
 
