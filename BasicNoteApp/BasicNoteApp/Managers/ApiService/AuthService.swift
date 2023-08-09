@@ -23,7 +23,6 @@ class AuthService {
         AF.request(Constants.API.loginURL!, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseDecodable(of: AuthResponseModel.self) { response in
             switch response.result {
             case .success(let authResponse):
-                let token = authResponse.data?.accessToken
                 completion(.success(authResponse))
                 
             case .failure(_):
@@ -46,7 +45,6 @@ class AuthService {
         AF.request(Constants.API.registerURL!, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseDecodable(of: AuthResponseModel.self) { response in
             switch response.result {
             case .success(let authResponse):
-                let token = authResponse.data?.accessToken
                 completion(.success(authResponse))
                 
             case .failure(_):

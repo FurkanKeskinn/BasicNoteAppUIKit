@@ -107,12 +107,12 @@ extension PreviewViewController {
 }
 
 // MARK: - Response Data
-extension PreviewViewController: NoteDetailData {
+extension PreviewViewController: NoteResponseData {
     internal func noteData(noteResponse: NoteResponseModel) {
-        DispatchQueue.main.async {
-            self.titleTextField.text = noteResponse.data.title
-            self.descriptionTextView.removePlaceholder()
-            self.descriptionTextView.text = noteResponse.data.note
+        DispatchQueue.main.async { [weak self] in
+            self?.titleTextField.text = noteResponse.data?.title
+            self?.descriptionTextView.removePlaceholder()
+            self?.descriptionTextView.text = noteResponse.data?.note
         }
     }
 }

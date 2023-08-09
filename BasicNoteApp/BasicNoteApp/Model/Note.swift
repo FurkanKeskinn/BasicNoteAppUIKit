@@ -23,18 +23,11 @@ struct NoteDataModel: Codable {
 // MARK: - Note Response Model
 struct NoteResponseModel: Codable {
     let code: String
-    let data: NoteDataModel
+    let data: NoteDataModel?
     let message: String
 }
 
 // MARK: - Note Detail Model
 struct NoteDetailModel: Codable {
     let id: Int
-}
-
-// MARK: - Note Delete Response Model
-struct NoteDeleteResponseModel: Codable {
-    let code: String
-    let data: String?
-    let message: String
 }

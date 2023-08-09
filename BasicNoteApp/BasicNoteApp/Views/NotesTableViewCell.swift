@@ -57,7 +57,7 @@ class NotesTableViewCell: UITableViewCell {
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
         ]
         NSLayoutConstraint.activate(stackViewConstraint)
     }
@@ -71,8 +71,8 @@ class NotesTableViewCell: UITableViewCell {
         NoteService().getNotesDetail(id: id) { note in
             switch note {
             case.success(let noteDetail):
-                self.titleLabel.text = noteDetail.data.title
-                self.noteLabel.text = noteDetail.data.note
+                self.titleLabel.text = noteDetail.data?.title
+                self.noteLabel.text = noteDetail.data?.note
             case.failure(let error):
                 print(error)
                 

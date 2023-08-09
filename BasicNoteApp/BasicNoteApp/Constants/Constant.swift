@@ -22,7 +22,6 @@ struct Constants {
         public static let forgotPasswordURL = URL(string: "\(authURL)forgot-password")
         
         // MARK: - Profile
-        
         public static let usersURL = URL(string: "\(apiURL)users/")!
         public static let myProfileURL = URL(string: "\(usersURL)me/")!
         public static let notesPageURL = URL(string: "\(myProfileURL)notes")
@@ -30,12 +29,11 @@ struct Constants {
         public static let changePasswordURL = URL(string: "\(myProfileURL)password")
         
         // MARK: - Notes
-        
-        public static let notesURL = URL(string: "\(apiURL)notes/")!
-        public static let chosenNoteURL = URL(string: "\(notesURL):note_id")
+        public static let notesURL = URL(string: "\(apiURL)notes")!
+        public static let chosenNoteURL = URL(string: "\(notesURL)/:note_id")
         
         public static func getNoteURL(noteID: Int) -> URL? {
-            return URL(string: "\(API.notesURL)\(noteID)")
+            return URL(string: "\(API.notesURL)/\(noteID)")
         }
     }
 }

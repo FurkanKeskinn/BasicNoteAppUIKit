@@ -32,6 +32,7 @@ class AddNoteViewController: UIViewController {
         button.backgroundColor = .appPurple100
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -50,11 +51,14 @@ class AddNoteViewController: UIViewController {
         return scroll
     }()
     
+    private var viewModel: NoteCreateViewModelProtocol = NoteCreateViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         applyConstraints()
         backButton()
+        viewModel.delegateNoteCreate(delegate: self)
     }
 }
 
@@ -114,6 +118,22 @@ extension AddNoteViewController {
     
     @objc private func backbuttonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func saveButtonTapped() {
+        guard let titleText = self.titleTextField.text, !titleText.isEmpty else {return}
+        guard let descriptionText = self.descriptionTextView.text, !descriptionText.isEmpty else {return}
+        viewModel.createNote(title: titleText, note: descriptionText)
+        
+        let notesViewController = NotesViewController()
+        navigationController?.pushViewController(notesViewController, animated: true)
+    }
+}
+
+// MARK: - Response Data
+extension AddNoteViewController: NoteResponseData {
+    func noteData(noteResponse: NoteResponseModel) {
+        //
     }
 }
 
