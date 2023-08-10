@@ -25,7 +25,7 @@ struct Constants {
         public static let usersURL = URL(string: "\(apiURL)users/")!
         public static let myProfileURL = URL(string: "\(usersURL)me/")!
         public static let notesPageURL = URL(string: "\(myProfileURL)notes")
-        public static let aboutMeURL = URL(string: "\(myProfileURL)me")
+        public static let aboutMeURL = URL(string: "\(usersURL)me")
         public static let changePasswordURL = URL(string: "\(myProfileURL)password")
         
         // MARK: - Notes

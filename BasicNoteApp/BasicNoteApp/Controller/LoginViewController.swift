@@ -66,7 +66,7 @@ class LoginViewController: UIViewController {
         return stackView
     }()
     
-    private let buttonLogin: UIButton = {
+    private let loginButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .appPurple50
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -128,6 +128,8 @@ class LoginViewController: UIViewController {
         addTapGestureToSignInLabel()
         addTapGestureToForgotPassword()
         viewModel.delegateLogin(delegate: self)
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
 }
 
@@ -154,7 +156,7 @@ extension LoginViewController {
         mainStackView.addArrangedSubview(titleStackView)
         mainStackView.addArrangedSubview(textFieldstackView)
         mainStackView.addArrangedSubview(forgotPasswordStackView)
-        mainStackView.addArrangedSubview(buttonLogin)
+        mainStackView.addArrangedSubview(loginButton)
         titleStackView.addArrangedSubview(titleLabel)
         titleStackView.addArrangedSubview(descriptionLabel)
         textFieldstackView.addArrangedSubview(emailTextField)
@@ -175,9 +177,9 @@ extension LoginViewController {
         let forgotPasswordStackViewConstraints = [
             forgotPasswordStackView.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 12)
         ]
-        let buttonLoginConstraints = [
-            buttonLogin.topAnchor.constraint(equalTo: forgotPasswordLabel.bottomAnchor, constant: 24),
-            buttonLogin.heightAnchor.constraint(equalToConstant: 63)
+        let loginButtonConstraints = [
+            loginButton.topAnchor.constraint(equalTo: forgotPasswordLabel.bottomAnchor, constant: 24),
+            loginButton.heightAnchor.constraint(equalToConstant: 63)
         ]
         let bottomStackViewConstraints = [
             bottomStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -38),
@@ -199,7 +201,7 @@ extension LoginViewController {
             titleStackViewConstraints,
             textFieldstackViewConstraints,
             forgotPasswordStackViewConstraints,
-            buttonLoginConstraints,
+            loginButtonConstraints,
             bottomStackViewConstraints,
             scrollViewConstraints,
             mainStackViewConstraints
@@ -232,17 +234,19 @@ extension LoginViewController {
         signUpLabel.addGestureRecognizer(tapGesture)
     }
     @objc private func signUpLabelTapped() {
-        let registerViewController = RegisterViewController() //
+        let registerViewController = RegisterViewController()
         navigationController?.pushViewController(registerViewController, animated: true)
     }
     
     @objc private func buttonLoginTapped() {
         
-        guard let emailAddress = self.emailTextField.text else {return}
-        guard let password = self.passwordTextField.text else {return}
+        guard let emailAddress = self.emailTextField.text,
+              let password = self.passwordTextField.text,
+              !emailAddress.isEmpty,
+              !password.isEmpty else {return}
         viewModel.getLoginUserData(email: emailAddress, password: password)
         
-        let notesViewController = NotesViewController() //
+        let notesViewController = NotesViewController()
         navigationController?.pushViewController(notesViewController, animated: true)
     }
 }
@@ -251,6 +255,33 @@ extension LoginViewController {
 extension LoginViewController: AuthResponseData {
     func authData(authResponse: AuthResponseModel) {
         //
+    }
+}
+
+// MARK: - Button Color Change
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == emailTextField || textField == passwordTextField {
+            updateButtonBackgroundColor()
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == passwordTextField || textField == emailTextField {
+            updateButtonBackgroundColor()
+        }
+    }
+    
+    private func updateButtonBackgroundColor() {
+        if let email = emailTextField.text, let password = passwordTextField.text, !email.isEmpty || !password.isEmpty {
+            loginButton.backgroundColor = .appPurple100
+            loginButton.setTitleColor(.appWhite, for: .normal)
+            
+        } else {
+            
+            loginButton.backgroundColor = .appPurple50
+            loginButton.setTitleColor(.appPurple100, for: .normal)
+        }
     }
 }
 

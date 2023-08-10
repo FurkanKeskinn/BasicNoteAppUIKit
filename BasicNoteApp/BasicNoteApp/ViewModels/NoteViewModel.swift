@@ -100,8 +100,8 @@ class NoteUpdateViewModel: NoteUpdateViewModelProtocol{
     func updateNote(id: Int, title: String, note: String) {
         serviceNoteUpdate.updateNote(id: id, title: title, note: note) { result in
             switch result {
-            case .success(let noteCreateResponse):
-                self.noteUpdateResponseData?.noteData(noteResponse: noteCreateResponse)
+            case .success(let noteUpdateResponse):
+                self.noteUpdateResponseData?.noteData(noteResponse: noteUpdateResponse)
             case .failure(let error):
                 print(error)
             }

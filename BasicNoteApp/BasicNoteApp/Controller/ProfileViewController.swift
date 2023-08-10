@@ -8,12 +8,12 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
     private let fullnameTextField = FloatLabelTextField()
     private let emailTextField = FloatLabelTextField()
     
     private let textFieldstackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
@@ -21,19 +21,20 @@ class ProfileViewController: UIViewController {
         return stackView
     }()
     
-    private let buttonSave: UIButton = {
-       let button = UIButton()
+    private let saveButton: UIButton = {
+        let button = UIButton()
         button.backgroundColor = .appPurple50
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(L10n.General.save, for: .normal)
         button.titleLabel?.font = .font(.interSemiBold, size: .h4)
         button.setTitleColor(.appPurple100, for: .normal)
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
     
     private let changePasswordLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = L10n.Modules.ProfileViewController.changePassword
         label.font = .font(.interSemiBold, size: .h6)
         label.textColor = .appPurple100
@@ -42,7 +43,7 @@ class ProfileViewController: UIViewController {
     }()
     
     private let signOutLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = L10n.Modules.ProfileViewController.signOut
         label.font = .font(.interSemiBold, size: .h6)
         label.textColor = .appRed
@@ -51,7 +52,7 @@ class ProfileViewController: UIViewController {
     }()
     
     private let mainStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 16
@@ -61,10 +62,14 @@ class ProfileViewController: UIViewController {
     }()
     
     private let scrollView: UIScrollView = {
-       let scrollView = UIScrollView()
+        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
+    
+    private var viewModelDetail: UserDetailViewModelProtocol = UserDetailViewModel()
+    
+    private var viewModelUpdate: UserUpdateViewModelProtocol = UserUpdateViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +80,11 @@ class ProfileViewController: UIViewController {
         backButton()
         addTapGestureToChangePassword()
         addTapGestureTosignOut()
+        viewModelDetail.delegateUserDetail(delegate: self)
+        viewModelUpdate.delegateUserUpdate(delegate: self)
+        viewModelDetail.getUserDetailData()
+        fullnameTextField.delegate = self
+        emailTextField.delegate = self
     }
 }
 
@@ -96,19 +106,19 @@ extension ProfileViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(mainStackView)
         mainStackView.addArrangedSubview(textFieldstackView)
-        mainStackView.addArrangedSubview(buttonSave)
+        mainStackView.addArrangedSubview(saveButton)
         mainStackView.addArrangedSubview(changePasswordLabel)
         mainStackView.addArrangedSubview(signOutLabel)
         textFieldstackView.addArrangedSubview(fullnameTextField)
         textFieldstackView.addArrangedSubview(emailTextField)
         view.backgroundColor = .systemBackground
-     }
+    }
     
     private func applyConstraints() {
         
-        let buttonSaveConstraints = [
-            buttonSave.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 24),
-            buttonSave.heightAnchor.constraint(equalToConstant: 63)
+        let saveButtonConstraints = [
+            saveButton.topAnchor.constraint(equalTo: textFieldstackView.bottomAnchor, constant: 24),
+            saveButton.heightAnchor.constraint(equalToConstant: 63)
         ]
         let signOutLabelConstraints = [
             signOutLabel.topAnchor.constraint(equalTo: changePasswordLabel.bottomAnchor, constant: 8)
@@ -126,7 +136,7 @@ extension ProfileViewController {
             mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ]
         let allConstraints = [
-            buttonSaveConstraints,
+            saveButtonConstraints,
             signOutLabelConstraints,
             scrollViewConstraints,
             mainStackViewConstraints
@@ -148,6 +158,16 @@ extension ProfileViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @objc private func saveButtonTapped() {
+        guard let newFullName = fullnameTextField.text, let newEmail = emailTextField.text, !newEmail.isEmpty, !newFullName.isEmpty else {
+            return
+        }
+        viewModelUpdate.getUserUpdateData(fullName: newFullName, email: newEmail)
+        
+        let notesViewController = NotesViewController()
+        navigationController?.pushViewController(notesViewController, animated: true)
+    }
+    
     private func addTapGestureToChangePassword() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changePasswordTapped))
         changePasswordLabel.isUserInteractionEnabled = true
@@ -166,6 +186,42 @@ extension ProfileViewController {
     @objc private func signOutTapped() {
         let registerViewController = RegisterViewController()
         navigationController?.pushViewController(registerViewController, animated: true)
+    }
+}
+
+// MARK: - Response Data
+extension ProfileViewController: UserResponseData {
+    func userData(userResponse: UserResponseModel) {
+        DispatchQueue.main.async { [weak self] in
+            self?.fullnameTextField.text = userResponse.data.fullName
+            self?.emailTextField.text = userResponse.data.email
+        }
+    }
+}
+
+// MARK: - Button Color Change
+extension ProfileViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == fullnameTextField || textField == emailTextField {
+            updateButtonBackgroundColor()
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == fullnameTextField || textField == emailTextField {
+            updateButtonBackgroundColor()
+        }
+    }
+    
+    private func updateButtonBackgroundColor() {
+        if let email = emailTextField.text, let fullName = fullnameTextField.text, !email.isEmpty || !fullName.isEmpty {
+            saveButton.backgroundColor = .appPurple100
+            saveButton.setTitleColor(.appWhite, for: .normal)
+        } else {
+            
+            saveButton.backgroundColor = .appPurple50
+            saveButton.setTitleColor(.appPurple100, for: .normal)
+        }
     }
 }
 

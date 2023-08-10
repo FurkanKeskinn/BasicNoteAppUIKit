@@ -134,10 +134,7 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func editItem(at indexPath: IndexPath) {
-        let selectedNote = allNote[indexPath.row]
-        EditNoteViewController.id = selectedNote.id
-        EditNoteViewController.titleText = selectedNote.title
-        EditNoteViewController.noteText = selectedNote.note
+        EditNoteViewController.id = allNote[indexPath.row].id
         
         let editNoteViewController = EditNoteViewController()
         navigationController?.pushViewController(editNoteViewController, animated: true)

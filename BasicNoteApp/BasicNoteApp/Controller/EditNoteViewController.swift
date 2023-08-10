@@ -51,9 +51,11 @@ class EditNoteViewController: UIViewController {
         return scroll
     }()
     
-    private var viewModel: NoteUpdateViewModelProtocol = NoteUpdateViewModel()
+    private var viewModelUpdate: NoteUpdateViewModelProtocol = NoteUpdateViewModel()
     
+    private var viewModelDetail: NoteViewModelProtocol = NoteViewModel()
     static var id: Int?
+    
     static var titleText: String?
     static var noteText: String?
     
@@ -62,8 +64,8 @@ class EditNoteViewController: UIViewController {
         setupViews()
         applyConstraints()
         backButton()
-        viewModel.delegateNoteUpdate(delegate: self)
-        viewModel.updateNote(id: EditNoteViewController.id!, title: EditNoteViewController.titleText!, note: EditNoteViewController.noteText!)
+        viewModelUpdate.delegateNoteUpdate(delegate: self)
+        viewModelDetail.getNote(id: EditNoteViewController.id!)
     }
 }
 
@@ -131,7 +133,7 @@ extension EditNoteViewController {
         guard let id = EditNoteViewController.id, let newTitle = titleTextField.text, let newNote = descriptionTextView.text else {
             return
         }
-        viewModel.updateNote(id: id, title: newTitle, note: newNote)
+        viewModelUpdate.updateNote(id: id, title: newTitle, note: newNote)
         
         let notesViewController = NotesViewController()
         navigationController?.pushViewController(notesViewController, animated: true)
