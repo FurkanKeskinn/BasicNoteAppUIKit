@@ -96,7 +96,7 @@ class RegisterViewController: UIViewController {
         return stackView
     }()
     
-    private let buttonRegister: UIButton = {
+    private let registerButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .appPurple50
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -157,6 +157,9 @@ class RegisterViewController: UIViewController {
         addTapGestureToSignInLabel()
         addTapGestureToForgotPassword()
         viewModel.delegateRegister(delegate: self)
+        fullnameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
 }
 
@@ -184,7 +187,7 @@ extension RegisterViewController {
         mainStackView.addArrangedSubview(textFieldstackView)
         mainStackView.addArrangedSubview(passwordInvalidLabel)
         mainStackView.addArrangedSubview(forgotPasswordStackView)
-        mainStackView.addArrangedSubview(buttonRegister)
+        mainStackView.addArrangedSubview(registerButton)
         titleStackView.addArrangedSubview(titleLabel)
         titleStackView.addArrangedSubview(descriptionLabel)
         textFieldstackView.addArrangedSubview(fullnameTextField)
@@ -216,9 +219,9 @@ extension RegisterViewController {
         let forgotPasswordStackViewConstraints = [
             forgotPasswordStackView.topAnchor.constraint(equalTo: passwordInvalidLabel.bottomAnchor, constant: 12)
         ]
-        let buttonRegisterConstraints = [
-            buttonRegister.topAnchor.constraint(equalTo: forgotPasswordLabel.bottomAnchor, constant: 24),
-            buttonRegister.heightAnchor.constraint(equalToConstant: 63)
+        let registerButtonConstraints = [
+            registerButton.topAnchor.constraint(equalTo: forgotPasswordLabel.bottomAnchor, constant: 24),
+            registerButton.heightAnchor.constraint(equalToConstant: 63)
         ]
         let bottomStackViewConstraints = [
             bottomStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -38),
@@ -242,7 +245,7 @@ extension RegisterViewController {
             emailInvalidLabelConstraints,
             passwordInvalidLabelConstraints,
             forgotPasswordStackViewConstraints,
-            buttonRegisterConstraints,
+            registerButtonConstraints,
             bottomStackViewConstraints,
             scrollViewConstraints,
             mainStackViewConstraints
@@ -281,9 +284,12 @@ extension RegisterViewController {
     
     @objc private func buttonRegisterTapped() {
         
-        guard let fullName = self.fullnameTextField.text else {return}
-        guard let emailAddress = self.emailTextField.text else {return}
-        guard let password = self.passwordTextField.text else {return}
+        guard let fullName = self.fullnameTextField.text,
+              let emailAddress = self.emailTextField.text,
+              let password = self.passwordTextField.text,
+              !fullName.isEmpty,
+              !emailAddress.isEmpty,
+              !password.isEmpty else {return}
         viewModel.getRegisterUserData(fullName: fullName, email: emailAddress, password: password)
         
         let notesViewController = NotesViewController()
@@ -295,6 +301,32 @@ extension RegisterViewController {
 extension RegisterViewController: AuthResponseData {
     func authData(authResponse: AuthResponseModel) {
         //
+    }
+}
+
+// MARK: - Button Color Change
+extension RegisterViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == fullnameTextField || textField == emailTextField  || textField == passwordTextField {
+            updateButtonBackgroundColor()
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == fullnameTextField || textField == passwordTextField || textField == emailTextField {
+            updateButtonBackgroundColor()
+        }
+    }
+    
+    private func updateButtonBackgroundColor() {
+        if let fullName = fullnameTextField.text, let email = emailTextField.text, let password = passwordTextField.text, !fullName.isEmpty, !email.isEmpty || !password.isEmpty {
+            registerButton.backgroundColor = .appPurple100
+            registerButton.setTitleColor(.appWhite, for: .normal)
+        } else {
+            
+            registerButton.backgroundColor = .appPurple50
+            registerButton.setTitleColor(.appPurple100, for: .normal)
+        }
     }
 }
 

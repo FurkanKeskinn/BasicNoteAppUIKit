@@ -30,6 +30,7 @@ class ChangePasswordViewController: UIViewController {
         button.titleLabel?.font = .font(.interSemiBold, size: .h4)
         button.setTitleColor(.appPurple100, for: .normal)
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -48,12 +49,18 @@ class ChangePasswordViewController: UIViewController {
         return scrollView
     }()
     
+    private var viewModel: PasswordUpdateViewModelProtocol = PasswordUpdateViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         contentConfigure()
         setupViews()
         applyConstraints()
         backButton()
+        viewModel.delegateUserPassword(delegate: self)
+        passwordTextField.delegate = self
+        newPasswordTextField.delegate = self
+        retypeNewPasswordTextField.delegate = self
     }
 }
 
@@ -120,6 +127,57 @@ extension ChangePasswordViewController {
     
     @objc private func backbuttonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func saveButtonTapped() {
+        
+        guard let password = passwordTextField.text, let newPassword = newPasswordTextField.text, let newPasswordConfirmation = retypeNewPasswordTextField.text else {
+            return
+        }
+        guard !password.isEmpty, !newPassword.isEmpty, !newPasswordConfirmation.isEmpty, newPassword == newPasswordConfirmation else {return}
+        
+        viewModel.getPasswordUpdateData(password: password, newPassword: newPassword, newPasswordConfirmation: newPasswordConfirmation)
+        
+        let notesViewController = NotesViewController()
+        navigationController?.pushViewController(notesViewController, animated: true)
+    }
+}
+
+// MARK: - Response Data
+extension ChangePasswordViewController: PasswordResponseData {
+    func passwordData(passwordResponse: ChangePasswordResponseModel) {
+        //
+    }
+}
+
+// MARK: - Button Color Change
+extension ChangePasswordViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == passwordTextField || textField == newPasswordTextField  || textField == retypeNewPasswordTextField {
+            updateButtonBackgroundColor()
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == passwordTextField || textField == newPasswordTextField  || textField == retypeNewPasswordTextField {
+            updateButtonBackgroundColor()
+        }
+    }
+    
+    private func updateButtonBackgroundColor() {
+        if let password = passwordTextField.text,
+           let newPassword = newPasswordTextField.text,
+           let retypeNewPassword = retypeNewPasswordTextField.text,
+           !password.isEmpty,
+           !newPassword.isEmpty || !retypeNewPassword.isEmpty {
+            saveButton.backgroundColor = .appPurple100
+            saveButton.setTitleColor(.appWhite, for: .normal)
+        } else {
+            
+            saveButton.backgroundColor = .appPurple50
+            saveButton.setTitleColor(.appPurple100, for: .normal)
+        }
     }
 }
 

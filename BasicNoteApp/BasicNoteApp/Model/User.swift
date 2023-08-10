@@ -27,7 +27,8 @@ struct UserResponseModel: Codable {
 // MARK: - Change email or fullname Data Class
 struct UserDataClass: Codable {
     let id: Int
-    let fullName, email: String
+    let fullName: String?
+    let email: String
     
     enum CodingKeys: String, CodingKey {
         case id

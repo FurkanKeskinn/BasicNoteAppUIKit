@@ -50,7 +50,7 @@ class ForgotPasswordViewController: UIViewController {
         return label
     }()
     
-    private let buttonResetPassword: UIButton = {
+    private let resetPasswordButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .appPurple50
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -87,6 +87,7 @@ class ForgotPasswordViewController: UIViewController {
         applyConstraints()
         backButton()
         viewModel.delegateResetPassword(delegate: self)
+        emailTextField.delegate = self
     }
 }
 
@@ -108,7 +109,7 @@ extension ForgotPasswordViewController {
         mainStackView.addArrangedSubview(titleStackView)
         mainStackView.addArrangedSubview(emailTextField)
         mainStackView.addArrangedSubview(emailInvalidLabel)
-        mainStackView.addArrangedSubview(buttonResetPassword)
+        mainStackView.addArrangedSubview(resetPasswordButton)
         titleStackView.addArrangedSubview(titleLabel)
         titleStackView.addArrangedSubview(descriptionLabel)
         view.backgroundColor = .systemBackground
@@ -125,9 +126,9 @@ extension ForgotPasswordViewController {
             emailInvalidLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 8),
             emailInvalidLabel.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 8)
         ]
-        let buttonResetPasswordConstraints = [
-            buttonResetPassword.topAnchor.constraint(equalTo: emailInvalidLabel.bottomAnchor, constant: 24),
-            buttonResetPassword.heightAnchor.constraint(equalToConstant: 63)
+        let resetPasswordButtonConstraints = [
+            resetPasswordButton.topAnchor.constraint(equalTo: emailInvalidLabel.bottomAnchor, constant: 24),
+            resetPasswordButton.heightAnchor.constraint(equalToConstant: 63)
         ]
         let scrollViewConstraints = [
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -145,7 +146,7 @@ extension ForgotPasswordViewController {
             titleStackViewConstraints,
             emailTextFieldConstraints,
             emailInvalidLabelConstraints,
-            buttonResetPasswordConstraints,
+            resetPasswordButtonConstraints,
             scrollViewConstraints,
             mainStackViewConstraints
         ]
@@ -203,11 +204,31 @@ extension ForgotPasswordViewController {
 }
 
 // MARK: - Response Data
- extension ForgotPasswordViewController: AuthResponseData {
- func authData(authResponse: AuthResponseModel) {
- //
- }
- }
+extension ForgotPasswordViewController: AuthResponseData {
+    func authData(authResponse: AuthResponseModel) {
+        //
+    }
+}
+
+// MARK: - Button Color Change
+extension ForgotPasswordViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            updateButtonBackgroundColor()
+        }
+    }
+    
+    private func updateButtonBackgroundColor() {
+        if let email = emailTextField.text, !email.isEmpty {
+            resetPasswordButton.backgroundColor = .appPurple100
+            resetPasswordButton.setTitleColor(.appWhite, for: .normal)
+        } else {
+            
+            resetPasswordButton.backgroundColor = .appPurple50
+            resetPasswordButton.setTitleColor(.appPurple100, for: .normal)
+        }
+    }
+}
 
 import SwiftUI
 #if DEBUG
