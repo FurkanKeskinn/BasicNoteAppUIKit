@@ -244,10 +244,36 @@ extension LoginViewController {
               let password = self.passwordTextField.text,
               !emailAddress.isEmpty,
               !password.isEmpty else {return}
-        viewModel.getLoginUserData(email: emailAddress, password: password)
+        viewModel.getLoginUserData(email: emailAddress, password: password) { success in
+            if success {
+                let notesViewController = NotesViewController()
+                self.navigationController?.pushViewController(notesViewController, animated: true)
+            } else {
+                self.presentModalController()
+            }
+        }
+    }
+}
+
+// MARK: - Bottom Sheet
+extension LoginViewController {
+    
+    private func presentModalController() {
+        let customBottomSheetVC = CustomBottomSheetView()
+        customBottomSheetVC.modalPresentationStyle = .overCurrentContext
         
-        let notesViewController = NotesViewController()
-        navigationController?.pushViewController(notesViewController, animated: true)
+        let image = UIImage(asset: Asset.Icons.error)
+        let title = L10n.Modules.LoginViewController.toastMessage
+        let actionButtonTitle = L10n.General.ok
+        
+        customBottomSheetVC.setupContent(withImage: image, title: title, description: nil, actionButtonTitle: actionButtonTitle)
+        customBottomSheetVC.actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        
+        self.present(customBottomSheetVC, animated: true, completion: nil)
+    }
+    
+    @objc private func actionButtonTapped() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

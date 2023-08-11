@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Login
 protocol LoginViewModelProtocol {
-    func getLoginUserData(email: String, password: String)
+    func getLoginUserData(email: String, password: String, completion: @escaping (Bool) -> Void)
     var loginResponseData: AuthResponseData? {get}
     func delegateLogin(delegate: AuthResponseData)
 }
