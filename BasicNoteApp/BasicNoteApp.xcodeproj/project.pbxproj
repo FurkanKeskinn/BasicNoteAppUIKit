@@ -43,6 +43,7 @@
 		DC666B082A69531B00A99CD7 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC666B072A69531B00A99CD7 /* AddNoteViewController.swift */; };
 		DC666B0A2A69532600A99CD7 /* EditNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC666B092A69532600A99CD7 /* EditNoteViewController.swift */; };
 		DC666B0D2A695E5600A99CD7 /* UITextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC666B0C2A695E5500A99CD7 /* UITextViewExtension.swift */; };
+		DC6EF7DB2A8644E000F3198F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6EF7DA2A8644E000F3198F /* Validation.swift */; };
 		DC9C8AC62A65743D0033FA4B /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9C8AC52A65743D0033FA4B /* UILabelExtension.swift */; };
 		DCAD18072A5E7B1700ABF13B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAD18062A5E7B1700ABF13B /* Fonts.swift */; };
 		DCAD18092A5E7BA900ABF13B /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAD18082A5E7BA900ABF13B /* UIFont+Extensions.swift */; };
@@ -98,6 +99,7 @@
 		DC666B072A69531B00A99CD7 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 		DC666B092A69532600A99CD7 /* EditNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteViewController.swift; sourceTree = "<group>"; };
 		DC666B0C2A695E5500A99CD7 /* UITextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtension.swift; sourceTree = "<group>"; };
+		DC6EF7DA2A8644E000F3198F /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		DC9C8AC52A65743D0033FA4B /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		DCAD18032A5E7A7800ABF13B /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
 		DCAD18042A5E7A8E00ABF13B /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 		DC5D15842A5C4D1C00A4037C /* BasicNoteApp */ = {
 			isa = PBXGroup;
 			children = (
+				DC6EF7D92A8644D300F3198F /* Validation */,
 				DC1B01112A71217100F74842 /* ViewModels */,
 				DC1B010A2A711F2700F74842 /* Constants */,
 				DC1B01032A711E8000F74842 /* Model */,
@@ -316,6 +319,14 @@
 				DC666B0C2A695E5500A99CD7 /* UITextViewExtension.swift */,
 			);
 			path = UITextView;
+			sourceTree = "<group>";
+		};
+		DC6EF7D92A8644D300F3198F /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				DC6EF7DA2A8644E000F3198F /* Validation.swift */,
+			);
+			path = Validation;
 			sourceTree = "<group>";
 		};
 		DC9C8AC42A65741D0033FA4B /* UILabel */ = {
@@ -578,6 +589,7 @@
 				DCAD18092A5E7BA900ABF13B /* UIFont+Extensions.swift in Sources */,
 				DC1B01222A714CA200F74842 /* UserViewModel.swift in Sources */,
 				DC00696E2A729DFA005DD79D /* NoteProtocol.swift in Sources */,
+				DC6EF7DB2A8644E000F3198F /* Validation.swift in Sources */,
 				DC1B01132A71218700F74842 /* AuthViewModel.swift in Sources */,
 				DC3B24A92A667C8F0013E83D /* LoginViewController.swift in Sources */,
 				DCC45A132A67C040003130FD /* ChangePasswordViewController.swift in Sources */,

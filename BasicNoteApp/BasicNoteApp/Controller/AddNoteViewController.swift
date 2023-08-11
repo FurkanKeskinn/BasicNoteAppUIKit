@@ -121,12 +121,35 @@ extension AddNoteViewController {
     }
     
     @objc private func saveButtonTapped() {
-        guard let titleText = self.titleTextField.text, !titleText.isEmpty else {return}
-        guard let descriptionText = self.descriptionTextView.text, !descriptionText.isEmpty else {return}
+        guard let titleText = self.titleTextField.text, let descriptionText = self.descriptionTextView.text, !titleText.isEmpty, !descriptionText.isEmpty else {
+            return self.presentModalController()
+        }
         viewModel.createNote(title: titleText, note: descriptionText)
         
         let notesViewController = NotesViewController()
         navigationController?.pushViewController(notesViewController, animated: true)
+    }
+}
+
+// MARK: - Bottom Sheet
+extension AddNoteViewController {
+    
+    private func presentModalController() {
+        let customBottomSheetVC = CustomBottomSheetView()
+        customBottomSheetVC.modalPresentationStyle = .overCurrentContext
+        
+        let image = UIImage(asset: Asset.Icons.error)
+        let title = L10n.Modules.LoginViewController.toastMessage
+        let actionButtonTitle = L10n.General.ok
+        
+        customBottomSheetVC.setupContent(withImage: image, title: title, description: nil, actionButtonTitle: actionButtonTitle)
+        customBottomSheetVC.actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        
+        self.present(customBottomSheetVC, animated: true, completion: nil)
+    }
+    
+    @objc private func actionButtonTapped() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

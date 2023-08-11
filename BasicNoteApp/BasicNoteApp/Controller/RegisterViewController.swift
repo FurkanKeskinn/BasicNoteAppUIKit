@@ -65,7 +65,7 @@ class RegisterViewController: UIViewController {
         stackView.alignment = .fill
         stackView.alignment = .leading
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.isHidden = false
+        stackView.isHidden = true
         return stackView
     }()
     
@@ -75,7 +75,7 @@ class RegisterViewController: UIViewController {
         label.font = .font(.interMedium, size: .small)
         label.addIcon(icon: UIImage(asset: Asset.Icons.icError)!, text: L10n.Error.passwordInvalid, iconSize: CGSize(width: 16, height: 16), xOffset: -8, yOffset: -4)
         label.textColor = .appRed
-        label.isHidden = false
+        label.isHidden = true
         return label
     }()
     
@@ -287,9 +287,7 @@ extension RegisterViewController {
         guard let fullName = self.fullnameTextField.text,
               let emailAddress = self.emailTextField.text,
               let password = self.passwordTextField.text,
-              !fullName.isEmpty,
-              !emailAddress.isEmpty,
-              !password.isEmpty else {return}
+              !fullName.isEmpty else {return}
         viewModel.getRegisterUserData(fullName: fullName, email: emailAddress, password: password)
         
         let notesViewController = NotesViewController()
@@ -304,26 +302,47 @@ extension RegisterViewController: AuthResponseData {
     }
 }
 
-// MARK: - Button Color Change
+// MARK: - Textfields isValid
 extension RegisterViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == fullnameTextField || textField == emailTextField  || textField == passwordTextField {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == emailTextField || textField == passwordTextField {
+            
+            let currentText = textField.text ?? ""
+            let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+            
+            let validation = Validation()
+            if textField == emailTextField {
+                if !validation.isValidEmail(newText) {
+                    emailInvalidLabelStackView.isHidden = false
+                } else {
+                    emailInvalidLabelStackView.isHidden = true
+                }
+            } else if textField == passwordTextField {
+                if !validation.isValidPassword(newText) {
+                    passwordInvalidLabel.isHidden = false
+                } else {
+                    passwordInvalidLabel.isHidden = true
+                }
+            }
             updateButtonBackgroundColor()
         }
+        return true
     }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == fullnameTextField || textField == passwordTextField || textField == emailTextField {
-            updateButtonBackgroundColor()
-        }
-    }
-    
+}
+
+// MARK: - Button Color Change
+extension RegisterViewController {
     private func updateButtonBackgroundColor() {
-        if let fullName = fullnameTextField.text, let email = emailTextField.text, let password = passwordTextField.text, !fullName.isEmpty, !email.isEmpty || !password.isEmpty {
+        let validation = Validation()
+        if let fullName = fullnameTextField.text,
+           let email = emailTextField.text,
+           let password = passwordTextField.text,
+           !fullName.isEmpty,
+           validation.isValidEmail(email),
+           password.count >= 6 {
             registerButton.backgroundColor = .appPurple100
             registerButton.setTitleColor(.appWhite, for: .normal)
         } else {
-            
             registerButton.backgroundColor = .appPurple50
             registerButton.setTitleColor(.appPurple100, for: .normal)
         }

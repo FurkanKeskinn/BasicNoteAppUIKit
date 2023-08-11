@@ -46,7 +46,7 @@ class ForgotPasswordViewController: UIViewController {
         label.font = .font(.interMedium, size: .small)
         label.addIcon(icon: UIImage(asset: Asset.Icons.icError)!, text: L10n.Error.emailInvalid, iconSize: CGSize(width: 16, height: 16), xOffset: -8, yOffset: -4)
         label.textColor = .appRed
-        label.isHidden = false
+        label.isHidden = true
         return label
     }()
     
@@ -173,7 +173,7 @@ extension ForgotPasswordViewController {
     }
     
     @objc private func resetPasswordTapped() {
-        guard let emailAddress = self.emailTextField.text, !emailAddress.isEmpty else {return}
+        guard let emailAddress = self.emailTextField.text  else {return}
         viewModel.getResetPasswordUserData(email: emailAddress)
         presentModalController()
     }
@@ -211,15 +211,11 @@ extension ForgotPasswordViewController: AuthResponseData {
 }
 
 // MARK: - Button Color Change
-extension ForgotPasswordViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == emailTextField {
-            updateButtonBackgroundColor()
-        }
-    }
-    
+extension ForgotPasswordViewController {
     private func updateButtonBackgroundColor() {
-        if let email = emailTextField.text, !email.isEmpty {
+        let validation = Validation()
+        if let email = emailTextField.text,
+           validation.isValidEmail(email) {
             resetPasswordButton.backgroundColor = .appPurple100
             resetPasswordButton.setTitleColor(.appWhite, for: .normal)
         } else {
@@ -227,6 +223,28 @@ extension ForgotPasswordViewController: UITextFieldDelegate {
             resetPasswordButton.backgroundColor = .appPurple50
             resetPasswordButton.setTitleColor(.appPurple100, for: .normal)
         }
+    }
+}
+
+// MARK: - Textfields isValid
+extension ForgotPasswordViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == emailTextField {
+            
+            let currentText = textField.text ?? ""
+            let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+            
+            let validation = Validation()
+            if textField == emailTextField {
+                if !validation.isValidEmail(newText) {
+                    emailInvalidLabel.isHidden = false
+                } else {
+                    emailInvalidLabel.isHidden = true
+                }
+            }
+            updateButtonBackgroundColor()
+        }
+        return true
     }
 }
 

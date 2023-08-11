@@ -23,7 +23,7 @@ class LoginViewModel: LoginViewModelProtocol {
         self.loginResponseData = delegate
     }
     
-    internal func getLoginUserData(email: String, password: String) {
+    internal func getLoginUserData(email: String, password: String, completion: @escaping (Bool) -> Void) {
         serviceLogin.loginUser(email: email, password: password) { result in
             switch result {
             case .success(let loginResponse):
@@ -31,9 +31,11 @@ class LoginViewModel: LoginViewModelProtocol {
                 self.keychainService.removeAccessToken()
                 let token = loginResponse.data?.accessToken
                 self.keychainService.saveAccessToken(token!)
+                completion(true)
                 
             case .failure(let error):
                 print(error)
+                completion(false)
             }
         }
     }

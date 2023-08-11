@@ -134,12 +134,36 @@ extension ChangePasswordViewController {
         guard let password = passwordTextField.text, let newPassword = newPasswordTextField.text, let newPasswordConfirmation = retypeNewPasswordTextField.text else {
             return
         }
-        guard !password.isEmpty, !newPassword.isEmpty, !newPasswordConfirmation.isEmpty, newPassword == newPasswordConfirmation else {return}
+        guard !password.isEmpty || !newPassword.isEmpty || !newPasswordConfirmation.isEmpty, newPassword == newPasswordConfirmation else {
+            return self.presentModalController()
+        }
         
         viewModel.getPasswordUpdateData(password: password, newPassword: newPassword, newPasswordConfirmation: newPasswordConfirmation)
         
-        let notesViewController = NotesViewController()
-        navigationController?.pushViewController(notesViewController, animated: true)
+        let loginViewController = LoginViewController()
+        navigationController?.pushViewController(loginViewController, animated: true)
+    }
+}
+
+// MARK: - Bottom Sheet
+extension ChangePasswordViewController {
+    
+    private func presentModalController() {
+        let customBottomSheetVC = CustomBottomSheetView()
+        customBottomSheetVC.modalPresentationStyle = .overCurrentContext
+        
+        let image = UIImage(asset: Asset.Icons.error)
+        let title = L10n.Modules.LoginViewController.toastMessage
+        let actionButtonTitle = L10n.General.ok
+        
+        customBottomSheetVC.setupContent(withImage: image, title: title, description: nil, actionButtonTitle: actionButtonTitle)
+        customBottomSheetVC.actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        
+        self.present(customBottomSheetVC, animated: true, completion: nil)
+    }
+    
+    @objc private func actionButtonTapped() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
