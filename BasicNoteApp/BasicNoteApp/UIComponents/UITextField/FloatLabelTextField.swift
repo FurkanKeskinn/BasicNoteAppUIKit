@@ -20,6 +20,11 @@ public class FloatLabelTextField: UITextField {
             titleLabel.sizeToFit()
         }
     }
+    public var isValid: Bool = false {
+        didSet {
+            layer.borderColor = isValid ? UIColor.appRed.cgColor : UIColor.appLightGray.cgColor
+        }
+    }
     
     private var insets: UIEdgeInsets {
         let insets = UIEdgeInsets(top: 27, left: 18, bottom: 9, right: 18)
@@ -54,7 +59,7 @@ public class FloatLabelTextField: UITextField {
         } else {
             setTitleToCenter(animate: true)
         }
-        layer.borderColor = isFirstResponder ? UIColor.appPurple100.cgColor : UIColor.appLightGray.cgColor
+        layer.borderColor = isValid ? UIColor.appRed.cgColor : (isFirstResponder ? UIColor.appPurple100.cgColor : UIColor.appLightGray.cgColor)
     }
     
     private func configureContents() {

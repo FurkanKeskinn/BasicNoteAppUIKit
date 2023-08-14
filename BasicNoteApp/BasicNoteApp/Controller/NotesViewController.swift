@@ -210,8 +210,17 @@ extension NotesViewController: UISearchBarDelegate {
               query.trimmingCharacters(in: .whitespaces).count >= 3 else {
             return
         }
-        //
+        filterContentForSearchText(searchText)
     }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        let filteredData = allNote.filter { note in
+            return note.title.lowercased().contains(searchText.lowercased())
+        }
+        allNote = filteredData
+        tableView.reloadData()
+    }
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         navigationItem.rightBarButtonItem = nil
         searchBar.setShowsCancelButton(true, animated: true)
@@ -222,6 +231,12 @@ extension NotesViewController: UISearchBarDelegate {
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.text = ""
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: imageButton)
+        resetSearchResults()
+    }
+    
+    func resetSearchResults() {
+        viewModelAllNote.getallNotesData()
+        tableView.reloadData()
     }
 }
 

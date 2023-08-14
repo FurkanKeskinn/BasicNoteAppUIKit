@@ -314,14 +314,18 @@ extension RegisterViewController: UITextFieldDelegate {
             if textField == emailTextField {
                 if !validation.isValidEmail(newText) {
                     emailInvalidLabelStackView.isHidden = false
+                    emailTextField.isValid = true
                 } else {
                     emailInvalidLabelStackView.isHidden = true
+                    emailTextField.isValid = false
                 }
             } else if textField == passwordTextField {
                 if !validation.isValidPassword(newText) {
                     passwordInvalidLabel.isHidden = false
+                    emailTextField.isValid = true
                 } else {
                     passwordInvalidLabel.isHidden = true
+                    emailTextField.isValid = false
                 }
             }
             updateButtonBackgroundColor()

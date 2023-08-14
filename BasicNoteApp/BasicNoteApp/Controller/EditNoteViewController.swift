@@ -65,6 +65,7 @@ class EditNoteViewController: UIViewController {
         applyConstraints()
         backButton()
         viewModelUpdate.delegateNoteUpdate(delegate: self)
+        viewModelDetail.delegateNote(delegate: self)
         viewModelDetail.getNote(id: EditNoteViewController.id!)
     }
 }

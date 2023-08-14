@@ -238,8 +238,12 @@ extension ForgotPasswordViewController: UITextFieldDelegate {
             if textField == emailTextField {
                 if !validation.isValidEmail(newText) {
                     emailInvalidLabel.isHidden = false
+                    emailTextField.isValid = true
+
                 } else {
                     emailInvalidLabel.isHidden = true
+                    emailTextField.isValid = false
+
                 }
             }
             updateButtonBackgroundColor()
