@@ -7,6 +7,12 @@
 
 import Foundation
 
+protocol KeychainService {
+    func saveAccessToken(_ token: String)
+    func getAccessToken() -> String?
+    func removeAccessToken()
+}
+
 class KeychainServiceImpl: KeychainService {
     private let accessTokenKey = "access_Token"
     
