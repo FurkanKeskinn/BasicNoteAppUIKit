@@ -231,20 +231,20 @@ class CustomBottomSheetView: UIViewController {
 // MARK: - Setup Content
 extension CustomBottomSheetView {
     func setupContent(withImage image: UIImage?, title: String?, description: String?, actionButtonTitle: String?) {
-           if let image = image {
-               imageView.image = image
-           }
-           
-           if let title = title {
-               titleLabel.text = title
-           }
-           
-           if let description = description {
-               descriptionLabel.text = description
-           }
-           
-           if let actionButtonTitle = actionButtonTitle {
-               actionButton.setTitle(actionButtonTitle, for: .normal)
-           }
-       }
+        if let image = image {
+            imageView.image = image
+        }
+        
+        if let title = title {
+            titleLabel.text = title
+        }
+        
+        if let description = description {
+            descriptionLabel.text = description
+        }
+        
+        if let actionButtonTitle = actionButtonTitle {
+            actionButton.setTitle(actionButtonTitle, for: .normal)
+        }
+    }
 }
