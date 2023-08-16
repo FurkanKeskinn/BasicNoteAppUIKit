@@ -49,7 +49,7 @@ class ChangePasswordViewController: UIViewController {
         return scrollView
     }()
     
-    private var viewModel: PasswordUpdateViewModelProtocol = PasswordUpdateViewModel()
+    private var viewModel: ChangePasswordViewModelProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +62,17 @@ class ChangePasswordViewController: UIViewController {
         newPasswordTextField.delegate = self
         retypeNewPasswordTextField.delegate = self
     }
+    
+    init(viewModel: ChangePasswordViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    // swiftlint:disable fatal_error
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // swiftlint:enable fatal_error
 }
 
 // MARK: - Configure
@@ -139,9 +150,6 @@ extension ChangePasswordViewController {
         }
         
         viewModel.getPasswordUpdateData(password: password, newPassword: newPassword, newPasswordConfirmation: newPasswordConfirmation)
-        
-        let loginViewController = LoginViewController()
-        navigationController?.pushViewController(loginViewController, animated: true)
     }
 }
 
@@ -170,7 +178,10 @@ extension ChangePasswordViewController {
 // MARK: - Response Data
 extension ChangePasswordViewController {
     func subscribeViewModel() {
-        viewModel.reloadData
+        viewModel.didSuccessChangePassword = { [weak self] isSuccess in
+            let loginViewController = LoginViewController(viewModel: LoginViewModel())
+            self?.navigationController?.pushViewController(loginViewController, animated: true)
+        }
     }
 }
 
@@ -211,7 +222,7 @@ import SwiftUI
 @available(iOS 13, *)
 struct ChangePasswordViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        ChangePasswordViewController().showPreview()
+        ChangePasswordViewController(viewModel: ChangePasswordViewModel()).showPreview()
     }
 }
 #endif

@@ -40,8 +40,8 @@ class UserUpdateViewModel: UserUpdateViewModelProtocol {
             switch result {
             case .success:
                 self.didSuccessUpdate?(true)
-            case .failure(let error):
-                print(error)
+            case .failure:
+                self.didSuccessUpdate?(false)
             }
         }
     }

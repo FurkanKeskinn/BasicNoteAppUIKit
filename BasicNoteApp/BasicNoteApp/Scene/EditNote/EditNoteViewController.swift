@@ -51,20 +51,30 @@ class EditNoteViewController: UIViewController {
         return scroll
     }()
     
-    private var viewModelUpdate: NoteUpdateViewModelProtocol = NoteUpdateViewModel()
+    private var viewModelUpdate: EditNoteViewModelProtocol
     
-    private var viewModelDetail: NoteViewModelProtocol = NoteViewModel()
-    static var id: Int?
+    private var viewModelDetail: NoteViewModelProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         applyConstraints()
         backButton()
-        subscribeGetDataViewModel()
         subscribeUpdateViewModel()
-        viewModelDetail.getNote(id: EditNoteViewController.id!)
+        viewModelDetail.getNote(id: viewModelUpdate.id!)
     }
+    
+    init(viewModelUpdate: EditNoteViewModelProtocol, viewModelDetail: NoteViewModelProtocol) {
+        self.viewModelUpdate = viewModelUpdate
+        self.viewModelDetail = viewModelDetail
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    // swiftlint:disable fatal_error
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // swiftlint:enable fatal_error
 }
 
 // MARK: - Layout
@@ -128,12 +138,10 @@ extension EditNoteViewController {
     }
     
     @objc private func saveButtonTapped() {
-        guard let id = EditNoteViewController.id, let newTitle = titleTextField.text, let newNote = descriptionTextView.text, !newTitle.isEmpty, !newNote.isEmpty else {
+        guard let id = viewModelUpdate.id, let newTitle = titleTextField.text, let newNote = descriptionTextView.text, !newTitle.isEmpty, !newNote.isEmpty else {
             return self.presentModalController()
         }
         viewModelUpdate.updateNote(id: id, title: newTitle, note: newNote)
-        
-        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -161,16 +169,15 @@ extension EditNoteViewController {
 
 // MARK: - Response Data
 extension EditNoteViewController {
-    internal func subscribeGetDataViewModel() {
+    internal func subscribeUpdateViewModel() {
         viewModelDetail.reloadData = { note in
             self.titleTextField.text = note.data?.title
             self.descriptionTextView.removePlaceholder()
             self.descriptionTextView.text = note.data?.note
         }
-    }
-    
-    internal func subscribeUpdateViewModel() {
-        viewModelUpdate.reloadData
+        viewModelUpdate.didSuccessUpdateNote = { [weak self] isSuccess in
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
@@ -180,7 +187,7 @@ import SwiftUI
 @available(iOS 13, *)
 struct EditNoteViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        EditNoteViewController().showPreview()
+        EditNoteViewController(coder: NSCoder())?.showPreview()
     }
 }
 #endif

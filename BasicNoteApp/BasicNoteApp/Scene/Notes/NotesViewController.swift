@@ -58,8 +58,8 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
         return search
     }()
     
-    private var viewModelAllNote = AllNotesViewModel()
-    private var viewModelDelete: NoteDeleteViewModelProtocol = NoteDeleteViewModel()
+    private var viewModel: NotesViewModelProtocol
+    private var viewModelEdit : EditNoteViewModelProtocol
     private var allNote: [NoteDataModel] = [NoteDataModel]()
     
     override func viewDidLoad() {
@@ -71,10 +71,21 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
         applyConstraints()
         setupNavigationBar()
         navigationController?.navigationBar.barTintColor = .appWhite
-        subscribeAllNotesViewModel()
-        subscribeNoteViewModel()
-        viewModelAllNote.getallNotesData()
+        subscribeNotesViewModel()
+        viewModel.getallNotesData()
     }
+    
+    init(viewModel: NotesViewModelProtocol, viewModelEdit: EditNoteViewModelProtocol) {
+        self.viewModel = viewModel
+        self.viewModelEdit = viewModelEdit
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    // swiftlint:disable fatal_error
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // swiftlint:enable fatal_error
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -133,16 +144,16 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func editItem(at indexPath: IndexPath) {
-        EditNoteViewController.id = allNote[indexPath.row].id
+        viewModelEdit.id = allNote[indexPath.row].id
         
-        let editNoteViewController = EditNoteViewController()
+        let editNoteViewController = EditNoteViewController(coder: NSCoder())!
         navigationController?.pushViewController(editNoteViewController, animated: true)
         
     }
     func deleteItem(at indexPath: IndexPath) {
         let noteToDelete = allNote[indexPath.row]
         
-        viewModelDelete.deleteNote(id: noteToDelete.id, completion: { _ in
+        viewModel.deleteNote(id: noteToDelete.id, completion: { _ in
             DispatchQueue.main.async { [weak self] in
                 self?.allNote.remove(at: indexPath.row)
                 self?.tableView.reloadData()
@@ -184,17 +195,17 @@ extension NotesViewController {
     }
     
     @objc private func menuButtonTapped() {
-        let loginViewController = LoginViewController()
+        let loginViewController = LoginViewController(viewModel: LoginViewModel())
         navigationController?.pushViewController(loginViewController, animated: true)
     }
     @objc private func profileButtonTapped() {
         self.navigationController?.isNavigationBarHidden = false
-        let profileViewController = ProfileViewController()
+        let profileViewController = ProfileViewController(viewModel: UserUpdateViewModel())
         navigationController?.pushViewController(profileViewController, animated: true)
         
     }
     @objc private func addNoteTapped() {
-        let addNoteViewController = AddNoteViewController()
+        let addNoteViewController = AddNoteViewController(viewModel: AddNoteViewModel())
         navigationController?.pushViewController(addNoteViewController, animated: true)
     }
 }
@@ -233,22 +244,15 @@ extension NotesViewController: UISearchBarDelegate {
     }
     
     func resetSearchResults() {
-        viewModelAllNote.getallNotesData()
+        viewModel.getallNotesData()
         tableView.reloadData()
     }
 }
 
 // MARK: - Response Data
 extension NotesViewController {
-    func subscribeNoteViewModel() {
-        viewModelAllNote.reloadData = { notes in
-            self.allNote = notes
-            self.tableView.reloadData()
-        }
-    }
-    
-    func subscribeAllNotesViewModel() {
-        viewModelAllNote.reloadData = { notes in
+    func subscribeNotesViewModel() {
+        viewModel.reloadData = { notes in
             self.allNote = notes
             self.tableView.reloadData()
         }
@@ -261,7 +265,7 @@ import SwiftUI
 @available(iOS 13, *)
 struct NotesViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        NotesViewController().showPreview()
+        NotesViewController(viewModel: NotesViewModel(), viewModelEdit: EditNoteViewModel()).showPreview()
     }
 }
 #endif

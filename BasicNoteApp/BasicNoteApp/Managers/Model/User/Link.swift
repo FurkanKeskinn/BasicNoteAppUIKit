@@ -7,9 +7,3 @@
 
 import Foundation
 
-// MARK: - Link
-struct Link: Codable {
-    let url: String?
-    let label: String
-    let active: Bool
-}

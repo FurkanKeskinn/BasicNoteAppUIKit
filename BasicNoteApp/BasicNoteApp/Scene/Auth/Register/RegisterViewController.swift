@@ -147,7 +147,7 @@ class RegisterViewController: UIViewController {
         return scrollView
     }()
     
-    private var viewModel: RegisterViewModelProtocol = RegisterViewModel()
+    private var viewModel: RegisterViewModelProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,6 +161,16 @@ class RegisterViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
+    init(viewModel: RegisterViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    // swiftlint:disable fatal_error
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // swiftlint:enable fatal_error
 }
 
 // MARK: - Configure
@@ -278,7 +288,7 @@ extension RegisterViewController {
         signInLabel.addGestureRecognizer(tapGesture)
     }
     @objc private func signInLabelTapped() {
-        let loginViewController = LoginViewController()
+        let loginViewController = LoginViewController(viewModel: LoginViewModel())
         navigationController?.pushViewController(loginViewController, animated: true)
     }
     
@@ -289,16 +299,17 @@ extension RegisterViewController {
               let password = self.passwordTextField.text,
               !fullName.isEmpty else {return}
         viewModel.getRegisterUserData(fullName: fullName, email: emailAddress, password: password)
-        
-        let notesViewController = NotesViewController()
-        navigationController?.pushViewController(notesViewController, animated: true)
     }
 }
 
 // MARK: - Response Data
 extension RegisterViewController {
     func subscribeViewModel() {
-        viewModel.reloadData
+        viewModel.didSuccessRegister = { [weak self] isSuccess in
+            let notesViewController = NotesViewController(coder: NSCoder())!
+            self?.navigationController?.pushViewController(notesViewController, animated: true)
+            
+        }
     }
 }
 
@@ -359,7 +370,7 @@ import SwiftUI
 @available(iOS 13, *)
 struct RegisterViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        RegisterViewController().showPreview()
+        RegisterViewController(viewModel: RegisterViewModel()).showPreview()
     }
 }
 #endif

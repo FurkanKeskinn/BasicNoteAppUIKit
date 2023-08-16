@@ -118,7 +118,7 @@ class LoginViewController: UIViewController {
         return scrollView
     }()
     
-    private var viewModel: LoginViewModelProtocol = LoginViewModel()
+    private var viewModel: LoginViewModelProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +131,17 @@ class LoginViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
+    init(viewModel: LoginViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    // swiftlint:disable fatal_error
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // swiftlint:enable fatal_error
 }
 
 // MARK: - Configure
@@ -157,6 +168,7 @@ extension LoginViewController {
         mainStackView.addArrangedSubview(textFieldstackView)
         mainStackView.addArrangedSubview(forgotPasswordStackView)
         mainStackView.addArrangedSubview(loginButton)
+        
         titleStackView.addArrangedSubview(titleLabel)
         titleStackView.addArrangedSubview(descriptionLabel)
         textFieldstackView.addArrangedSubview(emailTextField)
@@ -234,7 +246,7 @@ extension LoginViewController {
         signUpLabel.addGestureRecognizer(tapGesture)
     }
     @objc private func signUpLabelTapped() {
-        let registerViewController = RegisterViewController()
+        let registerViewController = RegisterViewController(viewModel: RegisterViewModel())
         navigationController?.pushViewController(registerViewController, animated: true)
     }
     
@@ -244,14 +256,7 @@ extension LoginViewController {
               let password = self.passwordTextField.text,
               !emailAddress.isEmpty,
               !password.isEmpty else {return}
-        viewModel.getLoginUserData(email: emailAddress, password: password) { success in
-            if success {
-                let notesViewController = NotesViewController()
-                self.navigationController?.pushViewController(notesViewController, animated: true)
-            } else {
-                self.presentModalController()
-            }
-        }
+        viewModel.getLoginUserData(email: emailAddress, password: password)
     }
 }
 
@@ -280,7 +285,14 @@ extension LoginViewController {
 // MARK: - Response Data
 extension LoginViewController {
     func subscribeViewModel() {
-        viewModel.reloadData
+        viewModel.didSuccessLogin = { [weak self] isSuccess in
+            if isSuccess {
+                let notesViewController = NotesViewController(viewModel: NotesViewModel(), viewModelEdit: EditNoteViewModel())
+                self?.navigationController?.pushViewController(notesViewController, animated: true)
+            } else {
+                self?.presentModalController()
+            }
+        }
     }
 }
 
@@ -317,7 +329,7 @@ import SwiftUI
 @available(iOS 13, *)
 struct LoginViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        LoginViewController().showPreview()
+        LoginViewController(viewModel: LoginViewModel()).showPreview()
     }
 }
 #endif

@@ -7,28 +7,29 @@
 
 import Foundation
 
-protocol NoteUpdateViewModelProtocol {
+protocol EditNoteViewModelProtocol {
+    var id : Int? { get set }
     func updateNote(id: Int, title: String, note: String)
-    var reloadData: ((NoteResponseModel) -> ())? {get}
+    var didSuccessUpdateNote: ((Bool) -> ())? {get set}
 }
 
-class NoteUpdateViewModel: NoteUpdateViewModelProtocol{
-    var note: NoteDataModel
+class EditNoteViewModel: EditNoteViewModelProtocol{
+    var id : Int?
     private var serviceNoteUpdate = NoteService()
-    internal var reloadData: ((NoteResponseModel) -> ())?
+    internal var didSuccessUpdateNote: ((Bool) -> ())?
     
-    init(note: NoteDataModel){
+    init(){
         self.serviceNoteUpdate = NoteService()
-        self.note = note
+        self.id = Int()
     }
     
     func updateNote(id: Int, title: String, note: String) {
         serviceNoteUpdate.updateNote(id: id, title: title, note: note) { result in
             switch result {
-            case .success(let noteUpdateResponse):
-                self.reloadData?(noteUpdateResponse)
-            case .failure(let error):
-                print(error)
+            case .success:
+                self.didSuccessUpdateNote?(true)
+            case .failure:
+                self.didSuccessUpdateNote?(false)
             }
         }
     }

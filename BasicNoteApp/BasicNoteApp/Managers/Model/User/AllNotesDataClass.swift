@@ -10,11 +10,10 @@ import Foundation
 // MARK: - User Notes Data Class
 struct AllNotesDataClass: Codable {
     let currentPage: Int
-    let data: [Datum]
+    let data: [Note]
     let firstPageURL: String
     let from, lastPage: Int
     let lastPageURL: String
-    let links: [Link]
     let nextPageURL: String?
     let path: String
     let perPage: Int
@@ -28,7 +27,6 @@ struct AllNotesDataClass: Codable {
         case from
         case lastPage = "last_page"
         case lastPageURL = "last_page_url"
-        case links
         case nextPageURL = "next_page_url"
         case path
         case perPage = "per_page"

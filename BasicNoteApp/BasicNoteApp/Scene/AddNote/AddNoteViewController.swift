@@ -51,7 +51,7 @@ class AddNoteViewController: UIViewController {
         return scroll
     }()
     
-    private var viewModel: NoteCreateViewModelProtocol = NoteCreateViewModel()
+    private var viewModel: AddNoteViewModelProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +60,17 @@ class AddNoteViewController: UIViewController {
         backButton()
         subscribeViewModel()
     }
+    
+    init(viewModel: AddNoteViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    // swiftlint:disable fatal_error
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // swiftlint:enable fatal_error
 }
 
 // MARK: - Layout
@@ -125,9 +136,6 @@ extension AddNoteViewController {
             return self.presentModalController()
         }
         viewModel.createNote(title: titleText, note: descriptionText)
-        
-        let notesViewController = NotesViewController()
-        navigationController?.pushViewController(notesViewController, animated: true)
     }
 }
 
@@ -156,7 +164,10 @@ extension AddNoteViewController {
 // MARK: - Response Data
 extension AddNoteViewController {
     func subscribeViewModel() {
-        viewModel.reloadData
+        viewModel.didSuccessAddNote = { [weak self] isSuccess in
+            let notesViewController = NotesViewController(viewModel: NotesViewModel(), viewModelEdit: EditNoteViewModel())
+            self?.navigationController?.pushViewController(notesViewController, animated: true)
+        }
     }
 }
 
@@ -166,7 +177,7 @@ import SwiftUI
 @available(iOS 13, *)
 struct AddNoteViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        AddNoteViewController().showPreview()
+        AddNoteViewController(viewModel: AddNoteViewModel()).showPreview()
     }
 }
 #endif
