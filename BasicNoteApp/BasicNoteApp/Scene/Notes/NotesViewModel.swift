@@ -7,20 +7,34 @@
 
 import Foundation
 
-protocol NoteDeleteViewModelProtocol {
-    var reloadData: ((NoteResponseModel) -> ())? {get}
+
+protocol NotesViewModelProtocol {
+    var reloadData: (([NoteDataModel]) -> ())? {get set}
+    func getallNotesData()
     func deleteNote(id: Int, completion: @escaping (Result<Void, APIError>) -> Void)
 }
 
-class NoteDeleteViewModel: NoteDeleteViewModelProtocol {
+class NotesViewModel: NotesViewModelProtocol {
     
+    private var serviceAllNotes = UserService()
     private var noteService = NoteService()
-    internal var reloadData: ((NoteResponseModel) -> ())?
+    internal var reloadData: (([NoteDataModel]) -> ())?
     
     init() {
+        self.serviceAllNotes = UserService()
         self.noteService = NoteService()
     }
     
+    internal func getallNotesData() {
+        serviceAllNotes.userAllNotes { result in
+            switch result {
+            case .success(let notesResponse):
+                self.reloadData?(notesResponse)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     internal func deleteNote(id: Int, completion: @escaping (Result<Void, APIError>) -> Void) {
         noteService.deleteNotes(id: id) { result in
             switch result {

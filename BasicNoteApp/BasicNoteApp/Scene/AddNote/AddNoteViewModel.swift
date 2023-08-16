@@ -7,15 +7,15 @@
 
 import Foundation
 
-protocol NoteCreateViewModelProtocol {
-    var reloadData: ((NoteResponseModel) -> ())? {get}
+protocol AddNoteViewModelProtocol {
+    var didSuccessAddNote: ((Bool) -> ())? {get set}
     func createNote(title: String, note: String)
 }
 
-class NoteCreateViewModel: NoteCreateViewModelProtocol{
+class AddNoteViewModel: AddNoteViewModelProtocol {
     
     private var serviceNoteCreate = NoteService()
-    internal var reloadData: ((NoteResponseModel) -> ())?
+    internal var didSuccessAddNote: ((Bool) -> ())?
     
     init(){
         self.serviceNoteCreate = NoteService()
@@ -24,10 +24,10 @@ class NoteCreateViewModel: NoteCreateViewModelProtocol{
     func createNote(title: String, note: String) {
         serviceNoteCreate.createNote(title: title, note: note) { result in
             switch result {
-            case .success(let noteCreateResponse):
-                self.reloadData?(noteCreateResponse)
-            case .failure(let error):
-                print(error)
+            case .success:
+                self.didSuccessAddNote?(true)
+            case .failure:
+                self.didSuccessAddNote?(false)
             }
         }
     }

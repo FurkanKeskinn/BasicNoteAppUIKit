@@ -38,14 +38,12 @@
 		DCA893302A8B77C200A95280 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8932F2A8B77C200A95280 /* LoginViewModel.swift */; };
 		DCA893322A8B77EC00A95280 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893312A8B77EC00A95280 /* RegisterViewModel.swift */; };
 		DCA893342A8B781A00A95280 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893332A8B781A00A95280 /* ResetPasswordViewModel.swift */; };
-		DCA893362A8B785C00A95280 /* AllNotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893352A8B785C00A95280 /* AllNotesViewModel.swift */; };
-		DCA893382A8B788A00A95280 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893372A8B788A00A95280 /* UserDetailViewModel.swift */; };
-		DCA8933A2A8B78AE00A95280 /* UserUpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893392A8B78AE00A95280 /* UserUpdateViewModel.swift */; };
-		DCA8933C2A8B78C400A95280 /* PasswordUpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8933B2A8B78C400A95280 /* PasswordUpdateViewModel.swift */; };
+		DCA8933A2A8B78AE00A95280 /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893392A8B78AE00A95280 /* UpdateViewModel.swift */; };
+		DCA8933C2A8B78C400A95280 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8933B2A8B78C400A95280 /* ChangePasswordViewModel.swift */; };
 		DCA8933E2A8B790A00A95280 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8933D2A8B790A00A95280 /* NoteViewModel.swift */; };
-		DCA893402A8B792800A95280 /* NoteDeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8933F2A8B792800A95280 /* NoteDeleteViewModel.swift */; };
-		DCA893422A8B794300A95280 /* NoteCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893412A8B794300A95280 /* NoteCreateViewModel.swift */; };
-		DCA893442A8B796100A95280 /* NoteUpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893432A8B796100A95280 /* NoteUpdateViewModel.swift */; };
+		DCA893402A8B792800A95280 /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8933F2A8B792800A95280 /* NotesViewModel.swift */; };
+		DCA893422A8B794300A95280 /* AddNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893412A8B794300A95280 /* AddNoteViewModel.swift */; };
+		DCA893442A8B796100A95280 /* EditNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893432A8B796100A95280 /* EditNoteViewModel.swift */; };
 		DCA893522A8B813400A95280 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893512A8B813400A95280 /* Register.swift */; };
 		DCA893542A8B814900A95280 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893532A8B814900A95280 /* Login.swift */; };
 		DCA893572A8B817D00A95280 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893562A8B817D00A95280 /* ForgotPassword.swift */; };
@@ -60,7 +58,7 @@
 		DCA8936B2A8B828100A95280 /* UserDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8936A2A8B828100A95280 /* UserDataClass.swift */; };
 		DCA8936D2A8B829400A95280 /* AllNotesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8936C2A8B829400A95280 /* AllNotesResponseModel.swift */; };
 		DCA8936F2A8B82AB00A95280 /* AllNotesDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8936E2A8B82AB00A95280 /* AllNotesDataClass.swift */; };
-		DCA893712A8B82C400A95280 /* Datum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893702A8B82C400A95280 /* Datum.swift */; };
+		DCA893712A8B82C400A95280 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893702A8B82C400A95280 /* Note.swift */; };
 		DCA893732A8B82D500A95280 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893722A8B82D500A95280 /* Link.swift */; };
 		DCA893752A8B82E100A95280 /* ChangePasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893742A8B82E100A95280 /* ChangePasswordModel.swift */; };
 		DCA893772A8B82F600A95280 /* ChangePasswordResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893762A8B82F600A95280 /* ChangePasswordResponseModel.swift */; };
@@ -113,14 +111,12 @@
 		DCA8932F2A8B77C200A95280 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		DCA893312A8B77EC00A95280 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		DCA893332A8B781A00A95280 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
-		DCA893352A8B785C00A95280 /* AllNotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNotesViewModel.swift; sourceTree = "<group>"; };
-		DCA893372A8B788A00A95280 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
-		DCA893392A8B78AE00A95280 /* UserUpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdateViewModel.swift; sourceTree = "<group>"; };
-		DCA8933B2A8B78C400A95280 /* PasswordUpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordUpdateViewModel.swift; sourceTree = "<group>"; };
+		DCA893392A8B78AE00A95280 /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
+		DCA8933B2A8B78C400A95280 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		DCA8933D2A8B790A00A95280 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
-		DCA8933F2A8B792800A95280 /* NoteDeleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDeleteViewModel.swift; sourceTree = "<group>"; };
-		DCA893412A8B794300A95280 /* NoteCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCreateViewModel.swift; sourceTree = "<group>"; };
-		DCA893432A8B796100A95280 /* NoteUpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteUpdateViewModel.swift; sourceTree = "<group>"; };
+		DCA8933F2A8B792800A95280 /* NotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
+		DCA893412A8B794300A95280 /* AddNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewModel.swift; sourceTree = "<group>"; };
+		DCA893432A8B796100A95280 /* EditNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteViewModel.swift; sourceTree = "<group>"; };
 		DCA893512A8B813400A95280 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		DCA893532A8B814900A95280 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		DCA893562A8B817D00A95280 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
@@ -135,7 +131,7 @@
 		DCA8936A2A8B828100A95280 /* UserDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataClass.swift; sourceTree = "<group>"; };
 		DCA8936C2A8B829400A95280 /* AllNotesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNotesResponseModel.swift; sourceTree = "<group>"; };
 		DCA8936E2A8B82AB00A95280 /* AllNotesDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNotesDataClass.swift; sourceTree = "<group>"; };
-		DCA893702A8B82C400A95280 /* Datum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datum.swift; sourceTree = "<group>"; };
+		DCA893702A8B82C400A95280 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		DCA893722A8B82D500A95280 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		DCA893742A8B82E100A95280 /* ChangePasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordModel.swift; sourceTree = "<group>"; };
 		DCA893762A8B82F600A95280 /* ChangePasswordResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordResponseModel.swift; sourceTree = "<group>"; };
@@ -250,30 +246,27 @@
 		DC1D04112A6138EE00467F5E /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				DC666B0B2A695E3500A99CD7 /* UITextView */,
-				DC9C8AC42A65741D0033FA4B /* UILabel */,
-				DC1D04152A613A0200467F5E /* UIViewController */,
-				DCFADAD82A5DAB0700E3A47F /* Resources */,
-				DC1D04122A6138FA00467F5E /* UITextField */,
+				DCC45A162A67E223003130FD /* Cells */,
+				DC1D04152A613A0200467F5E /* BottomSheet */,
+				DC1D04122A6138FA00467F5E /* FloatLabelTextField */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
 		};
-		DC1D04122A6138FA00467F5E /* UITextField */ = {
+		DC1D04122A6138FA00467F5E /* FloatLabelTextField */ = {
 			isa = PBXGroup;
 			children = (
 				DC1D04132A61393800467F5E /* FloatLabelTextField.swift */,
 			);
-			path = UITextField;
+			path = FloatLabelTextField;
 			sourceTree = "<group>";
 		};
-		DC1D04152A613A0200467F5E /* UIViewController */ = {
+		DC1D04152A613A0200467F5E /* BottomSheet */ = {
 			isa = PBXGroup;
 			children = (
 				DC0214A82A6A7E5600125957 /* CustomBottomSheetView.swift */,
-				DC1D040F2A6133AE00467F5E /* UIViewControllerExtenstion.swift */,
 			);
-			path = UIViewController;
+			path = BottomSheet;
 			sourceTree = "<group>";
 		};
 		DC5D15792A5C4D1C00A4037C = {
@@ -299,6 +292,8 @@
 		DC5D15842A5C4D1C00A4037C /* BasicNoteApp */ = {
 			isa = PBXGroup;
 			children = (
+				DCFADAD82A5DAB0700E3A47F /* Resources */,
+				DCD315FE2A8CF30000616C4D /* Extensions */,
 				DC0DC8F82A5FF26D0033C534 /* AppDelegate */,
 				DC1D04112A6138EE00467F5E /* UIComponents */,
 				DC6EF7D92A8644D300F3198F /* Validation */,
@@ -338,7 +333,6 @@
 		DCA893452A8B7F0900A95280 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				DCC45A162A67E223003130FD /* Views */,
 				DCA893462A8B7F1100A95280 /* Auth */,
 				DCA8934A2A8B7F5200A95280 /* Notes */,
 				DCA8934B2A8B7F7200A95280 /* Profile */,
@@ -391,8 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				DCC45A142A67CB00003130FD /* NotesViewController.swift */,
-				DCA893352A8B785C00A95280 /* AllNotesViewModel.swift */,
-				DCA8933F2A8B792800A95280 /* NoteDeleteViewModel.swift */,
+				DCA8933F2A8B792800A95280 /* NotesViewModel.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -401,8 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				DCC45A102A67B7AB003130FD /* ProfileViewController.swift */,
-				DCA893372A8B788A00A95280 /* UserDetailViewModel.swift */,
-				DCA893392A8B78AE00A95280 /* UserUpdateViewModel.swift */,
+				DCA893392A8B78AE00A95280 /* UpdateViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -411,7 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				DCC45A122A67C040003130FD /* ChangePasswordViewController.swift */,
-				DCA8933B2A8B78C400A95280 /* PasswordUpdateViewModel.swift */,
+				DCA8933B2A8B78C400A95280 /* ChangePasswordViewModel.swift */,
 			);
 			path = PasswordChange;
 			sourceTree = "<group>";
@@ -420,7 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				DC666B072A69531B00A99CD7 /* AddNoteViewController.swift */,
-				DCA893412A8B794300A95280 /* NoteCreateViewModel.swift */,
+				DCA893412A8B794300A95280 /* AddNoteViewModel.swift */,
 			);
 			path = AddNote;
 			sourceTree = "<group>";
@@ -429,7 +421,7 @@
 			isa = PBXGroup;
 			children = (
 				DC666B092A69532600A99CD7 /* EditNoteViewController.swift */,
-				DCA893432A8B796100A95280 /* NoteUpdateViewModel.swift */,
+				DCA893432A8B796100A95280 /* EditNoteViewModel.swift */,
 			);
 			path = EditNote;
 			sourceTree = "<group>";
@@ -474,7 +466,7 @@
 				DCA8936A2A8B828100A95280 /* UserDataClass.swift */,
 				DCA8936C2A8B829400A95280 /* AllNotesResponseModel.swift */,
 				DCA8936E2A8B82AB00A95280 /* AllNotesDataClass.swift */,
-				DCA893702A8B82C400A95280 /* Datum.swift */,
+				DCA893702A8B82C400A95280 /* Note.swift */,
 				DCA893722A8B82D500A95280 /* Link.swift */,
 				DCA893742A8B82E100A95280 /* ChangePasswordModel.swift */,
 				DCA893762A8B82F600A95280 /* ChangePasswordResponseModel.swift */,
@@ -482,12 +474,30 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		DCC45A162A67E223003130FD /* Views */ = {
+		DCC45A162A67E223003130FD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				DCC45A172A67E2C0003130FD /* NotesTableViewCell.swift */,
 			);
-			path = Views;
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		DCD315FE2A8CF30000616C4D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DCD315FF2A8CF32A00616C4D /* UIViewController */,
+				DC9C8AC42A65741D0033FA4B /* UILabel */,
+				DC666B0B2A695E3500A99CD7 /* UITextView */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DCD315FF2A8CF32A00616C4D /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DC1D040F2A6133AE00467F5E /* UIViewControllerExtenstion.swift */,
+			);
+			path = UIViewController;
 			sourceTree = "<group>";
 		};
 		DCFADAD52A5D99B300E3A47F /* Strings */ = {
@@ -704,14 +714,14 @@
 			files = (
 				DCAD18072A5E7B1700ABF13B /* Fonts.swift in Sources */,
 				DCA893622A8B821A00A95280 /* NoteResponseModel.swift in Sources */,
-				DCA893442A8B796100A95280 /* NoteUpdateViewModel.swift in Sources */,
-				DCA893422A8B794300A95280 /* NoteCreateViewModel.swift in Sources */,
+				DCA893442A8B796100A95280 /* EditNoteViewModel.swift in Sources */,
+				DCA893422A8B794300A95280 /* AddNoteViewModel.swift in Sources */,
 				DC5D158A2A5C4D1C00A4037C /* RegisterViewController.swift in Sources */,
 				DCA893592A8B819F00A95280 /* AuthResponseModel.swift in Sources */,
 				DCA8936F2A8B82AB00A95280 /* AllNotesDataClass.swift in Sources */,
 				DCA893692A8B826D00A95280 /* UserResponseModel.swift in Sources */,
 				DC9C8AC62A65743D0033FA4B /* UILabelExtension.swift in Sources */,
-				DCA893402A8B792800A95280 /* NoteDeleteViewModel.swift in Sources */,
+				DCA893402A8B792800A95280 /* NotesViewModel.swift in Sources */,
 				DC1D04102A6133AE00467F5E /* UIViewControllerExtenstion.swift in Sources */,
 				DC666B0A2A69532600A99CD7 /* EditNoteViewController.swift in Sources */,
 				DCA893302A8B77C200A95280 /* LoginViewModel.swift in Sources */,
@@ -719,7 +729,7 @@
 				DC1B00FF2A711D3700F74842 /* AuthService.swift in Sources */,
 				DCA893322A8B77EC00A95280 /* RegisterViewModel.swift in Sources */,
 				DCA893542A8B814900A95280 /* Login.swift in Sources */,
-				DCA893712A8B82C400A95280 /* Datum.swift in Sources */,
+				DCA893712A8B82C400A95280 /* Note.swift in Sources */,
 				DC5D15862A5C4D1C00A4037C /* AppDelegate.swift in Sources */,
 				DCFADAE92A5DBCC000E3A47F /* Assets.swift in Sources */,
 				DCA893572A8B817D00A95280 /* ForgotPassword.swift in Sources */,
@@ -741,7 +751,6 @@
 				DCA893732A8B82D500A95280 /* Link.swift in Sources */,
 				DC0214A92A6A7E5600125957 /* CustomBottomSheetView.swift in Sources */,
 				DC1C55862A7A3F87008DD5EE /* PreviewViewController.swift in Sources */,
-				DCA893382A8B788A00A95280 /* UserDetailViewModel.swift in Sources */,
 				DC0069682A728A1E005DD79D /* NoteService.swift in Sources */,
 				DCA8936D2A8B829400A95280 /* AllNotesResponseModel.swift in Sources */,
 				DCA893522A8B813400A95280 /* Register.swift in Sources */,
@@ -751,10 +760,9 @@
 				DCA893672A8B825900A95280 /* UserInfermationModel.swift in Sources */,
 				DC6EF7DB2A8644E000F3198F /* Validation.swift in Sources */,
 				DC3B24A92A667C8F0013E83D /* LoginViewController.swift in Sources */,
-				DCA8933C2A8B78C400A95280 /* PasswordUpdateViewModel.swift in Sources */,
+				DCA8933C2A8B78C400A95280 /* ChangePasswordViewModel.swift in Sources */,
 				DCC45A132A67C040003130FD /* ChangePasswordViewController.swift in Sources */,
-				DCA893362A8B785C00A95280 /* AllNotesViewModel.swift in Sources */,
-				DCA8933A2A8B78AE00A95280 /* UserUpdateViewModel.swift in Sources */,
+				DCA8933A2A8B78AE00A95280 /* UpdateViewModel.swift in Sources */,
 				DCA8936B2A8B828100A95280 /* UserDataClass.swift in Sources */,
 				DCA893772A8B82F600A95280 /* ChangePasswordResponseModel.swift in Sources */,
 				DCC45A182A67E2C0003130FD /* NotesTableViewCell.swift in Sources */,

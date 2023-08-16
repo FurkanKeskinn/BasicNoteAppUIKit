@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol PasswordUpdateViewModelProtocol {
-    var reloadData: ((ChangePasswordResponseModel) -> ())? {get}
+protocol ChangePasswordViewModelProtocol {
+    var didSuccessChangePassword: ((Bool) -> ())? {get set}
     func getPasswordUpdateData(password: String, newPassword: String, newPasswordConfirmation: String)
 }
 
-class PasswordUpdateViewModel: PasswordUpdateViewModelProtocol {
+class ChangePasswordViewModel: ChangePasswordViewModelProtocol {
     
-    internal var reloadData: ((ChangePasswordResponseModel) -> ())?
+    internal var didSuccessChangePassword: ((Bool) -> ())?
     
     private var servicePasswordUpdate = UserService()
     
@@ -26,10 +26,10 @@ class PasswordUpdateViewModel: PasswordUpdateViewModelProtocol {
     func getPasswordUpdateData(password: String, newPassword: String, newPasswordConfirmation: String) {
         servicePasswordUpdate.updatePassword(password: password, newPassword: newPassword, newPasswordConfirmation: newPasswordConfirmation) { result in
             switch result {
-            case .success(let passwordUpdateResponse):
-                self.reloadData?(passwordUpdateResponse)
-            case .failure(let error):
-                print(error)
+            case .success:
+                self.didSuccessChangePassword?(true)
+            case .failure:
+                self.didSuccessChangePassword?(false)
             }
         }
     }

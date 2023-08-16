@@ -8,13 +8,13 @@
 import Foundation
 
 protocol RegisterViewModelProtocol {
-    var reloadData: ((AuthResponseModel) -> ())? {get}
+    var didSuccessRegister: ((Bool) -> ())? {get set}
     func getRegisterUserData(fullName: String, email: String, password: String)
 }
 
 class RegisterViewModel: RegisterViewModelProtocol {
     
-    internal var reloadData: ((AuthResponseModel) -> ())?
+    internal var didSuccessRegister: ((Bool) -> ())?
     
     private var serviceRegister = AuthService()
     private var keychainService: KeychainService
@@ -28,13 +28,13 @@ class RegisterViewModel: RegisterViewModelProtocol {
         serviceRegister.registerUser(fullName: fullName, email: email, password: password) { result in
             switch result {
             case .success(let registerResponse):
-                self.reloadData?(registerResponse)
+                self.didSuccessRegister?(true)
                 self.keychainService.removeAccessToken()
                 let token = registerResponse.data?.accessToken
                 self.keychainService.saveAccessToken(token!)
                 
-            case .failure(let error):
-                print(error)
+            case .failure:
+                self.didSuccessRegister?(false)
             }
         }
     }

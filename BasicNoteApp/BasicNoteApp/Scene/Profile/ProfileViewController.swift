@@ -67,9 +67,7 @@ class ProfileViewController: UIViewController {
         return scrollView
     }()
     
-    private var viewModelDetail: UserDetailViewModelProtocol = UserDetailViewModel()
-    
-    private var viewModelUpdate: UserUpdateViewModelProtocol = UserUpdateViewModel()
+    private var viewModel: UserUpdateViewModelProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,12 +78,22 @@ class ProfileViewController: UIViewController {
         backButton()
         addTapGestureToChangePassword()
         addTapGestureTosignOut()
-        subscribeUserDetailViewModel()
-        subscribeUserUpdateViewModel()
-        viewModelDetail.getUserDetailData()
+        subscribeUpdateViewModel()
+        viewModel.getUserDetailData()
         fullnameTextField.delegate = self
         emailTextField.delegate = self
     }
+    
+    init(viewModel: UserUpdateViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    // swiftlint:disable fatal_error
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // swiftlint:enable fatal_error
 }
 
 // MARK: - Configure
@@ -162,10 +170,7 @@ extension ProfileViewController {
         guard let newFullName = fullnameTextField.text, let newEmail = emailTextField.text, !newEmail.isEmpty, !newFullName.isEmpty else {
             return
         }
-        viewModelUpdate.getUserUpdateData(fullName: newFullName, email: newEmail)
-        
-        let notesViewController = NotesViewController()
-        navigationController?.pushViewController(notesViewController, animated: true)
+        viewModel.getUserUpdateData(fullName: newFullName, email: newEmail)
     }
     
     private func addTapGestureToChangePassword() {
@@ -174,7 +179,7 @@ extension ProfileViewController {
         changePasswordLabel.addGestureRecognizer(tapGesture)
     }
     @objc private func changePasswordTapped() {
-        let changePasswordViewController = ChangePasswordViewController()
+        let changePasswordViewController = ChangePasswordViewController(viewModel: ChangePasswordViewModel())
         navigationController?.pushViewController(changePasswordViewController, animated: true)
     }
     
@@ -184,21 +189,23 @@ extension ProfileViewController {
         signOutLabel.addGestureRecognizer(tapGesture)
     }
     @objc private func signOutTapped() {
-        let loginViewController = LoginViewController()
+        let loginViewController = LoginViewController(viewModel: LoginViewModel())
         navigationController?.pushViewController(loginViewController, animated: true)
     }
 }
 
 // MARK: - Response Data
 extension ProfileViewController {
-    func subscribeUserDetailViewModel() {
-        viewModelDetail.reloadData = { user in
-            self.fullnameTextField.text = user.data.fullName
-            self.emailTextField.text = user.data.email
+    func subscribeUpdateViewModel() {
+        viewModel.reloadData = { [weak self] user in
+            self?.fullnameTextField.text = user.data.fullName
+            self?.emailTextField.text = user.data.email
         }
-    }
-    func subscribeUserUpdateViewModel() {
-        viewModelUpdate.reloadData
+        
+        viewModel.didSuccessUpdate = { [weak self] isSuccess in
+            let notesViewController = NotesViewController(viewModel: NotesViewModel(), viewModelEdit: EditNoteViewModel())
+            self?.navigationController?.pushViewController(notesViewController, animated: true)
+        }
     }
 }
 
@@ -234,7 +241,7 @@ import SwiftUI
 @available(iOS 13, *)
 struct ProfileViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        ProfileViewController().showPreview()
+        ProfileViewController(viewModel: UserUpdateViewModel()).showPreview()
     }
 }
 #endif
