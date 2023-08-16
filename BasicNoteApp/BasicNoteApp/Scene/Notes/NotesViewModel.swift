@@ -8,14 +8,12 @@
 import Foundation
 
 protocol NoteDeleteViewModelProtocol {
-    var reloadData: ((NoteResponseModel) -> ())? {get}
     func deleteNote(id: Int, completion: @escaping (Result<Void, APIError>) -> Void)
 }
 
 class NoteDeleteViewModel: NoteDeleteViewModelProtocol {
     
     private var noteService = NoteService()
-    internal var reloadData: ((NoteResponseModel) -> ())?
     
     init() {
         self.noteService = NoteService()

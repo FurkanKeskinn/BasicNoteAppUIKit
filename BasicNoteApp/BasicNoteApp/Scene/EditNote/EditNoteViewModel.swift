@@ -13,12 +13,13 @@ protocol NoteUpdateViewModelProtocol {
 }
 
 class NoteUpdateViewModel: NoteUpdateViewModelProtocol{
-    
+    var note: NoteDataModel
     private var serviceNoteUpdate = NoteService()
     internal var reloadData: ((NoteResponseModel) -> ())?
     
-    init(){
+    init(note: NoteDataModel){
         self.serviceNoteUpdate = NoteService()
+        self.note = note
     }
     
     func updateNote(id: Int, title: String, note: String) {
