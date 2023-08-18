@@ -8,13 +8,13 @@
 import Foundation
 
 protocol ResetPasswordViewModelProtocol {
-    var reloadData: ((AuthResponseModel) -> ())? {get}
+    var didSuccessForgotPassword: ((Bool) -> ())? {get set}
     func getResetPasswordUserData(email: String)
 }
 
 class ResetPasswordViewModel: ResetPasswordViewModelProtocol {
     
-    var reloadData: ((AuthResponseModel) -> ())?
+    var didSuccessForgotPassword: ((Bool) -> ())?
     private var serviceResetPassword = AuthService()
     
     init() {
@@ -24,10 +24,10 @@ class ResetPasswordViewModel: ResetPasswordViewModelProtocol {
     internal func getResetPasswordUserData(email: String) {
         serviceResetPassword.resetPassword(email: email) { result in
             switch result {
-            case .success(let resetPasswordResponse):
-                self.reloadData?(resetPasswordResponse)
-            case .failure(let error):
-                print(error)
+            case .success:
+                self.didSuccessForgotPassword?(true)
+            case .failure:
+                self.didSuccessForgotPassword?(false)
             }
         }
     }

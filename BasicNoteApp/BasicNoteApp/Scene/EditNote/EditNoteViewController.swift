@@ -51,9 +51,7 @@ class EditNoteViewController: UIViewController {
         return scroll
     }()
     
-    private var viewModelUpdate: EditNoteViewModelProtocol
-    
-    private var viewModelDetail: NoteViewModelProtocol
+    private var viewModel: EditNoteViewModelProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,12 +59,11 @@ class EditNoteViewController: UIViewController {
         applyConstraints()
         backButton()
         subscribeUpdateViewModel()
-        viewModelDetail.getNote(id: viewModelUpdate.id!)
+        setNote()
     }
     
-    init(viewModelUpdate: EditNoteViewModelProtocol, viewModelDetail: NoteViewModelProtocol) {
-        self.viewModelUpdate = viewModelUpdate
-        self.viewModelDetail = viewModelDetail
+    init(viewModel: EditNoteViewModelProtocol) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -75,6 +72,13 @@ class EditNoteViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     // swiftlint:enable fatal_error
+    
+    private func setNote() {
+        guard let note = viewModel.note else {return}
+        self.titleTextField.text = note.title
+        self.descriptionTextView.removePlaceholder()
+        self.descriptionTextView.text = note.note
+    }
 }
 
 // MARK: - Layout
@@ -138,10 +142,10 @@ extension EditNoteViewController {
     }
     
     @objc private func saveButtonTapped() {
-        guard let id = viewModelUpdate.id, let newTitle = titleTextField.text, let newNote = descriptionTextView.text, !newTitle.isEmpty, !newNote.isEmpty else {
+        guard let newTitle = titleTextField.text, let newNote = descriptionTextView.text, !newTitle.isEmpty, !newNote.isEmpty else {
             return self.presentModalController()
         }
-        viewModelUpdate.updateNote(id: id, title: newTitle, note: newNote)
+        viewModel.updateNote(title: newTitle, noteText: newNote)
     }
 }
 
@@ -170,12 +174,7 @@ extension EditNoteViewController {
 // MARK: - Response Data
 extension EditNoteViewController {
     internal func subscribeUpdateViewModel() {
-        viewModelDetail.reloadData = { note in
-            self.titleTextField.text = note.data?.title
-            self.descriptionTextView.removePlaceholder()
-            self.descriptionTextView.text = note.data?.note
-        }
-        viewModelUpdate.didSuccessUpdateNote = { [weak self] isSuccess in
+        viewModel.didSuccessUpdateNote = { [weak self] isSuccess in
             self?.navigationController?.popViewController(animated: true)
         }
     }

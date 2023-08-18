@@ -165,7 +165,7 @@ extension AddNoteViewController {
 extension AddNoteViewController {
     func subscribeViewModel() {
         viewModel.didSuccessAddNote = { [weak self] isSuccess in
-            let notesViewController = NotesViewController(viewModel: NotesViewModel(), viewModelEdit: EditNoteViewModel())
+            let notesViewController = NotesViewController(viewModel: NotesViewModel())
             self?.navigationController?.pushViewController(notesViewController, animated: true)
         }
     }

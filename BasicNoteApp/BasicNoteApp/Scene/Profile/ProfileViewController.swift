@@ -189,8 +189,12 @@ extension ProfileViewController {
         signOutLabel.addGestureRecognizer(tapGesture)
     }
     @objc private func signOutTapped() {
-        let loginViewController = LoginViewController(viewModel: LoginViewModel())
-        navigationController?.pushViewController(loginViewController, animated: true)
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: LoginViewController.self) {
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+            }
+        }
     }
 }
 
@@ -203,7 +207,7 @@ extension ProfileViewController {
         }
         
         viewModel.didSuccessUpdate = { [weak self] isSuccess in
-            let notesViewController = NotesViewController(viewModel: NotesViewModel(), viewModelEdit: EditNoteViewModel())
+            let notesViewController = NotesViewController(viewModel: NotesViewModel())
             self?.navigationController?.pushViewController(notesViewController, animated: true)
         }
     }

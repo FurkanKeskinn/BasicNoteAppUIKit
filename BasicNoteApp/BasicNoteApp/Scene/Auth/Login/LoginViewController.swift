@@ -287,8 +287,10 @@ extension LoginViewController {
     func subscribeViewModel() {
         viewModel.didSuccessLogin = { [weak self] isSuccess in
             if isSuccess {
-                let notesViewController = NotesViewController(viewModel: NotesViewModel(), viewModelEdit: EditNoteViewModel())
+                let notesViewController = NotesViewController(viewModel: NotesViewModel())
                 self?.navigationController?.pushViewController(notesViewController, animated: true)
+                self?.emailTextField.text = ""
+                self?.passwordTextField.text = ""
             } else {
                 self?.presentModalController()
             }

@@ -59,7 +59,6 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
     }()
     
     private var viewModel: NotesViewModelProtocol
-    private var viewModelEdit : EditNoteViewModelProtocol
     private var allNote: [NoteDataModel] = [NoteDataModel]()
     
     override func viewDidLoad() {
@@ -75,9 +74,8 @@ class NotesViewController: UIViewController, UIGestureRecognizerDelegate {
         viewModel.getallNotesData()
     }
     
-    init(viewModel: NotesViewModelProtocol, viewModelEdit: EditNoteViewModelProtocol) {
+    init(viewModel: NotesViewModelProtocol) {
         self.viewModel = viewModel
-        self.viewModelEdit = viewModelEdit
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -108,8 +106,10 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        PreviewViewController.id = allNote[indexPath.row].id
-        let previewVC = PreviewViewController()
+        let previewViewModel = PreviewViewModel()
+        previewViewModel.note = allNote[indexPath.row]
+        let previewVC = PreviewViewController(viewModel: previewViewModel)
+        
         navigationController?.pushViewController(previewVC, animated: true)
         
     }
@@ -125,7 +125,9 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
         
         let deleteAction = UIContextualAction(style: .normal, title: "") { (action, view, completion) in
             
-            let alertController = UIAlertController(title: "Delete Note", message: "Are you sure you want to deletethis note.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Delete Note",
+                                                    message: "Are you sure you want to deletethis note.",
+                                                    preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let deleteConfirmAction = UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
                 self.deleteItem(at: indexPath)
@@ -144,9 +146,9 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func editItem(at indexPath: IndexPath) {
-        viewModelEdit.id = allNote[indexPath.row].id
+        let viewModel = EditNoteViewModel(note: allNote[indexPath.row])
         
-        let editNoteViewController = EditNoteViewController(coder: NSCoder())!
+        let editNoteViewController = EditNoteViewController(viewModel: viewModel)
         navigationController?.pushViewController(editNoteViewController, animated: true)
         
     }
@@ -265,7 +267,7 @@ import SwiftUI
 @available(iOS 13, *)
 struct NotesViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        NotesViewController(viewModel: NotesViewModel(), viewModelEdit: EditNoteViewModel()).showPreview()
+        NotesViewController(viewModel: NotesViewModel()).showPreview()
     }
 }
 #endif

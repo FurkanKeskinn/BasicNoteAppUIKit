@@ -45,6 +45,7 @@ class NotesTableViewCell: UITableViewCell {
         stackView.addArrangedSubview(noteLabel)
         applyConstraints()
     }
+    
     // swiftlint:disable fatal_error
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

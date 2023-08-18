@@ -8,23 +8,24 @@
 import Foundation
 
 protocol EditNoteViewModelProtocol {
-    var id : Int? { get set }
-    func updateNote(id: Int, title: String, note: String)
+    var note: NoteDataModel? {get}
+    func updateNote(title: String, noteText: String)
     var didSuccessUpdateNote: ((Bool) -> ())? {get set}
 }
 
 class EditNoteViewModel: EditNoteViewModelProtocol{
-    var id : Int?
+    internal var note: NoteDataModel?
     private var serviceNoteUpdate = NoteService()
     internal var didSuccessUpdateNote: ((Bool) -> ())?
     
-    init(){
+    init(note: NoteDataModel?) {
         self.serviceNoteUpdate = NoteService()
-        self.id = Int()
+        self.note = note
     }
     
-    func updateNote(id: Int, title: String, note: String) {
-        serviceNoteUpdate.updateNote(id: id, title: title, note: note) { result in
+    func updateNote(title: String, noteText: String) {
+        guard let note = self.note else {return}
+        serviceNoteUpdate.updateNote(id: note.id, title: title, note: noteText) { result in
             switch result {
             case .success:
                 self.didSuccessUpdateNote?(true)
