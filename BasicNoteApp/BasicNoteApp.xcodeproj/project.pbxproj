@@ -37,10 +37,10 @@
 		DC9C8AC62A65743D0033FA4B /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9C8AC52A65743D0033FA4B /* UILabelExtension.swift */; };
 		DCA893302A8B77C200A95280 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8932F2A8B77C200A95280 /* LoginViewModel.swift */; };
 		DCA893322A8B77EC00A95280 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893312A8B77EC00A95280 /* RegisterViewModel.swift */; };
-		DCA893342A8B781A00A95280 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893332A8B781A00A95280 /* ResetPasswordViewModel.swift */; };
-		DCA8933A2A8B78AE00A95280 /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893392A8B78AE00A95280 /* UpdateViewModel.swift */; };
+		DCA893342A8B781A00A95280 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893332A8B781A00A95280 /* ForgotPasswordViewModel.swift */; };
+		DCA8933A2A8B78AE00A95280 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893392A8B78AE00A95280 /* ProfileViewModel.swift */; };
 		DCA8933C2A8B78C400A95280 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8933B2A8B78C400A95280 /* ChangePasswordViewModel.swift */; };
-		DCA8933E2A8B790A00A95280 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8933D2A8B790A00A95280 /* NoteViewModel.swift */; };
+		DCA8933E2A8B790A00A95280 /* PreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8933D2A8B790A00A95280 /* PreviewViewModel.swift */; };
 		DCA893402A8B792800A95280 /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8933F2A8B792800A95280 /* NotesViewModel.swift */; };
 		DCA893422A8B794300A95280 /* AddNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893412A8B794300A95280 /* AddNoteViewModel.swift */; };
 		DCA893442A8B796100A95280 /* EditNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893432A8B796100A95280 /* EditNoteViewModel.swift */; };
@@ -59,7 +59,6 @@
 		DCA8936D2A8B829400A95280 /* AllNotesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8936C2A8B829400A95280 /* AllNotesResponseModel.swift */; };
 		DCA8936F2A8B82AB00A95280 /* AllNotesDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA8936E2A8B82AB00A95280 /* AllNotesDataClass.swift */; };
 		DCA893712A8B82C400A95280 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893702A8B82C400A95280 /* Note.swift */; };
-		DCA893732A8B82D500A95280 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893722A8B82D500A95280 /* Link.swift */; };
 		DCA893752A8B82E100A95280 /* ChangePasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893742A8B82E100A95280 /* ChangePasswordModel.swift */; };
 		DCA893772A8B82F600A95280 /* ChangePasswordResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA893762A8B82F600A95280 /* ChangePasswordResponseModel.swift */; };
 		DCAD18072A5E7B1700ABF13B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAD18062A5E7B1700ABF13B /* Fonts.swift */; };
@@ -110,10 +109,10 @@
 		DC9C8AC52A65743D0033FA4B /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		DCA8932F2A8B77C200A95280 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		DCA893312A8B77EC00A95280 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
-		DCA893332A8B781A00A95280 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
-		DCA893392A8B78AE00A95280 /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
+		DCA893332A8B781A00A95280 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		DCA893392A8B78AE00A95280 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		DCA8933B2A8B78C400A95280 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
-		DCA8933D2A8B790A00A95280 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
+		DCA8933D2A8B790A00A95280 /* PreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewModel.swift; sourceTree = "<group>"; };
 		DCA8933F2A8B792800A95280 /* NotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
 		DCA893412A8B794300A95280 /* AddNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewModel.swift; sourceTree = "<group>"; };
 		DCA893432A8B796100A95280 /* EditNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteViewModel.swift; sourceTree = "<group>"; };
@@ -132,7 +131,6 @@
 		DCA8936C2A8B829400A95280 /* AllNotesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNotesResponseModel.swift; sourceTree = "<group>"; };
 		DCA8936E2A8B82AB00A95280 /* AllNotesDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNotesDataClass.swift; sourceTree = "<group>"; };
 		DCA893702A8B82C400A95280 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		DCA893722A8B82D500A95280 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		DCA893742A8B82E100A95280 /* ChangePasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordModel.swift; sourceTree = "<group>"; };
 		DCA893762A8B82F600A95280 /* ChangePasswordResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordResponseModel.swift; sourceTree = "<group>"; };
 		DCAD18032A5E7A7800ABF13B /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
@@ -376,7 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				DC3B24AA2A6685740013E83D /* ForgotPasswordViewController.swift */,
-				DCA893332A8B781A00A95280 /* ResetPasswordViewModel.swift */,
+				DCA893332A8B781A00A95280 /* ForgotPasswordViewModel.swift */,
 			);
 			path = PasswordReset;
 			sourceTree = "<group>";
@@ -394,7 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				DCC45A102A67B7AB003130FD /* ProfileViewController.swift */,
-				DCA893392A8B78AE00A95280 /* UpdateViewModel.swift */,
+				DCA893392A8B78AE00A95280 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -430,7 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				DC1C55852A7A3F87008DD5EE /* PreviewViewController.swift */,
-				DCA8933D2A8B790A00A95280 /* NoteViewModel.swift */,
+				DCA8933D2A8B790A00A95280 /* PreviewViewModel.swift */,
 			);
 			path = PreviewNote;
 			sourceTree = "<group>";
@@ -467,7 +465,6 @@
 				DCA8936C2A8B829400A95280 /* AllNotesResponseModel.swift */,
 				DCA8936E2A8B82AB00A95280 /* AllNotesDataClass.swift */,
 				DCA893702A8B82C400A95280 /* Note.swift */,
-				DCA893722A8B82D500A95280 /* Link.swift */,
 				DCA893742A8B82E100A95280 /* ChangePasswordModel.swift */,
 				DCA893762A8B82F600A95280 /* ChangePasswordResponseModel.swift */,
 			);
@@ -735,7 +732,7 @@
 				DCA893572A8B817D00A95280 /* ForgotPassword.swift in Sources */,
 				DC1C55882A7A4538008DD5EE /* UserService.swift in Sources */,
 				DC1D04142A61393800467F5E /* FloatLabelTextField.swift in Sources */,
-				DCA893342A8B781A00A95280 /* ResetPasswordViewModel.swift in Sources */,
+				DCA893342A8B781A00A95280 /* ForgotPasswordViewModel.swift in Sources */,
 				DC1B010C2A711F3A00F74842 /* Constant.swift in Sources */,
 				DC3B24AB2A6685740013E83D /* ForgotPasswordViewController.swift in Sources */,
 				DCA893642A8B822E00A95280 /* NoteDetailModel.swift in Sources */,
@@ -744,11 +741,10 @@
 				DC5D15882A5C4D1C00A4037C /* SceneDelegate.swift in Sources */,
 				DCA8935E2A8B81EA00A95280 /* NoteModel.swift in Sources */,
 				DCC45A112A67B7AB003130FD /* ProfileViewController.swift in Sources */,
-				DCA8933E2A8B790A00A95280 /* NoteViewModel.swift in Sources */,
+				DCA8933E2A8B790A00A95280 /* PreviewViewModel.swift in Sources */,
 				DCC45A152A67CB00003130FD /* NotesViewController.swift in Sources */,
 				DCA893752A8B82E100A95280 /* ChangePasswordModel.swift in Sources */,
 				DC666B0D2A695E5600A99CD7 /* UITextViewExtension.swift in Sources */,
-				DCA893732A8B82D500A95280 /* Link.swift in Sources */,
 				DC0214A92A6A7E5600125957 /* CustomBottomSheetView.swift in Sources */,
 				DC1C55862A7A3F87008DD5EE /* PreviewViewController.swift in Sources */,
 				DC0069682A728A1E005DD79D /* NoteService.swift in Sources */,
@@ -762,7 +758,7 @@
 				DC3B24A92A667C8F0013E83D /* LoginViewController.swift in Sources */,
 				DCA8933C2A8B78C400A95280 /* ChangePasswordViewModel.swift in Sources */,
 				DCC45A132A67C040003130FD /* ChangePasswordViewController.swift in Sources */,
-				DCA8933A2A8B78AE00A95280 /* UpdateViewModel.swift in Sources */,
+				DCA8933A2A8B78AE00A95280 /* ProfileViewModel.swift in Sources */,
 				DCA8936B2A8B828100A95280 /* UserDataClass.swift in Sources */,
 				DCA893772A8B82F600A95280 /* ChangePasswordResponseModel.swift in Sources */,
 				DCC45A182A67E2C0003130FD /* NotesTableViewCell.swift in Sources */,

@@ -80,13 +80,13 @@ class ForgotPasswordViewController: UIViewController {
     
     private var viewModel: ResetPasswordViewModelProtocol = ResetPasswordViewModel()
     var message: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         contentConfigure()
         setupViews()
         applyConstraints()
         backButton()
-        subscribeViewModel()
         emailTextField.delegate = self
     }
 }
@@ -202,13 +202,6 @@ extension ForgotPasswordViewController {
         self.dismiss(animated: true) {
             self.navigationController?.popViewController(animated: true)
         }
-    }
-}
-
-// MARK: - Response Data
-extension ForgotPasswordViewController {
-    func subscribeViewModel() {
-        viewModel.reloadData
     }
 }
 

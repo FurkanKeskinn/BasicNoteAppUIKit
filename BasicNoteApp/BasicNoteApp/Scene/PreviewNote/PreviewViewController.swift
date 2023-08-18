@@ -40,17 +40,27 @@ class PreviewViewController: UIViewController {
         return scroll
     }()
     
-    private var viewModel: NoteViewModelProtocol = NoteViewModel()
-    static var id: Int?
+    private let viewModel: PreviewViewModelProtocol
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         applyConstraints()
         backButton()
-        subscribeViewModel()
-        viewModel.getNote(id: PreviewViewController.id!)
+        setNote()
     }
+    
+    init(viewModel: PreviewViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    // swiftlint:disable fatal_error
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    // swiftlint:enable fatal_error
 }
 
 // MARK: - Layout
@@ -108,12 +118,11 @@ extension PreviewViewController {
 
 // MARK: - Response Data
 extension PreviewViewController {
-    internal func subscribeViewModel() {
-        viewModel.reloadData = { note in
-            self.titleTextField.text = note.data?.title
-            self.descriptionTextView.removePlaceholder()
-            self.descriptionTextView.text = note.data?.note
-        }
+    private func setNote() {
+        guard let note = viewModel.note else {return}
+        self.titleTextField.text = note.title
+        self.descriptionTextView.removePlaceholder()
+        self.descriptionTextView.text = note.note
     }
 }
 
@@ -123,7 +132,7 @@ import SwiftUI
 @available(iOS 13, *)
 struct PreviewViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        PreviewViewController().showPreview()
+        PreviewViewController(viewModel: PreviewViewModel()).showPreview()
     }
 }
 #endif
